@@ -1,0 +1,665 @@
+fold,task,family,config,approach,n,mae,rmse,bias,mae_reduction_vs_official_pct,observed_rate,roc_auc,pr_auc,brier,ece_5_bands,at_0_5
+11-06..11-12,regression,R00_official,R00_official,baseline,168,1531.0,1964.5,840.1,0.0,,,,,,
+11-06..11-12,regression,R01_linear_level,R01_linear_level,existing model,168,1817.1,2230.1,-611.9,-18.7,,,,,,
+11-06..11-12,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,1467.7,1793.3,-521.5,4.1,,,,,,
+11-06..11-12,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,1329.6,1661.9,-376.1,13.2,,,,,,
+11-06..11-12,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,1042.1,1325.6,-292.4,31.9,,,,,,
+11-06..11-12,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,1610.6,1964.3,-674.2,-5.2,,,,,,
+11-06..11-12,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,1441.1,1792.8,-449.5,5.9,,,,,,
+11-06..11-12,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,1147.0,1498.6,-269.3,25.1,,,,,,
+11-06..11-12,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,1683.7,2050.2,-772.1,-10.0,,,,,,
+11-06..11-12,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,1591.7,1986.0,-596.8,-4.0,,,,,,
+11-06..11-12,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,1269.6,1638.4,-443.6,17.1,,,,,,
+11-06..11-12,regression,R10_spline_level,R10_spline_level[n_knots=3],nonlinear,168,1719.3,2115.1,-598.5,-12.3,,,,,,
+11-06..11-12,regression,R10_spline_level,R10_spline_level[n_knots=5],nonlinear,168,1713.9,2083.8,-629.9,-11.9,,,,,,
+11-06..11-12,regression,R10_spline_level,R10_spline_level[n_knots=7],nonlinear,168,1749.9,2112.7,-610.0,-14.3,,,,,,
+11-06..11-12,regression,R11_isotonic_level,R11_isotonic_level,nonlinear,168,1748.3,2129.1,-554.8,-14.2,,,,,,
+11-06..11-12,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=3],nonlinear,168,1761.4,2129.9,-614.0,-15.0,,,,,,
+11-06..11-12,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=5],nonlinear,168,1766.9,2105.5,-651.9,-15.4,,,,,,
+11-06..11-12,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=7],nonlinear,168,1795.1,2138.4,-633.2,-17.3,,,,,,
+11-06..11-12,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1],nonlinear,168,1514.7,1799.7,-762.2,1.1,,,,,,
+11-06..11-12,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=10],nonlinear,168,1571.4,1860.3,-729.9,-2.6,,,,,,
+11-06..11-12,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=100],nonlinear,168,1630.1,1919.2,-655.8,-6.5,,,,,,
+11-06..11-12,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1000],nonlinear,168,1592.7,1880.9,-613.0,-4.0,,,,,,
+11-06..11-12,regression,R14_huber_level,R14_huber_level[epsilon=1.35],nonlinear,168,1831.9,2257.7,-679.5,-19.7,,,,,,
+11-06..11-12,regression,R14_huber_level,R14_huber_level[epsilon=2.0],nonlinear,168,1824.4,2245.3,-653.6,-19.2,,,,,,
+11-06..11-12,regression,R20_median_level,R20_median_level,MAE objective,168,1828.9,2264.9,-738.8,-19.5,,,,,,
+11-06..11-12,regression,R21_median_curve,R21_median_curve[n_knots=3],MAE objective,168,1758.0,2144.0,-531.6,-14.8,,,,,,
+11-06..11-12,regression,R21_median_curve,R21_median_curve[n_knots=5],MAE objective,168,1685.8,2032.2,-611.0,-10.1,,,,,,
+11-06..11-12,regression,R21_median_curve,R21_median_curve[n_knots=7],MAE objective,168,1702.6,2039.6,-535.0,-11.2,,,,,,
+11-06..11-12,regression,R22_median_wind_all,R22_median_wind_all[alpha=0],MAE objective,168,1523.6,1846.4,-681.5,0.5,,,,,,
+11-06..11-12,regression,R22_median_wind_all,R22_median_wind_all[alpha=1],MAE objective,168,1720.5,2064.9,-1053.9,-12.4,,,,,,
+11-06..11-12,regression,R22_median_wind_all,R22_median_wind_all[alpha=10],MAE objective,168,1720.5,2064.9,-1053.9,-12.4,,,,,,
+11-06..11-12,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,1925.6,2356.9,-828.3,-25.8,,,,,,
+11-06..11-12,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,1708.1,2095.9,-640.8,-11.6,,,,,,
+11-06..11-12,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,1996.0,2363.3,-873.1,-30.4,,,,,,
+11-06..11-12,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,1708.1,2095.9,-640.8,-11.6,,,,,,
+11-06..11-12,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,2009.4,2480.0,-901.4,-31.2,,,,,,
+11-06..11-12,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,1794.4,2210.9,-737.2,-17.2,,,,,,
+11-06..11-12,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,1973.8,2371.6,-824.7,-28.9,,,,,,
+11-06..11-12,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,1794.4,2210.9,-737.2,-17.2,,,,,,
+11-06..11-12,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=7],drift,168,2022.4,2405.3,-1824.8,-32.1,,,,,,
+11-06..11-12,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=14],drift,168,1899.8,2249.8,-1382.8,-24.1,,,,,,
+11-06..11-12,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=28],drift,168,1565.0,1905.3,-755.4,-2.2,,,,,,
+11-06..11-12,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=7],drift,168,2004.9,2442.7,-873.2,-31.0,,,,,,
+11-06..11-12,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=14],drift,168,1973.6,2346.5,-222.9,-28.9,,,,,,
+11-06..11-12,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=28],drift,168,1753.0,2126.8,-344.8,-14.5,,,,,,
+11-06..11-12,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=14],drift,168,2281.6,2674.8,-12.3,-49.0,,,,,,
+11-06..11-12,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=28],drift,168,1700.0,2082.3,-403.5,-11.0,,,,,,
+11-06..11-12,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=14],drift,168,1959.6,2243.2,-345.5,-28.0,,,,,,
+11-06..11-12,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=28],drift,168,1481.2,1800.9,-350.3,3.3,,,,,,
+11-06..11-12,classification,C00_base_rate,C00_base_rate,baseline,168,,,,,0.3988,0.5,0.3988,0.2801,0.2009,"{'threshold': 0.5, 'precision': 0.3988, 'recall': 1.0, 'f1': 0.5702}"
+11-06..11-12,classification,C01_logistic_level,C01_logistic_level,existing model,168,,,,,0.3988,0.3294,0.3139,0.3478,0.3235,"{'threshold': 0.5, 'precision': 0.2771, 'recall': 0.3433, 'f1': 0.3067}"
+11-06..11-12,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,,,,,0.3988,0.5685,0.6045,0.2556,0.2376,"{'threshold': 0.5, 'precision': 0.36, 'recall': 0.5373, 'f1': 0.4311}"
+11-06..11-12,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,,,,,0.3988,0.5716,0.6068,0.2402,0.2586,"{'threshold': 0.5, 'precision': 0.5517, 'recall': 0.4776, 'f1': 0.512}"
+11-06..11-12,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,,,,,0.3988,0.5617,0.594,0.2291,0.1588,"{'threshold': 0.5, 'precision': 0.6667, 'recall': 0.3881, 'f1': 0.4906}"
+11-06..11-12,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,,,,,0.3988,0.4973,0.5207,0.286,0.2329,"{'threshold': 0.5, 'precision': 0.3025, 'recall': 0.5373, 'f1': 0.3871}"
+11-06..11-12,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,,,,,0.3988,0.5191,0.5341,0.2716,0.2827,"{'threshold': 0.5, 'precision': 0.3723, 'recall': 0.5224, 'f1': 0.4348}"
+11-06..11-12,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,,,,,0.3988,0.6457,0.6222,0.2371,0.1777,"{'threshold': 0.5, 'precision': 0.675, 'recall': 0.403, 'f1': 0.5047}"
+11-06..11-12,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,,,,,0.3988,0.3916,0.3902,0.3126,0.2964,"{'threshold': 0.5, 'precision': 0.3058, 'recall': 0.5522, 'f1': 0.3936}"
+11-06..11-12,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,,,,,0.3988,0.4229,0.4397,0.3275,0.3275,"{'threshold': 0.5, 'precision': 0.2642, 'recall': 0.4179, 'f1': 0.3237}"
+11-06..11-12,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,,,,,0.3988,0.3835,0.3894,0.3532,0.3857,"{'threshold': 0.5, 'precision': 0.2596, 'recall': 0.403, 'f1': 0.3158}"
+11-06..11-12,classification,C10_logistic_curve,C10_logistic_curve[n_knots=3],nonlinear,168,,,,,0.3988,0.3081,0.3076,0.3504,0.3018,"{'threshold': 0.5, 'precision': 0.2326, 'recall': 0.2985, 'f1': 0.2614}"
+11-06..11-12,classification,C10_logistic_curve,C10_logistic_curve[n_knots=5],nonlinear,168,,,,,0.3988,0.3926,0.3403,0.3126,0.2669,"{'threshold': 0.5, 'precision': 0.3622, 'recall': 0.6866, 'f1': 0.4742}"
+11-06..11-12,classification,C10_logistic_curve,C10_logistic_curve[n_knots=7],nonlinear,168,,,,,0.3988,0.4314,0.3633,0.3177,0.2888,"{'threshold': 0.5, 'precision': 0.3793, 'recall': 0.6567, 'f1': 0.4809}"
+11-06..11-12,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=None]",features + weighting,168,,,,,0.3988,0.3938,0.3474,0.27,0.1704,"{'threshold': 0.5, 'precision': 0.3878, 'recall': 0.2836, 'f1': 0.3276}"
+11-06..11-12,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=balanced]",features + weighting,168,,,,,0.3988,0.394,0.3504,0.2675,0.1017,"{'threshold': 0.5, 'precision': 0.2353, 'recall': 0.0597, 'f1': 0.0952}"
+11-06..11-12,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=None]",features + weighting,168,,,,,0.3988,0.447,0.3757,0.2877,0.1781,"{'threshold': 0.5, 'precision': 0.4, 'recall': 0.3582, 'f1': 0.378}"
+11-06..11-12,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=balanced]",features + weighting,168,,,,,0.3988,0.4479,0.379,0.2832,0.1747,"{'threshold': 0.5, 'precision': 0.4318, 'recall': 0.2836, 'f1': 0.3423}"
+11-06..11-12,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=None]",features + weighting,168,,,,,0.3988,0.5188,0.471,0.2889,0.1988,"{'threshold': 0.5, 'precision': 0.4146, 'recall': 0.5075, 'f1': 0.4564}"
+11-06..11-12,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=balanced]",features + weighting,168,,,,,0.3988,0.5253,0.4678,0.2727,0.169,"{'threshold': 0.5, 'precision': 0.4643, 'recall': 0.3881, 'f1': 0.4228}"
+11-06..11-12,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=None]",features + weighting,168,,,,,0.3988,0.628,0.6462,0.2782,0.3041,"{'threshold': 0.5, 'precision': 0.4831, 'recall': 0.6418, 'f1': 0.5513}"
+11-06..11-12,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=balanced]",features + weighting,168,,,,,0.3988,0.6371,0.65,0.2514,0.2412,"{'threshold': 0.5, 'precision': 0.5753, 'recall': 0.6269, 'f1': 0.6}"
+11-06..11-12,classification,C12_logistic_interactions,C12_logistic_interactions[C=0.1],interactions,168,,,,,0.3988,0.5898,0.4396,0.3097,0.2419,"{'threshold': 0.5, 'precision': 0.4634, 'recall': 0.8507, 'f1': 0.6}"
+11-06..11-12,classification,C12_logistic_interactions,C12_logistic_interactions[C=1],interactions,168,,,,,0.3988,0.6131,0.463,0.3059,0.2256,"{'threshold': 0.5, 'precision': 0.4454, 'recall': 0.791, 'f1': 0.5699}"
+11-06..11-12,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.3988,0.321,0.3042,0.4446,0.3825,"{'threshold': 0.5, 'precision': 0.337, 'recall': 0.4627, 'f1': 0.3899}"
+11-06..11-12,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.3988,0.3931,0.3327,0.3936,0.3301,"{'threshold': 0.5, 'precision': 0.3978, 'recall': 0.5522, 'f1': 0.4625}"
+11-06..11-12,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.3988,0.3526,0.3162,0.4449,0.407,"{'threshold': 0.5, 'precision': 0.3505, 'recall': 0.5075, 'f1': 0.4146}"
+11-06..11-12,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.3988,0.3931,0.3327,0.3936,0.3301,"{'threshold': 0.5, 'precision': 0.3978, 'recall': 0.5522, 'f1': 0.4625}"
+11-06..11-12,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.3988,0.3539,0.3194,0.4731,0.4703,"{'threshold': 0.5, 'precision': 0.3196, 'recall': 0.4627, 'f1': 0.378}"
+11-06..11-12,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.3988,0.4099,0.3363,0.4227,0.377,"{'threshold': 0.5, 'precision': 0.3617, 'recall': 0.5075, 'f1': 0.4224}"
+11-06..11-12,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.3988,0.4096,0.343,0.4544,0.4131,"{'threshold': 0.5, 'precision': 0.35, 'recall': 0.5224, 'f1': 0.4192}"
+11-06..11-12,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.3988,0.4099,0.3363,0.4227,0.377,"{'threshold': 0.5, 'precision': 0.3617, 'recall': 0.5075, 'f1': 0.4224}"
+11-06..11-12,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=14],drift,168,,,,,0.3988,0.2978,0.3105,0.3479,0.2901,"{'threshold': 0.5, 'precision': 0.3306, 'recall': 0.597, 'f1': 0.4255}"
+11-06..11-12,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=28],drift,168,,,,,0.3988,0.4733,0.4181,0.2679,0.1876,"{'threshold': 0.5, 'precision': 0.4176, 'recall': 0.5672, 'f1': 0.481}"
+11-13..11-19,regression,R00_official,R00_official,baseline,168,1394.5,1639.4,419.6,0.0,,,,,,
+11-13..11-19,regression,R01_linear_level,R01_linear_level,existing model,168,1660.4,1967.9,-1566.9,-19.1,,,,,,
+11-13..11-19,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,1166.8,1465.2,-941.8,16.3,,,,,,
+11-13..11-19,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,1090.9,1392.4,-841.2,21.8,,,,,,
+11-13..11-19,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,1034.3,1307.2,-688.0,25.8,,,,,,
+11-13..11-19,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,1312.1,1623.5,-1171.9,5.9,,,,,,
+11-13..11-19,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,1199.2,1482.6,-1011.4,14.0,,,,,,
+11-13..11-19,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,1081.9,1343.5,-780.9,22.4,,,,,,
+11-13..11-19,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,1421.7,1756.4,-1290.7,-1.9,,,,,,
+11-13..11-19,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,1364.8,1645.6,-1220.2,2.1,,,,,,
+11-13..11-19,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,1185.5,1451.2,-889.1,15.0,,,,,,
+11-13..11-19,regression,R10_spline_level,R10_spline_level[n_knots=3],nonlinear,168,1534.7,1891.8,-1403.2,-10.1,,,,,,
+11-13..11-19,regression,R10_spline_level,R10_spline_level[n_knots=5],nonlinear,168,1620.0,1982.1,-1488.2,-16.2,,,,,,
+11-13..11-19,regression,R10_spline_level,R10_spline_level[n_knots=7],nonlinear,168,1613.8,1966.5,-1483.9,-15.7,,,,,,
+11-13..11-19,regression,R11_isotonic_level,R11_isotonic_level,nonlinear,168,1588.3,1926.2,-1450.7,-13.9,,,,,,
+11-13..11-19,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=3],nonlinear,168,1552.4,1899.6,-1402.5,-11.3,,,,,,
+11-13..11-19,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=5],nonlinear,168,1645.1,1987.4,-1489.3,-18.0,,,,,,
+11-13..11-19,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=7],nonlinear,168,1639.0,1971.3,-1484.4,-17.5,,,,,,
+11-13..11-19,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1],nonlinear,168,1214.0,1591.4,44.6,12.9,,,,,,
+11-13..11-19,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=10],nonlinear,168,1195.8,1452.7,-30.9,14.3,,,,,,
+11-13..11-19,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=100],nonlinear,168,1130.1,1372.1,-190.8,19.0,,,,,,
+11-13..11-19,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1000],nonlinear,168,1151.7,1481.9,-665.1,17.4,,,,,,
+11-13..11-19,regression,R14_huber_level,R14_huber_level[epsilon=1.35],nonlinear,168,1746.0,2049.1,-1671.4,-25.2,,,,,,
+11-13..11-19,regression,R14_huber_level,R14_huber_level[epsilon=2.0],nonlinear,168,1700.0,2006.3,-1616.1,-21.9,,,,,,
+11-13..11-19,regression,R20_median_level,R20_median_level,MAE objective,168,1777.2,2084.9,-1712.8,-27.4,,,,,,
+11-13..11-19,regression,R21_median_curve,R21_median_curve[n_knots=3],MAE objective,168,1505.1,1834.4,-1334.7,-7.9,,,,,,
+11-13..11-19,regression,R21_median_curve,R21_median_curve[n_knots=5],MAE objective,168,1626.4,1970.9,-1447.0,-16.6,,,,,,
+11-13..11-19,regression,R21_median_curve,R21_median_curve[n_knots=7],MAE objective,168,1613.6,1951.0,-1426.0,-15.7,,,,,,
+11-13..11-19,regression,R22_median_wind_all,R22_median_wind_all[alpha=0],MAE objective,168,1275.5,1683.5,-188.9,8.5,,,,,,
+11-13..11-19,regression,R22_median_wind_all,R22_median_wind_all[alpha=1],MAE objective,168,1484.2,1950.2,-1136.4,-6.4,,,,,,
+11-13..11-19,regression,R22_median_wind_all,R22_median_wind_all[alpha=10],MAE objective,168,1484.2,1950.2,-1136.4,-6.4,,,,,,
+11-13..11-19,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,1051.3,1407.3,-537.3,24.6,,,,,,
+11-13..11-19,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,1076.3,1376.6,-367.8,22.8,,,,,,
+11-13..11-19,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,1118.4,1473.2,-728.2,19.8,,,,,,
+11-13..11-19,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,1079.6,1408.4,-394.6,22.6,,,,,,
+11-13..11-19,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,1068.1,1460.5,-496.3,23.4,,,,,,
+11-13..11-19,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,1061.9,1445.7,-318.1,23.9,,,,,,
+11-13..11-19,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,1095.3,1435.8,-708.1,21.5,,,,,,
+11-13..11-19,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,1104.6,1445.3,-332.9,20.8,,,,,,
+11-13..11-19,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=7],drift,168,1310.4,1562.8,-41.7,6.0,,,,,,
+11-13..11-19,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=14],drift,168,1513.9,1946.7,-1143.5,-8.6,,,,,,
+11-13..11-19,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=28],drift,168,1487.4,1954.8,-1135.0,-6.7,,,,,,
+11-13..11-19,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=7],drift,168,1077.5,1329.8,-281.1,22.7,,,,,,
+11-13..11-19,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=14],drift,168,1340.8,1627.9,-1109.6,3.9,,,,,,
+11-13..11-19,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=28],drift,168,1282.7,1552.0,-996.6,8.0,,,,,,
+11-13..11-19,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=14],drift,168,1372.0,1698.8,-1084.1,1.6,,,,,,
+11-13..11-19,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=28],drift,168,1288.1,1572.0,-1010.8,7.6,,,,,,
+11-13..11-19,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=14],drift,168,1560.7,1919.0,-995.1,-11.9,,,,,,
+11-13..11-19,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=28],drift,168,1323.3,1717.6,-856.8,5.1,,,,,,
+11-13..11-19,classification,C00_base_rate,C00_base_rate,baseline,168,,,,,0.4286,0.5,0.4286,0.2645,0.14,"{'threshold': 0.5, 'precision': 0.4286, 'recall': 1.0, 'f1': 0.6}"
+11-13..11-19,classification,C01_logistic_level,C01_logistic_level,existing model,168,,,,,0.4286,0.7854,0.7583,0.2279,0.1855,"{'threshold': 0.5, 'precision': 0.5631, 'recall': 0.8056, 'f1': 0.6629}"
+11-13..11-19,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,,,,,0.4286,0.8579,0.7619,0.1799,0.1312,"{'threshold': 0.5, 'precision': 0.7532, 'recall': 0.8056, 'f1': 0.7785}"
+11-13..11-19,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,,,,,0.4286,0.8453,0.7252,0.1699,0.1413,"{'threshold': 0.5, 'precision': 0.7465, 'recall': 0.7361, 'f1': 0.7413}"
+11-13..11-19,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,,,,,0.4286,0.8448,0.7571,0.1624,0.1061,"{'threshold': 0.5, 'precision': 0.75, 'recall': 0.7083, 'f1': 0.7286}"
+11-13..11-19,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,,,,,0.4286,0.8627,0.8124,0.1944,0.1658,"{'threshold': 0.5, 'precision': 0.6476, 'recall': 0.9444, 'f1': 0.7684}"
+11-13..11-19,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,,,,,0.4286,0.8676,0.8154,0.1742,0.1191,"{'threshold': 0.5, 'precision': 0.7237, 'recall': 0.7639, 'f1': 0.7432}"
+11-13..11-19,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,,,,,0.4286,0.8759,0.8219,0.1604,0.0948,"{'threshold': 0.5, 'precision': 0.7536, 'recall': 0.7222, 'f1': 0.7376}"
+11-13..11-19,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,,,,,0.4286,0.8659,0.8296,0.214,0.2039,"{'threshold': 0.5, 'precision': 0.5224, 'recall': 0.9722, 'f1': 0.6796}"
+11-13..11-19,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,,,,,0.4286,0.8598,0.8178,0.1931,0.1608,"{'threshold': 0.5, 'precision': 0.6699, 'recall': 0.9583, 'f1': 0.7886}"
+11-13..11-19,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,,,,,0.4286,0.8785,0.8307,0.1643,0.0949,"{'threshold': 0.5, 'precision': 0.7536, 'recall': 0.7222, 'f1': 0.7376}"
+11-13..11-19,classification,C10_logistic_curve,C10_logistic_curve[n_knots=3],nonlinear,168,,,,,0.4286,0.7802,0.7572,0.2298,0.1808,"{'threshold': 0.5, 'precision': 0.5686, 'recall': 0.8056, 'f1': 0.6667}"
+11-13..11-19,classification,C10_logistic_curve,C10_logistic_curve[n_knots=5],nonlinear,168,,,,,0.4286,0.7269,0.7428,0.2524,0.2342,"{'threshold': 0.5, 'precision': 0.4755, 'recall': 0.9444, 'f1': 0.6326}"
+11-13..11-19,classification,C10_logistic_curve,C10_logistic_curve[n_knots=7],nonlinear,168,,,,,0.4286,0.7273,0.7381,0.2561,0.2301,"{'threshold': 0.5, 'precision': 0.4667, 'recall': 0.875, 'f1': 0.6087}"
+11-13..11-19,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=None]",features + weighting,168,,,,,0.4286,0.5475,0.5394,0.2515,0.1787,"{'threshold': 0.5, 'precision': 0.5231, 'recall': 0.4722, 'f1': 0.4964}"
+11-13..11-19,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=balanced]",features + weighting,168,,,,,0.4286,0.5537,0.5469,0.2465,0.1273,"{'threshold': 0.5, 'precision': 0.5625, 'recall': 0.375, 'f1': 0.45}"
+11-13..11-19,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=None]",features + weighting,168,,,,,0.4286,0.5204,0.5576,0.2905,0.2213,"{'threshold': 0.5, 'precision': 0.4615, 'recall': 0.4167, 'f1': 0.438}"
+11-13..11-19,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=balanced]",features + weighting,168,,,,,0.4286,0.5276,0.5665,0.284,0.1998,"{'threshold': 0.5, 'precision': 0.5714, 'recall': 0.3333, 'f1': 0.4211}"
+11-13..11-19,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=None]",features + weighting,168,,,,,0.4286,0.4867,0.5512,0.2807,0.202,"{'threshold': 0.5, 'precision': 0.5263, 'recall': 0.2778, 'f1': 0.3636}"
+11-13..11-19,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=balanced]",features + weighting,168,,,,,0.4286,0.5033,0.5633,0.278,0.199,"{'threshold': 0.5, 'precision': 0.7895, 'recall': 0.2083, 'f1': 0.3297}"
+11-13..11-19,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=None]",features + weighting,168,,,,,0.4286,0.5791,0.582,0.2759,0.2036,"{'threshold': 0.5, 'precision': 0.6061, 'recall': 0.2778, 'f1': 0.381}"
+11-13..11-19,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=balanced]",features + weighting,168,,,,,0.4286,0.5945,0.5977,0.2756,0.2057,"{'threshold': 0.5, 'precision': 0.68, 'recall': 0.2361, 'f1': 0.3505}"
+11-13..11-19,classification,C12_logistic_interactions,C12_logistic_interactions[C=0.1],interactions,168,,,,,0.4286,0.4755,0.4072,0.3078,0.1753,"{'threshold': 0.5, 'precision': 0.4355, 'recall': 0.375, 'f1': 0.403}"
+11-13..11-19,classification,C12_logistic_interactions,C12_logistic_interactions[C=1],interactions,168,,,,,0.4286,0.4834,0.4217,0.3107,0.2276,"{'threshold': 0.5, 'precision': 0.3649, 'recall': 0.375, 'f1': 0.3699}"
+11-13..11-19,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.4286,0.8286,0.8176,0.163,0.0425,"{'threshold': 0.5, 'precision': 0.7273, 'recall': 0.6667, 'f1': 0.6957}"
+11-13..11-19,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.4286,0.8176,0.8226,0.1584,0.0625,"{'threshold': 0.5, 'precision': 0.7619, 'recall': 0.6667, 'f1': 0.7111}"
+11-13..11-19,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.4286,0.7975,0.7621,0.1838,0.0606,"{'threshold': 0.5, 'precision': 0.6579, 'recall': 0.6944, 'f1': 0.6757}"
+11-13..11-19,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.4286,0.7969,0.8025,0.1683,0.0572,"{'threshold': 0.5, 'precision': 0.7667, 'recall': 0.6389, 'f1': 0.697}"
+11-13..11-19,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.4286,0.7671,0.7346,0.2228,0.161,"{'threshold': 0.5, 'precision': 0.6173, 'recall': 0.6944, 'f1': 0.6536}"
+11-13..11-19,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.4286,0.7758,0.7648,0.1923,0.1069,"{'threshold': 0.5, 'precision': 0.7302, 'recall': 0.6389, 'f1': 0.6815}"
+11-13..11-19,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.4286,0.7598,0.7301,0.2346,0.1833,"{'threshold': 0.5, 'precision': 0.6118, 'recall': 0.7222, 'f1': 0.6624}"
+11-13..11-19,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.4286,0.7837,0.7744,0.1935,0.1598,"{'threshold': 0.5, 'precision': 0.7313, 'recall': 0.6806, 'f1': 0.705}"
+11-13..11-19,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=14],drift,168,,,,,0.4286,0.497,0.5465,0.2677,0.1767,"{'threshold': 0.5, 'precision': 0.3939, 'recall': 0.5417, 'f1': 0.4561}"
+11-13..11-19,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=28],drift,168,,,,,0.4286,0.5911,0.6504,0.2376,0.1379,"{'threshold': 0.5, 'precision': 0.4227, 'recall': 0.5694, 'f1': 0.4852}"
+11-20..11-26,regression,R00_official,R00_official,baseline,168,1407.8,1791.4,51.1,0.0,,,,,,
+11-20..11-26,regression,R01_linear_level,R01_linear_level,existing model,168,1617.7,2250.3,-1402.3,-14.9,,,,,,
+11-20..11-26,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,1380.4,1768.1,-629.8,1.9,,,,,,
+11-20..11-26,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,1416.2,1761.8,-514.3,-0.6,,,,,,
+11-20..11-26,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,1540.8,1893.9,-409.1,-9.4,,,,,,
+11-20..11-26,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,1415.9,1853.0,-785.6,-0.6,,,,,,
+11-20..11-26,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,1406.2,1772.1,-482.2,0.1,,,,,,
+11-20..11-26,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,1426.7,1764.9,-347.1,-1.3,,,,,,
+11-20..11-26,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,1450.3,1915.2,-921.8,-3.0,,,,,,
+11-20..11-26,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,1397.0,1804.9,-579.8,0.8,,,,,,
+11-20..11-26,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,1448.1,1775.2,-212.3,-2.9,,,,,,
+11-20..11-26,regression,R10_spline_level,R10_spline_level[n_knots=3],nonlinear,168,1491.2,2079.5,-1147.8,-5.9,,,,,,
+11-20..11-26,regression,R10_spline_level,R10_spline_level[n_knots=5],nonlinear,168,1496.0,2083.3,-1135.9,-6.3,,,,,,
+11-20..11-26,regression,R10_spline_level,R10_spline_level[n_knots=7],nonlinear,168,1495.6,2088.5,-1105.5,-6.2,,,,,,
+11-20..11-26,regression,R11_isotonic_level,R11_isotonic_level,nonlinear,168,1490.0,2081.8,-1101.6,-5.8,,,,,,
+11-20..11-26,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=3],nonlinear,168,1494.1,2097.0,-1160.6,-6.1,,,,,,
+11-20..11-26,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=5],nonlinear,168,1504.6,2106.4,-1147.4,-6.9,,,,,,
+11-20..11-26,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=7],nonlinear,168,1504.3,2110.5,-1118.2,-6.9,,,,,,
+11-20..11-26,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1],nonlinear,168,1656.4,2196.1,-381.9,-17.7,,,,,,
+11-20..11-26,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=10],nonlinear,168,1629.5,2134.6,-141.7,-15.8,,,,,,
+11-20..11-26,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=100],nonlinear,168,1563.1,2046.0,-155.9,-11.0,,,,,,
+11-20..11-26,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1000],nonlinear,168,1468.0,1980.9,-542.0,-4.3,,,,,,
+11-20..11-26,regression,R14_huber_level,R14_huber_level[epsilon=1.35],nonlinear,168,1660.3,2295.1,-1473.1,-17.9,,,,,,
+11-20..11-26,regression,R14_huber_level,R14_huber_level[epsilon=2.0],nonlinear,168,1630.6,2264.3,-1424.4,-15.8,,,,,,
+11-20..11-26,regression,R20_median_level,R20_median_level,MAE objective,168,1715.8,2348.8,-1555.9,-21.9,,,,,,
+11-20..11-26,regression,R21_median_curve,R21_median_curve[n_knots=3],MAE objective,168,1482.1,2026.8,-1042.4,-5.3,,,,,,
+11-20..11-26,regression,R21_median_curve,R21_median_curve[n_knots=5],MAE objective,168,1483.2,2001.5,-984.2,-5.4,,,,,,
+11-20..11-26,regression,R21_median_curve,R21_median_curve[n_knots=7],MAE objective,168,1464.2,2005.3,-922.9,-4.0,,,,,,
+11-20..11-26,regression,R22_median_wind_all,R22_median_wind_all[alpha=0],MAE objective,168,1661.6,2225.3,-827.9,-18.0,,,,,,
+11-20..11-26,regression,R22_median_wind_all,R22_median_wind_all[alpha=1],MAE objective,168,1572.4,2129.7,-1152.9,-11.7,,,,,,
+11-20..11-26,regression,R22_median_wind_all,R22_median_wind_all[alpha=10],MAE objective,168,1572.4,2129.7,-1152.9,-11.7,,,,,,
+11-20..11-26,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,1305.9,1688.9,-428.4,7.2,,,,,,
+11-20..11-26,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,1279.9,1630.5,-301.0,9.1,,,,,,
+11-20..11-26,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,1327.3,1674.6,-478.0,5.7,,,,,,
+11-20..11-26,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,1308.2,1665.2,-334.1,7.1,,,,,,
+11-20..11-26,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,1328.6,1712.9,-475.8,5.6,,,,,,
+11-20..11-26,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,1347.0,1690.5,-275.0,4.3,,,,,,
+11-20..11-26,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,1347.4,1713.6,-483.0,4.3,,,,,,
+11-20..11-26,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,1327.3,1719.9,-425.9,5.7,,,,,,
+11-20..11-26,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=7],drift,168,1403.0,1818.6,-165.8,0.3,,,,,,
+11-20..11-26,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=14],drift,168,1362.5,1794.5,-288.0,3.2,,,,,,
+11-20..11-26,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=28],drift,168,1600.2,2176.6,-1230.8,-13.7,,,,,,
+11-20..11-26,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=7],drift,168,1467.5,1811.9,-16.2,-4.2,,,,,,
+11-20..11-26,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=14],drift,168,1399.7,1771.8,-191.4,0.6,,,,,,
+11-20..11-26,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=28],drift,168,1411.0,1936.7,-787.4,-0.2,,,,,,
+11-20..11-26,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=14],drift,168,1427.5,1797.5,-164.8,-1.4,,,,,,
+11-20..11-26,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=28],drift,168,1418.6,1930.6,-734.4,-0.8,,,,,,
+11-20..11-26,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=14],drift,168,1356.4,1727.4,-38.3,3.6,,,,,,
+11-20..11-26,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=28],drift,168,1356.6,1810.7,-354.3,3.6,,,,,,
+11-20..11-26,classification,C00_base_rate,C00_base_rate,baseline,168,,,,,0.3155,0.5,0.3155,0.2631,0.217,"{'threshold': 0.5, 'precision': 0.3155, 'recall': 1.0, 'f1': 0.4796}"
+11-20..11-26,classification,C01_logistic_level,C01_logistic_level,existing model,168,,,,,0.3155,0.7001,0.5675,0.2295,0.189,"{'threshold': 0.5, 'precision': 0.3958, 'recall': 0.717, 'f1': 0.5101}"
+11-20..11-26,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,,,,,0.3155,0.6281,0.4148,0.2334,0.1381,"{'threshold': 0.5, 'precision': 0.3333, 'recall': 0.1887, 'f1': 0.241}"
+11-20..11-26,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,,,,,0.3155,0.6221,0.3692,0.2506,0.1751,"{'threshold': 0.5, 'precision': 0.1667, 'recall': 0.0755, 'f1': 0.1039}"
+11-20..11-26,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,,,,,0.3155,0.6454,0.388,0.2717,0.2302,"{'threshold': 0.5, 'precision': 0.2, 'recall': 0.0943, 'f1': 0.1282}"
+11-20..11-26,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,,,,,0.3155,0.6345,0.4191,0.2255,0.1285,"{'threshold': 0.5, 'precision': 0.4118, 'recall': 0.2642, 'f1': 0.3218}"
+11-20..11-26,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,,,,,0.3155,0.6089,0.3822,0.2406,0.1641,"{'threshold': 0.5, 'precision': 0.3333, 'recall': 0.1887, 'f1': 0.241}"
+11-20..11-26,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,,,,,0.3155,0.6249,0.3944,0.2546,0.1637,"{'threshold': 0.5, 'precision': 0.3548, 'recall': 0.2075, 'f1': 0.2619}"
+11-20..11-26,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,,,,,0.3155,0.6026,0.3819,0.2305,0.1355,"{'threshold': 0.5, 'precision': 0.4054, 'recall': 0.283, 'f1': 0.3333}"
+11-20..11-26,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,,,,,0.3155,0.5736,0.3487,0.237,0.1209,"{'threshold': 0.5, 'precision': 0.375, 'recall': 0.2264, 'f1': 0.2824}"
+11-20..11-26,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,,,,,0.3155,0.6185,0.3708,0.2554,0.1669,"{'threshold': 0.5, 'precision': 0.375, 'recall': 0.2264, 'f1': 0.2824}"
+11-20..11-26,classification,C10_logistic_curve,C10_logistic_curve[n_knots=3],nonlinear,168,,,,,0.3155,0.6689,0.544,0.2328,0.1826,"{'threshold': 0.5, 'precision': 0.4268, 'recall': 0.6604, 'f1': 0.5185}"
+11-20..11-26,classification,C10_logistic_curve,C10_logistic_curve[n_knots=5],nonlinear,168,,,,,0.3155,0.5509,0.4663,0.2408,0.1894,"{'threshold': 0.5, 'precision': 0.3067, 'recall': 0.434, 'f1': 0.3594}"
+11-20..11-26,classification,C10_logistic_curve,C10_logistic_curve[n_knots=7],nonlinear,168,,,,,0.3155,0.5142,0.426,0.2438,0.1731,"{'threshold': 0.5, 'precision': 0.3194, 'recall': 0.434, 'f1': 0.368}"
+11-20..11-26,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=None]",features + weighting,168,,,,,0.3155,0.4438,0.362,0.24,0.1786,"{'threshold': 0.5, 'precision': 0.4444, 'recall': 0.0755, 'f1': 0.129}"
+11-20..11-26,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=balanced]",features + weighting,168,,,,,0.3155,0.4476,0.3675,0.2378,0.1657,"{'threshold': 0.5, 'precision': 0.3333, 'recall': 0.0189, 'f1': 0.0357}"
+11-20..11-26,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=None]",features + weighting,168,,,,,0.3155,0.4489,0.335,0.2576,0.1532,"{'threshold': 0.5, 'precision': 0.3571, 'recall': 0.0943, 'f1': 0.1493}"
+11-20..11-26,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=balanced]",features + weighting,168,,,,,0.3155,0.451,0.3344,0.2545,0.1401,"{'threshold': 0.5, 'precision': 0.2857, 'recall': 0.0377, 'f1': 0.0667}"
+11-20..11-26,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=None]",features + weighting,168,,,,,0.3155,0.4607,0.33,0.2596,0.1655,"{'threshold': 0.5, 'precision': 0.4286, 'recall': 0.1132, 'f1': 0.1791}"
+11-20..11-26,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=balanced]",features + weighting,168,,,,,0.3155,0.4646,0.3316,0.2557,0.1425,"{'threshold': 0.5, 'precision': 0.375, 'recall': 0.0566, 'f1': 0.0984}"
+11-20..11-26,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=None]",features + weighting,168,,,,,0.3155,0.4794,0.3187,0.2776,0.2314,"{'threshold': 0.5, 'precision': 0.36, 'recall': 0.3396, 'f1': 0.3495}"
+11-20..11-26,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=balanced]",features + weighting,168,,,,,0.3155,0.4868,0.325,0.2704,0.2025,"{'threshold': 0.5, 'precision': 0.3846, 'recall': 0.283, 'f1': 0.3261}"
+11-20..11-26,classification,C12_logistic_interactions,C12_logistic_interactions[C=0.1],interactions,168,,,,,0.3155,0.4249,0.2884,0.2773,0.2118,"{'threshold': 0.5, 'precision': 0.2708, 'recall': 0.2453, 'f1': 0.2574}"
+11-20..11-26,classification,C12_logistic_interactions,C12_logistic_interactions[C=1],interactions,168,,,,,0.3155,0.412,0.279,0.2825,0.1899,"{'threshold': 0.5, 'precision': 0.2889, 'recall': 0.2453, 'f1': 0.2653}"
+11-20..11-26,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.3155,0.4461,0.2782,0.282,0.2132,"{'threshold': 0.5, 'precision': 0.2432, 'recall': 0.1698, 'f1': 0.2}"
+11-20..11-26,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.3155,0.4806,0.2904,0.2579,0.1854,"{'threshold': 0.5, 'precision': 0.1333, 'recall': 0.0755, 'f1': 0.0964}"
+11-20..11-26,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.3155,0.5424,0.3137,0.287,0.2321,"{'threshold': 0.5, 'precision': 0.2258, 'recall': 0.1321, 'f1': 0.1667}"
+11-20..11-26,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.3155,0.4564,0.2863,0.2665,0.207,"{'threshold': 0.5, 'precision': 0.1538, 'recall': 0.0755, 'f1': 0.1013}"
+11-20..11-26,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.3155,0.4597,0.2809,0.318,0.2534,"{'threshold': 0.5, 'precision': 0.2821, 'recall': 0.2075, 'f1': 0.2391}"
+11-20..11-26,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.3155,0.3865,0.2534,0.3191,0.2567,"{'threshold': 0.5, 'precision': 0.1389, 'recall': 0.0943, 'f1': 0.1124}"
+11-20..11-26,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.3155,0.452,0.2793,0.3328,0.2767,"{'threshold': 0.5, 'precision': 0.1818, 'recall': 0.1132, 'f1': 0.1395}"
+11-20..11-26,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.3155,0.4292,0.2672,0.3138,0.2506,"{'threshold': 0.5, 'precision': 0.2188, 'recall': 0.1321, 'f1': 0.1647}"
+11-20..11-26,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=14],drift,168,,,,,0.3155,0.6184,0.3933,0.2069,0.0518,"{'threshold': 0.5, 'precision': 0.0, 'recall': 0.0, 'f1': 0.0}"
+11-20..11-26,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=28],drift,168,,,,,0.3155,0.5985,0.485,0.208,0.0931,"{'threshold': 0.5, 'precision': 0.9, 'recall': 0.1698, 'f1': 0.2857}"
+11-27..12-03,regression,R00_official,R00_official,baseline,168,2683.8,3058.5,2104.4,0.0,,,,,,
+11-27..12-03,regression,R01_linear_level,R01_linear_level,existing model,168,1436.6,1786.9,-43.2,46.5,,,,,,
+11-27..12-03,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,1493.8,1826.2,227.5,44.3,,,,,,
+11-27..12-03,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,1407.4,1774.6,40.9,47.6,,,,,,
+11-27..12-03,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,1449.7,1800.5,48.8,46.0,,,,,,
+11-27..12-03,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,1601.5,1917.3,312.6,40.3,,,,,,
+11-27..12-03,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,1466.9,1850.3,3.5,45.3,,,,,,
+11-27..12-03,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,1458.4,1878.9,-291.2,45.7,,,,,,
+11-27..12-03,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,1670.2,1971.2,381.1,37.8,,,,,,
+11-27..12-03,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,1554.3,1920.3,57.2,42.1,,,,,,
+11-27..12-03,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,1475.8,1960.0,-357.3,45.0,,,,,,
+11-27..12-03,regression,R10_spline_level,R10_spline_level[n_knots=3],nonlinear,168,1407.0,1751.0,25.1,47.6,,,,,,
+11-27..12-03,regression,R10_spline_level,R10_spline_level[n_knots=5],nonlinear,168,1427.4,1780.9,53.9,46.8,,,,,,
+11-27..12-03,regression,R10_spline_level,R10_spline_level[n_knots=7],nonlinear,168,1431.7,1792.4,84.0,46.7,,,,,,
+11-27..12-03,regression,R11_isotonic_level,R11_isotonic_level,nonlinear,168,1458.9,1806.8,32.8,45.6,,,,,,
+11-27..12-03,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=3],nonlinear,168,1386.4,1750.9,26.0,48.3,,,,,,
+11-27..12-03,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=5],nonlinear,168,1411.7,1786.6,58.8,47.4,,,,,,
+11-27..12-03,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=7],nonlinear,168,1416.0,1798.8,89.1,47.2,,,,,,
+11-27..12-03,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1],nonlinear,168,1264.4,1526.6,664.2,52.9,,,,,,
+11-27..12-03,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=10],nonlinear,168,1346.9,1628.7,759.9,49.8,,,,,,
+11-27..12-03,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=100],nonlinear,168,1512.7,1807.4,837.8,43.6,,,,,,
+11-27..12-03,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1000],nonlinear,168,1658.8,1945.1,691.3,38.2,,,,,,
+11-27..12-03,regression,R14_huber_level,R14_huber_level[epsilon=1.35],nonlinear,168,1436.9,1796.6,-92.7,46.5,,,,,,
+11-27..12-03,regression,R14_huber_level,R14_huber_level[epsilon=2.0],nonlinear,168,1433.4,1788.3,-66.5,46.6,,,,,,
+11-27..12-03,regression,R20_median_level,R20_median_level,MAE objective,168,1433.3,1809.6,-172.9,46.6,,,,,,
+11-27..12-03,regression,R21_median_curve,R21_median_curve[n_knots=3],MAE objective,168,1419.2,1765.9,195.6,47.1,,,,,,
+11-27..12-03,regression,R21_median_curve,R21_median_curve[n_knots=5],MAE objective,168,1481.1,1866.1,258.6,44.8,,,,,,
+11-27..12-03,regression,R21_median_curve,R21_median_curve[n_knots=7],MAE objective,168,1491.8,1891.1,311.7,44.4,,,,,,
+11-27..12-03,regression,R22_median_wind_all,R22_median_wind_all[alpha=0],MAE objective,168,1265.8,1551.1,368.4,52.8,,,,,,
+11-27..12-03,regression,R22_median_wind_all,R22_median_wind_all[alpha=1],MAE objective,168,2156.6,2435.0,1001.4,19.6,,,,,,
+11-27..12-03,regression,R22_median_wind_all,R22_median_wind_all[alpha=10],MAE objective,168,2156.6,2435.0,1001.4,19.6,,,,,,
+11-27..12-03,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,1404.9,1734.4,178.3,47.7,,,,,,
+11-27..12-03,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,1383.2,1721.4,193.2,48.5,,,,,,
+11-27..12-03,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,1495.7,1797.1,321.1,44.3,,,,,,
+11-27..12-03,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,1453.7,1799.2,288.2,45.8,,,,,,
+11-27..12-03,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,1285.7,1661.3,16.1,52.1,,,,,,
+11-27..12-03,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,1338.8,1657.5,132.1,50.1,,,,,,
+11-27..12-03,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,1434.3,1748.6,183.2,46.6,,,,,,
+11-27..12-03,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,1395.9,1744.1,199.9,48.0,,,,,,
+11-27..12-03,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=7],drift,168,2364.2,2690.4,1422.4,11.9,,,,,,
+11-27..12-03,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=14],drift,168,2504.9,2814.7,1654.9,6.7,,,,,,
+11-27..12-03,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=28],drift,168,2261.7,2533.1,1098.1,15.7,,,,,,
+11-27..12-03,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=7],drift,168,1783.8,2023.7,932.1,33.5,,,,,,
+11-27..12-03,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=14],drift,168,1858.2,2108.4,1056.1,30.8,,,,,,
+11-27..12-03,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=28],drift,168,1635.7,1917.9,528.1,39.1,,,,,,
+11-27..12-03,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=14],drift,168,1748.7,1994.9,936.9,34.8,,,,,,
+11-27..12-03,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=28],drift,168,1542.6,1845.0,441.0,42.5,,,,,,
+11-27..12-03,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=14],drift,168,1608.5,2011.0,737.7,40.1,,,,,,
+11-27..12-03,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=28],drift,168,1563.9,1982.1,660.9,41.7,,,,,,
+11-27..12-03,classification,C00_base_rate,C00_base_rate,baseline,168,,,,,0.7143,0.5,0.7143,0.2436,0.1988,"{'threshold': 0.5, 'precision': 0.7143, 'recall': 1.0, 'f1': 0.8333}"
+11-27..12-03,classification,C01_logistic_level,C01_logistic_level,existing model,168,,,,,0.7143,0.8436,0.9363,0.1439,0.0863,"{'threshold': 0.5, 'precision': 0.8108, 'recall': 1.0, 'f1': 0.8955}"
+11-27..12-03,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,,,,,0.7143,0.8408,0.9411,0.1569,0.1142,"{'threshold': 0.5, 'precision': 0.7868, 'recall': 0.8917, 'f1': 0.8359}"
+11-27..12-03,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,,,,,0.7143,0.8918,0.9602,0.1425,0.1555,"{'threshold': 0.5, 'precision': 0.7762, 'recall': 0.925, 'f1': 0.8441}"
+11-27..12-03,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,,,,,0.7143,0.8882,0.9595,0.1378,0.08,"{'threshold': 0.5, 'precision': 0.7817, 'recall': 0.925, 'f1': 0.8473}"
+11-27..12-03,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,,,,,0.7143,0.8186,0.9345,0.1694,0.1594,"{'threshold': 0.5, 'precision': 0.7836, 'recall': 0.875, 'f1': 0.8268}"
+11-27..12-03,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,,,,,0.7143,0.8509,0.9457,0.1586,0.1034,"{'threshold': 0.5, 'precision': 0.7208, 'recall': 0.925, 'f1': 0.8102}"
+11-27..12-03,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,,,,,0.7143,0.8736,0.9561,0.1523,0.0537,"{'threshold': 0.5, 'precision': 0.7551, 'recall': 0.925, 'f1': 0.8315}"
+11-27..12-03,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,,,,,0.7143,0.8439,0.9417,0.176,0.1391,"{'threshold': 0.5, 'precision': 0.7403, 'recall': 0.95, 'f1': 0.8321}"
+11-27..12-03,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,,,,,0.7143,0.8406,0.943,0.1674,0.109,"{'threshold': 0.5, 'precision': 0.7161, 'recall': 0.925, 'f1': 0.8073}"
+11-27..12-03,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,,,,,0.7143,0.8246,0.932,0.1777,0.1279,"{'threshold': 0.5, 'precision': 0.7351, 'recall': 0.925, 'f1': 0.8192}"
+11-27..12-03,classification,C10_logistic_curve,C10_logistic_curve[n_knots=3],nonlinear,168,,,,,0.7143,0.8491,0.9373,0.1452,0.143,"{'threshold': 0.5, 'precision': 0.8163, 'recall': 1.0, 'f1': 0.8989}"
+11-27..12-03,classification,C10_logistic_curve,C10_logistic_curve[n_knots=5],nonlinear,168,,,,,0.7143,0.7405,0.9057,0.1696,0.0732,"{'threshold': 0.5, 'precision': 0.8061, 'recall': 0.6583, 'f1': 0.7248}"
+11-27..12-03,classification,C10_logistic_curve,C10_logistic_curve[n_knots=7],nonlinear,168,,,,,0.7143,0.7056,0.8942,0.179,0.0971,"{'threshold': 0.5, 'precision': 0.8387, 'recall': 0.65, 'f1': 0.7324}"
+11-27..12-03,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=None]",features + weighting,168,,,,,0.7143,0.8064,0.9156,0.1833,0.1724,"{'threshold': 0.5, 'precision': 0.8652, 'recall': 0.6417, 'f1': 0.7368}"
+11-27..12-03,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=balanced]",features + weighting,168,,,,,0.7143,0.8076,0.9163,0.1874,0.179,"{'threshold': 0.5, 'precision': 0.878, 'recall': 0.6, 'f1': 0.7129}"
+11-27..12-03,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=None]",features + weighting,168,,,,,0.7143,0.8069,0.9167,0.1767,0.1808,"{'threshold': 0.5, 'precision': 0.8352, 'recall': 0.6333, 'f1': 0.7204}"
+11-27..12-03,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=balanced]",features + weighting,168,,,,,0.7143,0.8083,0.9173,0.1809,0.1948,"{'threshold': 0.5, 'precision': 0.8488, 'recall': 0.6083, 'f1': 0.7087}"
+11-27..12-03,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=None]",features + weighting,168,,,,,0.7143,0.8241,0.9247,0.1592,0.1469,"{'threshold': 0.5, 'precision': 0.8491, 'recall': 0.75, 'f1': 0.7965}"
+11-27..12-03,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=balanced]",features + weighting,168,,,,,0.7143,0.8262,0.9257,0.1621,0.1403,"{'threshold': 0.5, 'precision': 0.8515, 'recall': 0.7167, 'f1': 0.7783}"
+11-27..12-03,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=None]",features + weighting,168,,,,,0.7143,0.7943,0.9113,0.179,0.133,"{'threshold': 0.5, 'precision': 0.8364, 'recall': 0.7667, 'f1': 0.8}"
+11-27..12-03,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=balanced]",features + weighting,168,,,,,0.7143,0.7946,0.9115,0.182,0.1576,"{'threshold': 0.5, 'precision': 0.8426, 'recall': 0.7583, 'f1': 0.7982}"
+11-27..12-03,classification,C12_logistic_interactions,C12_logistic_interactions[C=0.1],interactions,168,,,,,0.7143,0.7443,0.8754,0.1851,0.148,"{'threshold': 0.5, 'precision': 0.7928, 'recall': 0.7333, 'f1': 0.7619}"
+11-27..12-03,classification,C12_logistic_interactions,C12_logistic_interactions[C=1],interactions,168,,,,,0.7143,0.7163,0.8728,0.2223,0.2645,"{'threshold': 0.5, 'precision': 0.77, 'recall': 0.6417, 'f1': 0.7}"
+11-27..12-03,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.7143,0.8479,0.9369,0.1437,0.0792,"{'threshold': 0.5, 'precision': 0.8175, 'recall': 0.9333, 'f1': 0.8716}"
+11-27..12-03,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.7143,0.7606,0.8984,0.1823,0.1376,"{'threshold': 0.5, 'precision': 0.8214, 'recall': 0.7667, 'f1': 0.7931}"
+11-27..12-03,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.7143,0.8406,0.9365,0.1526,0.0837,"{'threshold': 0.5, 'precision': 0.7883, 'recall': 0.9, 'f1': 0.8405}"
+11-27..12-03,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.7143,0.7422,0.8917,0.187,0.1433,"{'threshold': 0.5, 'precision': 0.7946, 'recall': 0.7417, 'f1': 0.7672}"
+11-27..12-03,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.7143,0.7997,0.9164,0.1712,0.1142,"{'threshold': 0.5, 'precision': 0.832, 'recall': 0.8667, 'f1': 0.849}"
+11-27..12-03,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.7143,0.7455,0.8931,0.1929,0.1289,"{'threshold': 0.5, 'precision': 0.7883, 'recall': 0.9, 'f1': 0.8405}"
+11-27..12-03,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.7143,0.8446,0.9387,0.1644,0.1279,"{'threshold': 0.5, 'precision': 0.8045, 'recall': 0.8917, 'f1': 0.8458}"
+11-27..12-03,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.7143,0.7502,0.8981,0.2036,0.171,"{'threshold': 0.5, 'precision': 0.7692, 'recall': 0.8333, 'f1': 0.8}"
+11-27..12-03,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=14],drift,168,,,,,0.7143,0.7628,0.9078,0.2061,0.1786,"{'threshold': 0.5, 'precision': 0.9011, 'recall': 0.6833, 'f1': 0.7773}"
+11-27..12-03,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=28],drift,168,,,,,0.7143,0.7187,0.8984,0.1922,0.1483,"{'threshold': 0.5, 'precision': 0.9367, 'recall': 0.6167, 'f1': 0.7437}"
+12-04..12-10,regression,R00_official,R00_official,baseline,168,1884.0,2288.1,1375.8,0.0,,,,,,
+12-04..12-10,regression,R01_linear_level,R01_linear_level,existing model,168,1285.4,1606.3,-825.6,31.8,,,,,,
+12-04..12-10,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,1152.1,1451.8,-617.4,38.9,,,,,,
+12-04..12-10,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,1125.5,1422.2,-637.3,40.3,,,,,,
+12-04..12-10,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,1234.2,1528.6,-578.0,34.5,,,,,,
+12-04..12-10,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,1203.9,1522.5,-674.2,36.1,,,,,,
+12-04..12-10,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,1187.7,1517.5,-746.4,37.0,,,,,,
+12-04..12-10,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,1279.3,1621.3,-759.1,32.1,,,,,,
+12-04..12-10,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,1238.5,1579.8,-640.7,34.3,,,,,,
+12-04..12-10,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,1243.0,1578.2,-805.0,34.0,,,,,,
+12-04..12-10,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,1299.6,1684.9,-894.9,31.0,,,,,,
+12-04..12-10,regression,R10_spline_level,R10_spline_level[n_knots=3],nonlinear,168,1207.6,1480.0,-884.4,35.9,,,,,,
+12-04..12-10,regression,R10_spline_level,R10_spline_level[n_knots=5],nonlinear,168,1202.0,1478.0,-891.8,36.2,,,,,,
+12-04..12-10,regression,R10_spline_level,R10_spline_level[n_knots=7],nonlinear,168,1204.9,1483.1,-897.8,36.0,,,,,,
+12-04..12-10,regression,R11_isotonic_level,R11_isotonic_level,nonlinear,168,1234.9,1511.3,-914.2,34.5,,,,,,
+12-04..12-10,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=3],nonlinear,168,1147.1,1417.6,-882.8,39.1,,,,,,
+12-04..12-10,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=5],nonlinear,168,1142.3,1415.4,-890.2,39.4,,,,,,
+12-04..12-10,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=7],nonlinear,168,1147.5,1422.2,-896.3,39.1,,,,,,
+12-04..12-10,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1],nonlinear,168,1296.2,1510.6,-885.5,31.2,,,,,,
+12-04..12-10,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=10],nonlinear,168,1253.4,1514.7,-935.8,33.5,,,,,,
+12-04..12-10,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=100],nonlinear,168,1241.6,1544.5,-855.9,34.1,,,,,,
+12-04..12-10,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1000],nonlinear,168,1187.4,1522.5,-608.8,37.0,,,,,,
+12-04..12-10,regression,R14_huber_level,R14_huber_level[epsilon=1.35],nonlinear,168,1319.1,1649.3,-895.7,30.0,,,,,,
+12-04..12-10,regression,R14_huber_level,R14_huber_level[epsilon=2.0],nonlinear,168,1296.2,1619.8,-849.6,31.2,,,,,,
+12-04..12-10,regression,R20_median_level,R20_median_level,MAE objective,168,1367.7,1708.1,-990.9,27.4,,,,,,
+12-04..12-10,regression,R21_median_curve,R21_median_curve[n_knots=3],MAE objective,168,1133.7,1393.2,-754.2,39.8,,,,,,
+12-04..12-10,regression,R21_median_curve,R21_median_curve[n_knots=5],MAE objective,168,1100.0,1361.6,-767.9,41.6,,,,,,
+12-04..12-10,regression,R21_median_curve,R21_median_curve[n_knots=7],MAE objective,168,1129.5,1393.7,-775.7,40.1,,,,,,
+12-04..12-10,regression,R22_median_wind_all,R22_median_wind_all[alpha=0],MAE objective,168,1204.2,1446.2,-898.9,36.1,,,,,,
+12-04..12-10,regression,R22_median_wind_all,R22_median_wind_all[alpha=1],MAE objective,168,1455.5,1842.5,227.8,22.7,,,,,,
+12-04..12-10,regression,R22_median_wind_all,R22_median_wind_all[alpha=10],MAE objective,168,1455.5,1842.5,227.8,22.7,,,,,,
+12-04..12-10,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,1014.7,1257.1,-527.5,46.1,,,,,,
+12-04..12-10,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,981.9,1235.6,-448.2,47.9,,,,,,
+12-04..12-10,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,1011.7,1225.7,-460.1,46.3,,,,,,
+12-04..12-10,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,971.8,1202.5,-418.8,48.4,,,,,,
+12-04..12-10,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,1017.0,1250.9,-427.6,46.0,,,,,,
+12-04..12-10,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,994.7,1237.8,-467.6,47.2,,,,,,
+12-04..12-10,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,993.0,1186.2,-471.3,47.3,,,,,,
+12-04..12-10,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,902.6,1134.2,-222.7,52.1,,,,,,
+12-04..12-10,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=7],drift,168,1467.5,1848.2,-222.7,22.1,,,,,,
+12-04..12-10,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=14],drift,168,1409.7,1784.5,235.5,25.2,,,,,,
+12-04..12-10,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=28],drift,168,1558.2,1938.8,636.1,17.3,,,,,,
+12-04..12-10,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=7],drift,168,1161.9,1472.9,-513.3,38.3,,,,,,
+12-04..12-10,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=14],drift,168,1088.5,1376.4,-208.9,42.2,,,,,,
+12-04..12-10,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=28],drift,168,1125.3,1401.6,-27.1,40.3,,,,,,
+12-04..12-10,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=14],drift,168,1154.3,1434.3,-473.2,38.7,,,,,,
+12-04..12-10,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=28],drift,168,1081.7,1356.8,-228.9,42.6,,,,,,
+12-04..12-10,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=14],drift,168,1103.4,1414.9,-471.8,41.4,,,,,,
+12-04..12-10,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=28],drift,168,1004.9,1223.1,-391.9,46.7,,,,,,
+12-04..12-10,classification,C00_base_rate,C00_base_rate,baseline,168,,,,,0.6131,0.5,0.6131,0.2448,0.0872,"{'threshold': 0.5, 'precision': 0.6131, 'recall': 1.0, 'f1': 0.7601}"
+12-04..12-10,classification,C01_logistic_level,C01_logistic_level,existing model,168,,,,,0.6131,0.8148,0.8966,0.187,0.1212,"{'threshold': 0.5, 'precision': 0.6618, 'recall': 0.8738, 'f1': 0.7531}"
+12-04..12-10,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,,,,,0.6131,0.8584,0.9084,0.1647,0.082,"{'threshold': 0.5, 'precision': 0.7519, 'recall': 0.9417, 'f1': 0.8362}"
+12-04..12-10,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,,,,,0.6131,0.8435,0.9007,0.164,0.062,"{'threshold': 0.5, 'precision': 0.7759, 'recall': 0.8738, 'f1': 0.8219}"
+12-04..12-10,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,,,,,0.6131,0.819,0.8895,0.1719,0.0863,"{'threshold': 0.5, 'precision': 0.7131, 'recall': 0.8447, 'f1': 0.7733}"
+12-04..12-10,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,,,,,0.6131,0.8535,0.9075,0.1752,0.1177,"{'threshold': 0.5, 'precision': 0.7021, 'recall': 0.9612, 'f1': 0.8115}"
+12-04..12-10,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,,,,,0.6131,0.8441,0.9031,0.1719,0.0841,"{'threshold': 0.5, 'precision': 0.7132, 'recall': 0.8932, 'f1': 0.7931}"
+12-04..12-10,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,,,,,0.6131,0.8073,0.8847,0.1756,0.0979,"{'threshold': 0.5, 'precision': 0.75, 'recall': 0.8738, 'f1': 0.8072}"
+12-04..12-10,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,,,,,0.6131,0.8456,0.8984,0.1863,0.1307,"{'threshold': 0.5, 'precision': 0.6645, 'recall': 1.0, 'f1': 0.7984}"
+12-04..12-10,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,,,,,0.6131,0.8344,0.9009,0.1803,0.0973,"{'threshold': 0.5, 'precision': 0.695, 'recall': 0.9515, 'f1': 0.8033}"
+12-04..12-10,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,,,,,0.6131,0.8077,0.889,0.1871,0.1078,"{'threshold': 0.5, 'precision': 0.6815, 'recall': 0.8932, 'f1': 0.7731}"
+12-04..12-10,classification,C10_logistic_curve,C10_logistic_curve[n_knots=3],nonlinear,168,,,,,0.6131,0.8261,0.9011,0.1758,0.0769,"{'threshold': 0.5, 'precision': 0.7417, 'recall': 0.8641, 'f1': 0.7982}"
+12-04..12-10,classification,C10_logistic_curve,C10_logistic_curve[n_knots=5],nonlinear,168,,,,,0.6131,0.8718,0.9171,0.1637,0.0836,"{'threshold': 0.5, 'precision': 0.8174, 'recall': 0.9126, 'f1': 0.8624}"
+12-04..12-10,classification,C10_logistic_curve,C10_logistic_curve[n_knots=7],nonlinear,168,,,,,0.6131,0.8706,0.9174,0.167,0.088,"{'threshold': 0.5, 'precision': 0.823, 'recall': 0.9029, 'f1': 0.8611}"
+12-04..12-10,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=None]",features + weighting,168,,,,,0.6131,0.8542,0.9148,0.1834,0.1796,"{'threshold': 0.5, 'precision': 0.6581, 'recall': 0.9903, 'f1': 0.7907}"
+12-04..12-10,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=balanced]",features + weighting,168,,,,,0.6131,0.8538,0.9148,0.1785,0.1453,"{'threshold': 0.5, 'precision': 0.6733, 'recall': 0.9806, 'f1': 0.7984}"
+12-04..12-10,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=None]",features + weighting,168,,,,,0.6131,0.849,0.9152,0.1913,0.1395,"{'threshold': 0.5, 'precision': 0.6645, 'recall': 0.9806, 'f1': 0.7922}"
+12-04..12-10,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=balanced]",features + weighting,168,,,,,0.6131,0.8469,0.9141,0.1855,0.1235,"{'threshold': 0.5, 'precision': 0.6733, 'recall': 0.9806, 'f1': 0.7984}"
+12-04..12-10,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=None]",features + weighting,168,,,,,0.6131,0.8556,0.9139,0.1743,0.125,"{'threshold': 0.5, 'precision': 0.7029, 'recall': 0.9417, 'f1': 0.805}"
+12-04..12-10,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=balanced]",features + weighting,168,,,,,0.6131,0.8551,0.9137,0.1703,0.1121,"{'threshold': 0.5, 'precision': 0.7197, 'recall': 0.9223, 'f1': 0.8085}"
+12-04..12-10,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=None]",features + weighting,168,,,,,0.6131,0.8569,0.9133,0.1673,0.1277,"{'threshold': 0.5, 'precision': 0.75, 'recall': 0.8738, 'f1': 0.8072}"
+12-04..12-10,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=balanced]",features + weighting,168,,,,,0.6131,0.8565,0.9131,0.1655,0.1255,"{'threshold': 0.5, 'precision': 0.7627, 'recall': 0.8738, 'f1': 0.8145}"
+12-04..12-10,classification,C12_logistic_interactions,C12_logistic_interactions[C=0.1],interactions,168,,,,,0.6131,0.8075,0.8796,0.1783,0.0605,"{'threshold': 0.5, 'precision': 0.7295, 'recall': 0.8641, 'f1': 0.7911}"
+12-04..12-10,classification,C12_logistic_interactions,C12_logistic_interactions[C=1],interactions,168,,,,,0.6131,0.8273,0.8961,0.1742,0.0757,"{'threshold': 0.5, 'precision': 0.7581, 'recall': 0.9126, 'f1': 0.8282}"
+12-04..12-10,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.6131,0.8745,0.9237,0.1467,0.0523,"{'threshold': 0.5, 'precision': 0.8687, 'recall': 0.835, 'f1': 0.8515}"
+12-04..12-10,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.6131,0.8556,0.9127,0.1543,0.1021,"{'threshold': 0.5, 'precision': 0.781, 'recall': 0.7961, 'f1': 0.7885}"
+12-04..12-10,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.6131,0.8695,0.9193,0.1498,0.0574,"{'threshold': 0.5, 'precision': 0.8384, 'recall': 0.8058, 'f1': 0.8218}"
+12-04..12-10,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.6131,0.8448,0.9065,0.1634,0.1178,"{'threshold': 0.5, 'precision': 0.8081, 'recall': 0.7767, 'f1': 0.7921}"
+12-04..12-10,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.6131,0.8586,0.9122,0.1646,0.1013,"{'threshold': 0.5, 'precision': 0.8039, 'recall': 0.7961, 'f1': 0.8}"
+12-04..12-10,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.6131,0.855,0.9118,0.1664,0.1221,"{'threshold': 0.5, 'precision': 0.8137, 'recall': 0.8058, 'f1': 0.8098}"
+12-04..12-10,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.6131,0.8514,0.9088,0.1794,0.1462,"{'threshold': 0.5, 'precision': 0.8247, 'recall': 0.7767, 'f1': 0.8}"
+12-04..12-10,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.6131,0.8538,0.9091,0.1734,0.1302,"{'threshold': 0.5, 'precision': 0.8511, 'recall': 0.7767, 'f1': 0.8122}"
+12-04..12-10,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=14],drift,168,,,,,0.6131,0.7685,0.8213,0.1878,0.0734,"{'threshold': 0.5, 'precision': 0.7281, 'recall': 0.8058, 'f1': 0.765}"
+12-04..12-10,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=28],drift,168,,,,,0.6131,0.8169,0.8864,0.17,0.0385,"{'threshold': 0.5, 'precision': 0.8039, 'recall': 0.7961, 'f1': 0.8}"
+12-11..12-17,regression,R00_official,R00_official,baseline,168,2769.6,3294.9,2697.4,0.0,,,,,,
+12-11..12-17,regression,R01_linear_level,R01_linear_level,existing model,168,1307.1,1647.8,817.9,52.8,,,,,,
+12-11..12-17,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,1154.4,1425.6,442.0,58.3,,,,,,
+12-11..12-17,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,1174.0,1441.7,374.3,57.6,,,,,,
+12-11..12-17,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,1227.7,1478.8,194.0,55.7,,,,,,
+12-11..12-17,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,1159.5,1453.6,489.2,58.1,,,,,,
+12-11..12-17,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,1185.6,1455.3,442.4,57.2,,,,,,
+12-11..12-17,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,1158.1,1426.5,387.1,58.2,,,,,,
+12-11..12-17,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,1192.9,1520.8,575.6,56.9,,,,,,
+12-11..12-17,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,1210.9,1487.1,505.8,56.3,,,,,,
+12-11..12-17,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,1210.1,1509.4,529.6,56.3,,,,,,
+12-11..12-17,regression,R10_spline_level,R10_spline_level[n_knots=3],nonlinear,168,1277.8,1611.7,781.4,53.9,,,,,,
+12-11..12-17,regression,R10_spline_level,R10_spline_level[n_knots=5],nonlinear,168,1274.4,1611.9,746.2,54.0,,,,,,
+12-11..12-17,regression,R10_spline_level,R10_spline_level[n_knots=7],nonlinear,168,1278.7,1616.2,746.1,53.8,,,,,,
+12-11..12-17,regression,R11_isotonic_level,R11_isotonic_level,nonlinear,168,1288.7,1617.8,762.5,53.5,,,,,,
+12-11..12-17,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=3],nonlinear,168,1194.5,1527.3,783.5,56.9,,,,,,
+12-11..12-17,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=5],nonlinear,168,1189.0,1525.8,743.0,57.1,,,,,,
+12-11..12-17,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=7],nonlinear,168,1192.9,1529.3,743.8,56.9,,,,,,
+12-11..12-17,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1],nonlinear,168,1576.4,2031.8,-379.4,43.1,,,,,,
+12-11..12-17,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=10],nonlinear,168,1448.4,1804.3,-118.5,47.7,,,,,,
+12-11..12-17,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=100],nonlinear,168,1315.5,1614.1,164.9,52.5,,,,,,
+12-11..12-17,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1000],nonlinear,168,1281.2,1638.5,395.8,53.7,,,,,,
+12-11..12-17,regression,R14_huber_level,R14_huber_level[epsilon=1.35],nonlinear,168,1286.1,1622.8,753.3,53.6,,,,,,
+12-11..12-17,regression,R14_huber_level,R14_huber_level[epsilon=2.0],nonlinear,168,1299.7,1638.2,796.3,53.1,,,,,,
+12-11..12-17,regression,R20_median_level,R20_median_level,MAE objective,168,1260.7,1591.6,664.4,54.5,,,,,,
+12-11..12-17,regression,R21_median_curve,R21_median_curve[n_knots=3],MAE objective,168,1266.7,1615.2,910.8,54.3,,,,,,
+12-11..12-17,regression,R21_median_curve,R21_median_curve[n_knots=5],MAE objective,168,1242.1,1607.4,803.3,55.2,,,,,,
+12-11..12-17,regression,R21_median_curve,R21_median_curve[n_knots=7],MAE objective,168,1251.0,1615.8,800.5,54.8,,,,,,
+12-11..12-17,regression,R22_median_wind_all,R22_median_wind_all[alpha=0],MAE objective,168,1518.6,1925.8,-171.3,45.2,,,,,,
+12-11..12-17,regression,R22_median_wind_all,R22_median_wind_all[alpha=1],MAE objective,168,1925.5,2428.0,1521.4,30.5,,,,,,
+12-11..12-17,regression,R22_median_wind_all,R22_median_wind_all[alpha=10],MAE objective,168,1925.5,2428.0,1521.4,30.5,,,,,,
+12-11..12-17,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,1253.5,1583.4,294.8,54.7,,,,,,
+12-11..12-17,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,1264.0,1619.8,387.6,54.4,,,,,,
+12-11..12-17,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,1362.5,1650.7,429.2,50.8,,,,,,
+12-11..12-17,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,1180.5,1547.1,483.8,57.4,,,,,,
+12-11..12-17,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,1305.1,1645.4,370.0,52.9,,,,,,
+12-11..12-17,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,1242.1,1638.1,512.4,55.2,,,,,,
+12-11..12-17,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,1269.1,1591.6,456.5,54.2,,,,,,
+12-11..12-17,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,1216.5,1592.3,568.5,56.1,,,,,,
+12-11..12-17,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=7],drift,168,1828.7,2254.3,567.0,34.0,,,,,,
+12-11..12-17,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=14],drift,168,1757.0,2229.9,832.9,36.6,,,,,,
+12-11..12-17,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=28],drift,168,1979.5,2498.7,1540.4,28.5,,,,,,
+12-11..12-17,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=7],drift,168,1521.9,1874.4,900.4,45.0,,,,,,
+12-11..12-17,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=14],drift,168,1461.6,1825.5,983.4,47.2,,,,,,
+12-11..12-17,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=28],drift,168,1643.4,2030.4,1392.1,40.7,,,,,,
+12-11..12-17,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=14],drift,168,1475.0,1809.8,1034.6,46.7,,,,,,
+12-11..12-17,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=28],drift,168,1631.9,1994.5,1346.2,41.1,,,,,,
+12-11..12-17,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=14],drift,168,1446.0,1790.9,1165.7,47.8,,,,,,
+12-11..12-17,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=28],drift,168,1372.1,1732.1,1154.6,50.5,,,,,,
+12-11..12-17,classification,C00_base_rate,C00_base_rate,baseline,168,,,,,0.8095,0.5,0.8095,0.2297,0.2748,"{'threshold': 0.5, 'precision': 0.8095, 'recall': 1.0, 'f1': 0.8947}"
+12-11..12-17,classification,C01_logistic_level,C01_logistic_level,existing model,168,,,,,0.8095,0.8115,0.9557,0.1583,0.1836,"{'threshold': 0.5, 'precision': 0.96, 'recall': 0.7059, 'f1': 0.8136}"
+12-11..12-17,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,,,,,0.8095,0.7675,0.9464,0.1423,0.0943,"{'threshold': 0.5, 'precision': 0.8085, 'recall': 0.8382, 'f1': 0.8231}"
+12-11..12-17,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,,,,,0.8095,0.7461,0.9386,0.1535,0.0985,"{'threshold': 0.5, 'precision': 0.8162, 'recall': 0.8162, 'f1': 0.8162}"
+12-11..12-17,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,,,,,0.8095,0.713,0.9321,0.167,0.1042,"{'threshold': 0.5, 'precision': 0.8116, 'recall': 0.8235, 'f1': 0.8175}"
+12-11..12-17,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,,,,,0.8095,0.7617,0.9464,0.1437,0.1074,"{'threshold': 0.5, 'precision': 0.7867, 'recall': 0.8676, 'f1': 0.8252}"
+12-11..12-17,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,,,,,0.8095,0.7332,0.9375,0.1535,0.1005,"{'threshold': 0.5, 'precision': 0.8058, 'recall': 0.8235, 'f1': 0.8145}"
+12-11..12-17,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,,,,,0.8095,0.6994,0.9275,0.1719,0.1142,"{'threshold': 0.5, 'precision': 0.8058, 'recall': 0.8235, 'f1': 0.8145}"
+12-11..12-17,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,,,,,0.8095,0.7523,0.9431,0.1466,0.1322,"{'threshold': 0.5, 'precision': 0.8025, 'recall': 0.9559, 'f1': 0.8725}"
+12-11..12-17,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,,,,,0.8095,0.7571,0.9441,0.1476,0.1132,"{'threshold': 0.5, 'precision': 0.8058, 'recall': 0.8235, 'f1': 0.8145}"
+12-11..12-17,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,,,,,0.8095,0.7403,0.9402,0.1633,0.1157,"{'threshold': 0.5, 'precision': 0.8359, 'recall': 0.7868, 'f1': 0.8106}"
+12-11..12-17,classification,C10_logistic_curve,C10_logistic_curve[n_knots=3],nonlinear,168,,,,,0.8095,0.8681,0.967,0.1533,0.1897,"{'threshold': 0.5, 'precision': 0.9604, 'recall': 0.7132, 'f1': 0.8186}"
+12-11..12-17,classification,C10_logistic_curve,C10_logistic_curve[n_knots=5],nonlinear,168,,,,,0.8095,0.8819,0.9715,0.1414,0.1432,"{'threshold': 0.5, 'precision': 0.9569, 'recall': 0.8162, 'f1': 0.881}"
+12-11..12-17,classification,C10_logistic_curve,C10_logistic_curve[n_knots=7],nonlinear,168,,,,,0.8095,0.8761,0.9694,0.1423,0.1388,"{'threshold': 0.5, 'precision': 0.9328, 'recall': 0.8162, 'f1': 0.8706}"
+12-11..12-17,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=None]",features + weighting,168,,,,,0.8095,0.7286,0.9329,0.1647,0.141,"{'threshold': 0.5, 'precision': 0.8308, 'recall': 0.7941, 'f1': 0.812}"
+12-11..12-17,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=balanced]",features + weighting,168,,,,,0.8095,0.7305,0.9335,0.1697,0.1547,"{'threshold': 0.5, 'precision': 0.832, 'recall': 0.7647, 'f1': 0.7969}"
+12-11..12-17,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=None]",features + weighting,168,,,,,0.8095,0.719,0.9308,0.1767,0.1309,"{'threshold': 0.5, 'precision': 0.8333, 'recall': 0.7721, 'f1': 0.8015}"
+12-11..12-17,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=balanced]",features + weighting,168,,,,,0.8095,0.7217,0.9316,0.1808,0.1462,"{'threshold': 0.5, 'precision': 0.8333, 'recall': 0.7721, 'f1': 0.8015}"
+12-11..12-17,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=None]",features + weighting,168,,,,,0.8095,0.6395,0.9049,0.1841,0.1774,"{'threshold': 0.5, 'precision': 0.8286, 'recall': 0.8529, 'f1': 0.8406}"
+12-11..12-17,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=balanced]",features + weighting,168,,,,,0.8095,0.6409,0.9054,0.1889,0.2013,"{'threshold': 0.5, 'precision': 0.8244, 'recall': 0.7941, 'f1': 0.809}"
+12-11..12-17,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=None]",features + weighting,168,,,,,0.8095,0.6172,0.899,0.1857,0.1847,"{'threshold': 0.5, 'precision': 0.828, 'recall': 0.9559, 'f1': 0.8874}"
+12-11..12-17,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=balanced]",features + weighting,168,,,,,0.8095,0.6174,0.8988,0.1901,0.1973,"{'threshold': 0.5, 'precision': 0.8322, 'recall': 0.9118, 'f1': 0.8702}"
+12-11..12-17,classification,C12_logistic_interactions,C12_logistic_interactions[C=0.1],interactions,168,,,,,0.8095,0.7312,0.9315,0.1542,0.0991,"{'threshold': 0.5, 'precision': 0.8529, 'recall': 0.8529, 'f1': 0.8529}"
+12-11..12-17,classification,C12_logistic_interactions,C12_logistic_interactions[C=1],interactions,168,,,,,0.8095,0.727,0.9292,0.15,0.1171,"{'threshold': 0.5, 'precision': 0.8301, 'recall': 0.9338, 'f1': 0.8789}"
+12-11..12-17,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.8095,0.773,0.9422,0.1485,0.0999,"{'threshold': 0.5, 'precision': 0.8923, 'recall': 0.8529, 'f1': 0.8722}"
+12-11..12-17,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.8095,0.7739,0.9394,0.1488,0.1309,"{'threshold': 0.5, 'precision': 0.8984, 'recall': 0.8456, 'f1': 0.8712}"
+12-11..12-17,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.8095,0.7348,0.9364,0.1602,0.0746,"{'threshold': 0.5, 'precision': 0.8248, 'recall': 0.8309, 'f1': 0.8278}"
+12-11..12-17,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.8095,0.7872,0.9428,0.1483,0.1285,"{'threshold': 0.5, 'precision': 0.8889, 'recall': 0.8235, 'f1': 0.855}"
+12-11..12-17,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.8095,0.7433,0.938,0.179,0.1073,"{'threshold': 0.5, 'precision': 0.8358, 'recall': 0.8235, 'f1': 0.8296}"
+12-11..12-17,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.8095,0.7443,0.932,0.1754,0.1385,"{'threshold': 0.5, 'precision': 0.9145, 'recall': 0.7868, 'f1': 0.8458}"
+12-11..12-17,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.8095,0.739,0.9364,0.1939,0.1369,"{'threshold': 0.5, 'precision': 0.8444, 'recall': 0.8382, 'f1': 0.8413}"
+12-11..12-17,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.8095,0.7645,0.9387,0.171,0.1361,"{'threshold': 0.5, 'precision': 0.9024, 'recall': 0.8162, 'f1': 0.8571}"
+12-11..12-17,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=14],drift,168,,,,,0.8095,0.8318,0.9539,0.138,0.1329,"{'threshold': 0.5, 'precision': 0.8968, 'recall': 0.8309, 'f1': 0.8626}"
+12-11..12-17,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=28],drift,168,,,,,0.8095,0.8557,0.9633,0.1706,0.2101,"{'threshold': 0.5, 'precision': 0.9388, 'recall': 0.6765, 'f1': 0.7863}"
+12-18..12-24,regression,R00_official,R00_official,baseline,168,2137.8,2637.2,1132.6,0.0,,,,,,
+12-18..12-24,regression,R01_linear_level,R01_linear_level,existing model,168,1518.2,1870.2,-518.1,29.0,,,,,,
+12-18..12-24,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,1082.2,1332.6,-382.4,49.4,,,,,,
+12-18..12-24,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,919.1,1193.8,-232.1,57.0,,,,,,
+12-18..12-24,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,929.0,1216.7,77.9,56.5,,,,,,
+12-18..12-24,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,1156.8,1403.9,-415.9,45.9,,,,,,
+12-18..12-24,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,980.9,1241.4,-336.6,54.1,,,,,,
+12-18..12-24,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,911.6,1189.2,-202.3,57.4,,,,,,
+12-18..12-24,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,1269.5,1529.0,-436.8,40.6,,,,,,
+12-18..12-24,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,1108.6,1360.9,-381.7,48.1,,,,,,
+12-18..12-24,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,996.2,1270.8,-247.6,53.4,,,,,,
+12-18..12-24,regression,R10_spline_level,R10_spline_level[n_knots=3],nonlinear,168,1408.1,1701.4,-318.7,34.1,,,,,,
+12-18..12-24,regression,R10_spline_level,R10_spline_level[n_knots=5],nonlinear,168,1429.4,1724.6,-338.4,33.1,,,,,,
+12-18..12-24,regression,R10_spline_level,R10_spline_level[n_knots=7],nonlinear,168,1424.8,1721.5,-335.7,33.4,,,,,,
+12-18..12-24,regression,R11_isotonic_level,R11_isotonic_level,nonlinear,168,1407.6,1693.7,-335.0,34.2,,,,,,
+12-18..12-24,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=3],nonlinear,168,1420.0,1706.4,-327.5,33.6,,,,,,
+12-18..12-24,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=5],nonlinear,168,1444.9,1730.1,-353.5,32.4,,,,,,
+12-18..12-24,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=7],nonlinear,168,1440.5,1726.4,-350.8,32.6,,,,,,
+12-18..12-24,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1],nonlinear,168,1387.7,1672.8,-939.9,35.1,,,,,,
+12-18..12-24,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=10],nonlinear,168,1350.1,1623.9,-837.9,36.8,,,,,,
+12-18..12-24,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=100],nonlinear,168,1368.1,1643.7,-777.4,36.0,,,,,,
+12-18..12-24,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1000],nonlinear,168,1447.2,1750.7,-723.3,32.3,,,,,,
+12-18..12-24,regression,R14_huber_level,R14_huber_level[epsilon=1.35],nonlinear,168,1549.2,1907.8,-587.2,27.5,,,,,,
+12-18..12-24,regression,R14_huber_level,R14_huber_level[epsilon=2.0],nonlinear,168,1526.6,1880.1,-544.4,28.6,,,,,,
+12-18..12-24,regression,R20_median_level,R20_median_level,MAE objective,168,1595.4,1960.5,-680.6,25.4,,,,,,
+12-18..12-24,regression,R21_median_curve,R21_median_curve[n_knots=3],MAE objective,168,1449.7,1735.6,-287.2,32.2,,,,,,
+12-18..12-24,regression,R21_median_curve,R21_median_curve[n_knots=5],MAE objective,168,1525.3,1801.5,-304.1,28.7,,,,,,
+12-18..12-24,regression,R21_median_curve,R21_median_curve[n_knots=7],MAE objective,168,1506.8,1780.5,-297.3,29.5,,,,,,
+12-18..12-24,regression,R22_median_wind_all,R22_median_wind_all[alpha=0],MAE objective,168,1327.5,1601.5,-694.2,37.9,,,,,,
+12-18..12-24,regression,R22_median_wind_all,R22_median_wind_all[alpha=1],MAE objective,168,1981.7,2392.3,-226.4,7.3,,,,,,
+12-18..12-24,regression,R22_median_wind_all,R22_median_wind_all[alpha=10],MAE objective,168,1981.7,2392.3,-226.4,7.3,,,,,,
+12-18..12-24,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,1015.8,1248.1,-133.1,52.5,,,,,,
+12-18..12-24,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,1005.2,1249.3,-17.9,53.0,,,,,,
+12-18..12-24,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,983.8,1207.1,-0.4,54.0,,,,,,
+12-18..12-24,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,949.1,1182.1,-63.0,55.6,,,,,,
+12-18..12-24,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,928.1,1168.6,7.4,56.6,,,,,,
+12-18..12-24,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,940.8,1199.1,9.8,56.0,,,,,,
+12-18..12-24,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,978.4,1213.0,-134.2,54.2,,,,,,
+12-18..12-24,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,940.2,1192.1,47.8,56.0,,,,,,
+12-18..12-24,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=7],drift,168,2196.4,2595.8,-1403.2,-2.7,,,,,,
+12-18..12-24,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=14],drift,168,2313.5,2795.4,-1200.5,-8.2,,,,,,
+12-18..12-24,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=28],drift,168,2132.4,2576.0,-604.1,0.3,,,,,,
+12-18..12-24,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=7],drift,168,1643.3,1990.5,-1075.3,23.1,,,,,,
+12-18..12-24,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=14],drift,168,1647.0,2040.2,-698.6,23.0,,,,,,
+12-18..12-24,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=28],drift,168,1537.3,1901.5,-287.8,28.1,,,,,,
+12-18..12-24,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=14],drift,168,1545.4,1905.8,-597.1,27.7,,,,,,
+12-18..12-24,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=28],drift,168,1418.8,1702.4,-142.0,33.6,,,,,,
+12-18..12-24,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=14],drift,168,1689.5,1985.6,-417.7,21.0,,,,,,
+12-18..12-24,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=28],drift,168,1534.5,1779.9,-116.4,28.2,,,,,,
+12-18..12-24,classification,C00_base_rate,C00_base_rate,baseline,168,,,,,0.5119,0.5,0.5119,0.2523,0.0492,"{'threshold': 0.5, 'precision': 0.5119, 'recall': 1.0, 'f1': 0.6772}"
+12-18..12-24,classification,C01_logistic_level,C01_logistic_level,existing model,168,,,,,0.5119,0.9225,0.9376,0.151,0.1927,"{'threshold': 0.5, 'precision': 0.8202, 'recall': 0.8488, 'f1': 0.8343}"
+12-18..12-24,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,,,,,0.5119,0.9365,0.9428,0.1162,0.1033,"{'threshold': 0.5, 'precision': 0.8081, 'recall': 0.9302, 'f1': 0.8649}"
+12-18..12-24,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,,,,,0.5119,0.9402,0.9454,0.1086,0.0716,"{'threshold': 0.5, 'precision': 0.7767, 'recall': 0.9302, 'f1': 0.8466}"
+12-18..12-24,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,,,,,0.5119,0.9263,0.9276,0.1185,0.0938,"{'threshold': 0.5, 'precision': 0.7736, 'recall': 0.9535, 'f1': 0.8542}"
+12-18..12-24,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,,,,,0.5119,0.9351,0.9432,0.1283,0.1228,"{'threshold': 0.5, 'precision': 0.8081, 'recall': 0.9302, 'f1': 0.8649}"
+12-18..12-24,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,,,,,0.5119,0.9328,0.9386,0.1151,0.0862,"{'threshold': 0.5, 'precision': 0.7843, 'recall': 0.9302, 'f1': 0.8511}"
+12-18..12-24,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,,,,,0.5119,0.9273,0.9309,0.1185,0.0785,"{'threshold': 0.5, 'precision': 0.7407, 'recall': 0.9302, 'f1': 0.8247}"
+12-18..12-24,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,,,,,0.5119,0.936,0.9438,0.1427,0.1532,"{'threshold': 0.5, 'precision': 0.7843, 'recall': 0.9302, 'f1': 0.8511}"
+12-18..12-24,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,,,,,0.5119,0.9329,0.9393,0.1256,0.1118,"{'threshold': 0.5, 'precision': 0.7692, 'recall': 0.9302, 'f1': 0.8421}"
+12-18..12-24,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,,,,,0.5119,0.9135,0.9184,0.1286,0.1351,"{'threshold': 0.5, 'precision': 0.77, 'recall': 0.8953, 'f1': 0.828}"
+12-18..12-24,classification,C10_logistic_curve,C10_logistic_curve[n_knots=3],nonlinear,168,,,,,0.5119,0.8972,0.9169,0.1522,0.1458,"{'threshold': 0.5, 'precision': 0.8171, 'recall': 0.7791, 'f1': 0.7976}"
+12-18..12-24,classification,C10_logistic_curve,C10_logistic_curve[n_knots=5],nonlinear,168,,,,,0.5119,0.7501,0.835,0.188,0.177,"{'threshold': 0.5, 'precision': 0.6701, 'recall': 0.7558, 'f1': 0.7104}"
+12-18..12-24,classification,C10_logistic_curve,C10_logistic_curve[n_knots=7],nonlinear,168,,,,,0.5119,0.7412,0.8266,0.1893,0.1577,"{'threshold': 0.5, 'precision': 0.6327, 'recall': 0.7209, 'f1': 0.6739}"
+12-18..12-24,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=None]",features + weighting,168,,,,,0.5119,0.9153,0.9288,0.1484,0.1396,"{'threshold': 0.5, 'precision': 0.7547, 'recall': 0.9302, 'f1': 0.8333}"
+12-18..12-24,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=balanced]",features + weighting,168,,,,,0.5119,0.9139,0.9284,0.1381,0.1256,"{'threshold': 0.5, 'precision': 0.7979, 'recall': 0.8721, 'f1': 0.8333}"
+12-18..12-24,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=None]",features + weighting,168,,,,,0.5119,0.8972,0.9191,0.1467,0.1369,"{'threshold': 0.5, 'precision': 0.7524, 'recall': 0.9186, 'f1': 0.8272}"
+12-18..12-24,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=balanced]",features + weighting,168,,,,,0.5119,0.8958,0.9187,0.1363,0.0901,"{'threshold': 0.5, 'precision': 0.7604, 'recall': 0.8488, 'f1': 0.8022}"
+12-18..12-24,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=None]",features + weighting,168,,,,,0.5119,0.8806,0.9083,0.1649,0.1383,"{'threshold': 0.5, 'precision': 0.7248, 'recall': 0.9186, 'f1': 0.8103}"
+12-18..12-24,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=balanced]",features + weighting,168,,,,,0.5119,0.8775,0.9067,0.1538,0.1243,"{'threshold': 0.5, 'precision': 0.7347, 'recall': 0.8372, 'f1': 0.7826}"
+12-18..12-24,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=None]",features + weighting,168,,,,,0.5119,0.8701,0.9008,0.1808,0.16,"{'threshold': 0.5, 'precision': 0.6991, 'recall': 0.9186, 'f1': 0.794}"
+12-18..12-24,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=balanced]",features + weighting,168,,,,,0.5119,0.8697,0.9016,0.1687,0.1338,"{'threshold': 0.5, 'precision': 0.7157, 'recall': 0.8488, 'f1': 0.7766}"
+12-18..12-24,classification,C12_logistic_interactions,C12_logistic_interactions[C=0.1],interactions,168,,,,,0.5119,0.8066,0.852,0.2053,0.1447,"{'threshold': 0.5, 'precision': 0.6549, 'recall': 0.8605, 'f1': 0.7437}"
+12-18..12-24,classification,C12_logistic_interactions,C12_logistic_interactions[C=1],interactions,168,,,,,0.5119,0.7391,0.8068,0.2323,0.1686,"{'threshold': 0.5, 'precision': 0.5854, 'recall': 0.8372, 'f1': 0.689}"
+12-18..12-24,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.5119,0.8883,0.9141,0.1308,0.0334,"{'threshold': 0.5, 'precision': 0.859, 'recall': 0.7791, 'f1': 0.8171}"
+12-18..12-24,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.5119,0.9092,0.9242,0.1253,0.0249,"{'threshold': 0.5, 'precision': 0.8986, 'recall': 0.7209, 'f1': 0.8}"
+12-18..12-24,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.5119,0.9195,0.9263,0.1155,0.0311,"{'threshold': 0.5, 'precision': 0.8228, 'recall': 0.7558, 'f1': 0.7879}"
+12-18..12-24,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.5119,0.9226,0.9337,0.1185,0.0274,"{'threshold': 0.5, 'precision': 0.9155, 'recall': 0.7558, 'f1': 0.828}"
+12-18..12-24,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.5119,0.8962,0.9119,0.1281,0.0413,"{'threshold': 0.5, 'precision': 0.8049, 'recall': 0.7674, 'f1': 0.7857}"
+12-18..12-24,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.5119,0.8813,0.9007,0.1423,0.0531,"{'threshold': 0.5, 'precision': 0.7945, 'recall': 0.6744, 'f1': 0.7296}"
+12-18..12-24,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.5119,0.9102,0.9235,0.1237,0.0668,"{'threshold': 0.5, 'precision': 0.863, 'recall': 0.7326, 'f1': 0.7925}"
+12-18..12-24,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.5119,0.9087,0.9193,0.1396,0.0964,"{'threshold': 0.5, 'precision': 0.8507, 'recall': 0.6628, 'f1': 0.7451}"
+12-18..12-24,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=14],drift,168,,,,,0.5119,0.7601,0.8109,0.2236,0.1512,"{'threshold': 0.5, 'precision': 0.5865, 'recall': 0.907, 'f1': 0.7123}"
+12-18..12-24,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=28],drift,168,,,,,0.5119,0.7984,0.8549,0.1796,0.0957,"{'threshold': 0.5, 'precision': 0.7, 'recall': 0.7326, 'f1': 0.7159}"
+12-25..12-31,regression,R00_official,R00_official,baseline,168,731.5,1112.2,-251.1,0.0,,,,,,
+12-25..12-31,regression,R01_linear_level,R01_linear_level,existing model,168,1179.9,1431.7,-926.6,-61.3,,,,,,
+12-25..12-31,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,856.2,1086.6,-557.6,-17.1,,,,,,
+12-25..12-31,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,805.1,1027.4,-331.3,-10.1,,,,,,
+12-25..12-31,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,1059.1,1337.6,-0.9,-44.8,,,,,,
+12-25..12-31,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,866.2,1106.9,-605.8,-18.4,,,,,,
+12-25..12-31,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,754.8,984.0,-332.8,-3.2,,,,,,
+12-25..12-31,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,793.1,1043.2,-170.0,-8.4,,,,,,
+12-25..12-31,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,939.7,1184.1,-720.8,-28.5,,,,,,
+12-25..12-31,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,745.8,986.3,-389.5,-2.0,,,,,,
+12-25..12-31,regression,R02_random_forest,"R02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,709.5,962.8,-165.5,3.0,,,,,,
+12-25..12-31,regression,R10_spline_level,R10_spline_level[n_knots=3],nonlinear,168,1051.6,1276.9,-910.7,-43.8,,,,,,
+12-25..12-31,regression,R10_spline_level,R10_spline_level[n_knots=5],nonlinear,168,1054.2,1279.6,-911.1,-44.1,,,,,,
+12-25..12-31,regression,R10_spline_level,R10_spline_level[n_knots=7],nonlinear,168,1046.7,1271.0,-902.5,-43.1,,,,,,
+12-25..12-31,regression,R11_isotonic_level,R11_isotonic_level,nonlinear,168,1037.9,1265.0,-892.9,-41.9,,,,,,
+12-25..12-31,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=3],nonlinear,168,1075.9,1300.9,-913.1,-47.1,,,,,,
+12-25..12-31,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=5],nonlinear,168,1079.7,1305.7,-914.3,-47.6,,,,,,
+12-25..12-31,regression,R12_spline_level_hour,R12_spline_level_hour[n_knots=7],nonlinear,168,1074.0,1297.1,-906.7,-46.8,,,,,,
+12-25..12-31,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1],nonlinear,168,834.8,1041.7,-315.4,-14.1,,,,,,
+12-25..12-31,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=10],nonlinear,168,803.9,1003.8,-228.2,-9.9,,,,,,
+12-25..12-31,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=100],nonlinear,168,863.6,1090.2,-240.1,-18.1,,,,,,
+12-25..12-31,regression,R13_ridge_wind_all,R13_ridge_wind_all[alpha=1000],nonlinear,168,966.5,1218.5,-488.9,-32.1,,,,,,
+12-25..12-31,regression,R14_huber_level,R14_huber_level[epsilon=1.35],nonlinear,168,1246.7,1500.5,-1042.3,-70.4,,,,,,
+12-25..12-31,regression,R14_huber_level,R14_huber_level[epsilon=2.0],nonlinear,168,1197.2,1449.8,-956.2,-63.7,,,,,,
+12-25..12-31,regression,R20_median_level,R20_median_level,MAE objective,168,1314.7,1569.8,-1149.8,-79.7,,,,,,
+12-25..12-31,regression,R21_median_curve,R21_median_curve[n_knots=3],MAE objective,168,1104.6,1329.6,-940.7,-51.0,,,,,,
+12-25..12-31,regression,R21_median_curve,R21_median_curve[n_knots=5],MAE objective,168,1129.5,1357.3,-962.7,-54.4,,,,,,
+12-25..12-31,regression,R21_median_curve,R21_median_curve[n_knots=7],MAE objective,168,1124.8,1347.9,-962.4,-53.8,,,,,,
+12-25..12-31,regression,R22_median_wind_all,R22_median_wind_all[alpha=0],MAE objective,168,957.8,1201.8,-544.9,-30.9,,,,,,
+12-25..12-31,regression,R22_median_wind_all,R22_median_wind_all[alpha=1],MAE objective,168,1828.6,1985.7,-1664.1,-150.0,,,,,,
+12-25..12-31,regression,R22_median_wind_all,R22_median_wind_all[alpha=10],MAE objective,168,1828.6,1985.7,-1664.1,-150.0,,,,,,
+12-25..12-31,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,833.1,1078.6,-243.5,-13.9,,,,,,
+12-25..12-31,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,809.2,1058.0,-333.4,-10.6,,,,,,
+12-25..12-31,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,799.4,1041.1,-62.3,-9.3,,,,,,
+12-25..12-31,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,799.2,1047.2,-190.0,-9.3,,,,,,
+12-25..12-31,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",MAE objective,168,785.4,1012.6,-238.8,-7.4,,,,,,
+12-25..12-31,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",MAE objective,168,801.1,1027.4,-365.6,-9.5,,,,,,
+12-25..12-31,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",MAE objective,168,796.9,1019.5,-61.4,-8.9,,,,,,
+12-25..12-31,regression,R23_gbm_absolute,"R23_gbm_absolute[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",MAE objective,168,715.3,949.2,-106.4,2.2,,,,,,
+12-25..12-31,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=7],drift,168,1136.1,1488.0,-560.8,-55.3,,,,,,
+12-25..12-31,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=14],drift,168,1863.5,2079.0,-1673.8,-154.8,,,,,,
+12-25..12-31,regression,R30_rolling_mean_bias,R30_rolling_mean_bias[W=28],drift,168,2041.8,2185.8,-1894.7,-179.1,,,,,,
+12-25..12-31,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=7],drift,168,1090.8,1291.6,10.6,-49.1,,,,,,
+12-25..12-31,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=14],drift,168,1154.4,1399.5,-737.7,-57.8,,,,,,
+12-25..12-31,regression,R31_linear_plus_rolling_offset,R31_linear_plus_rolling_offset[W=28],drift,168,1075.2,1303.0,-696.0,-47.0,,,,,,
+12-25..12-31,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=14],drift,168,1266.3,1479.7,-105.6,-73.1,,,,,,
+12-25..12-31,regression,R32_linear_rolling_refit,R32_linear_rolling_refit[W=28],drift,168,1108.2,1309.9,-101.8,-51.5,,,,,,
+12-25..12-31,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=14],drift,168,3273.5,5625.4,1772.9,-347.5,,,,,,
+12-25..12-31,regression,R33_median_curve_rolling_refit,R33_median_curve_rolling_refit[W=28],drift,168,2156.0,3411.6,898.7,-194.7,,,,,,
+12-25..12-31,classification,C00_base_rate,C00_base_rate,baseline,168,,,,,0.0536,0.5,0.0536,0.3153,0.5144,"{'threshold': 0.5, 'precision': 0.0536, 'recall': 1.0, 'f1': 0.1017}"
+12-25..12-31,classification,C01_logistic_level,C01_logistic_level,existing model,168,,,,,0.0536,0.7711,0.5926,0.1444,0.3119,"{'threshold': 0.5, 'precision': 0.1515, 'recall': 0.5556, 'f1': 0.2381}"
+12-25..12-31,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.3]",tune existing,168,,,,,0.0536,0.71,0.5854,0.1058,0.2631,"{'threshold': 0.5, 'precision': 0.8333, 'recall': 0.5556, 'f1': 0.6667}"
+12-25..12-31,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=0.5]",tune existing,168,,,,,0.0536,0.7331,0.5885,0.0919,0.229,"{'threshold': 0.5, 'precision': 1.0, 'recall': 0.5556, 'f1': 0.7143}"
+12-25..12-31,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=20,max_features=1.0]",tune existing,168,,,,,0.0536,0.7268,0.5883,0.0796,0.1745,"{'threshold': 0.5, 'precision': 0.5, 'recall': 0.5556, 'f1': 0.5263}"
+12-25..12-31,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.3]",tune existing,168,,,,,0.0536,0.7114,0.5857,0.1087,0.2761,"{'threshold': 0.5, 'precision': 0.8333, 'recall': 0.5556, 'f1': 0.6667}"
+12-25..12-31,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=0.5]",tune existing,168,,,,,0.0536,0.7345,0.5888,0.0827,0.2221,"{'threshold': 0.5, 'precision': 1.0, 'recall': 0.5556, 'f1': 0.7143}"
+12-25..12-31,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=50,max_features=1.0]",tune existing,168,,,,,0.0536,0.7093,0.5869,0.0586,0.1415,"{'threshold': 0.5, 'precision': 0.8333, 'recall': 0.5556, 'f1': 0.6667}"
+12-25..12-31,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.3]",tune existing,168,,,,,0.0536,0.7512,0.5913,0.1172,0.2956,"{'threshold': 0.5, 'precision': 1.0, 'recall': 0.5556, 'f1': 0.7143}"
+12-25..12-31,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=0.5]",tune existing,168,,,,,0.0536,0.7156,0.5861,0.0761,0.2118,"{'threshold': 0.5, 'precision': 1.0, 'recall': 0.5556, 'f1': 0.7143}"
+12-25..12-31,classification,C02_random_forest,"C02_random_forest[min_samples_leaf=100,max_features=1.0]",tune existing,168,,,,,0.0536,0.7317,0.5879,0.0529,0.1158,"{'threshold': 0.5, 'precision': 0.8333, 'recall': 0.5556, 'f1': 0.6667}"
+12-25..12-31,classification,C10_logistic_curve,C10_logistic_curve[n_knots=3],nonlinear,168,,,,,0.0536,0.7372,0.5882,0.1395,0.314,"{'threshold': 0.5, 'precision': 0.2174, 'recall': 0.5556, 'f1': 0.3125}"
+12-25..12-31,classification,C10_logistic_curve,C10_logistic_curve[n_knots=5],nonlinear,168,,,,,0.0536,0.8113,0.5998,0.162,0.3449,"{'threshold': 0.5, 'precision': 0.1282, 'recall': 0.5556, 'f1': 0.2083}"
+12-25..12-31,classification,C10_logistic_curve,C10_logistic_curve[n_knots=7],nonlinear,168,,,,,0.0536,0.7729,0.5931,0.1648,0.3505,"{'threshold': 0.5, 'precision': 0.122, 'recall': 0.5556, 'f1': 0.2}"
+12-25..12-31,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=None]",features + weighting,168,,,,,0.0536,0.7519,0.114,0.1,0.2092,"{'threshold': 0.5, 'precision': 0.0, 'recall': 0.0, 'f1': 0.0}"
+12-25..12-31,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.01,class_weight=balanced]",features + weighting,168,,,,,0.0536,0.7505,0.1137,0.0823,0.1674,"{'threshold': 0.5, 'precision': 0.0, 'recall': 0.0, 'f1': 0.0}"
+12-25..12-31,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=None]",features + weighting,168,,,,,0.0536,0.8099,0.4162,0.0914,0.1964,"{'threshold': 0.5, 'precision': 0.3636, 'recall': 0.4444, 'f1': 0.4}"
+12-25..12-31,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=0.1,class_weight=balanced]",features + weighting,168,,,,,0.0536,0.8092,0.4326,0.0744,0.1559,"{'threshold': 0.5, 'precision': 1.0, 'recall': 0.2222, 'f1': 0.3636}"
+12-25..12-31,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=None]",features + weighting,168,,,,,0.0536,0.8679,0.5883,0.1143,0.2571,"{'threshold': 0.5, 'precision': 0.25, 'recall': 0.5556, 'f1': 0.3448}"
+12-25..12-31,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=1,class_weight=balanced]",features + weighting,168,,,,,0.0536,0.8679,0.5789,0.0902,0.219,"{'threshold': 0.5, 'precision': 0.5, 'recall': 0.5556, 'f1': 0.5263}"
+12-25..12-31,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=None]",features + weighting,168,,,,,0.0536,0.898,0.6056,0.1504,0.3047,"{'threshold': 0.5, 'precision': 0.1667, 'recall': 0.7778, 'f1': 0.2745}"
+12-25..12-31,classification,C11_logistic_wind_all,"C11_logistic_wind_all[C=10,class_weight=balanced]",features + weighting,168,,,,,0.0536,0.8959,0.5951,0.1187,0.26,"{'threshold': 0.5, 'precision': 0.2, 'recall': 0.5556, 'f1': 0.2941}"
+12-25..12-31,classification,C12_logistic_interactions,C12_logistic_interactions[C=0.1],interactions,168,,,,,0.0536,0.7498,0.5898,0.1122,0.2597,"{'threshold': 0.5, 'precision': 0.3846, 'recall': 0.5556, 'f1': 0.4545}"
+12-25..12-31,classification,C12_logistic_interactions,C12_logistic_interactions[C=1],interactions,168,,,,,0.0536,0.7869,0.5539,0.1348,0.2833,"{'threshold': 0.5, 'precision': 0.1389, 'recall': 0.5556, 'f1': 0.2222}"
+12-25..12-31,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.0536,0.9217,0.6104,0.043,0.0912,"{'threshold': 0.5, 'precision': 1.0, 'recall': 0.4444, 'f1': 0.6154}"
+12-25..12-31,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.0536,0.8714,0.6011,0.045,0.0883,"{'threshold': 0.5, 'precision': 1.0, 'recall': 0.4444, 'f1': 0.6154}"
+12-25..12-31,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.0536,0.7526,0.5495,0.0439,0.0631,"{'threshold': 0.5, 'precision': 0.7143, 'recall': 0.5556, 'f1': 0.625}"
+12-25..12-31,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.03,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.0536,0.8008,0.5979,0.0462,0.0902,"{'threshold': 0.5, 'precision': 0.8333, 'recall': 0.5556, 'f1': 0.6667}"
+12-25..12-31,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=40]",gradient boosting,168,,,,,0.0536,0.8036,0.4827,0.0751,0.1189,"{'threshold': 0.5, 'precision': 0.3125, 'recall': 0.5556, 'f1': 0.4}"
+12-25..12-31,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=7,min_samples_leaf=100]",gradient boosting,168,,,,,0.0536,0.7722,0.4244,0.0773,0.1124,"{'threshold': 0.5, 'precision': 0.2353, 'recall': 0.4444, 'f1': 0.3077}"
+12-25..12-31,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=40]",gradient boosting,168,,,,,0.0536,0.7016,0.544,0.047,0.0536,"{'threshold': 0.5, 'precision': 0.625, 'recall': 0.5556, 'f1': 0.5882}"
+12-25..12-31,classification,C13_gbm_classifier,"C13_gbm_classifier[learning_rate=0.1,max_leaf_nodes=15,min_samples_leaf=100]",gradient boosting,168,,,,,0.0536,0.7994,0.5659,0.0513,0.0734,"{'threshold': 0.5, 'precision': 0.625, 'recall': 0.5556, 'f1': 0.5882}"
+12-25..12-31,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=14],drift,168,,,,,0.0536,0.6813,0.1619,0.2755,0.4268,"{'threshold': 0.5, 'precision': 0.0704, 'recall': 0.5556, 'f1': 0.125}"
+12-25..12-31,classification,C14_logistic_curve_rolling_refit,C14_logistic_curve_rolling_refit[W=28],drift,168,,,,,0.0536,0.6911,0.5837,0.201,0.3793,"{'threshold': 0.5, 'precision': 0.0926, 'recall': 0.5556, 'f1': 0.1587}"

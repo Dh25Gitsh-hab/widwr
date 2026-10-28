@@ -1,0 +1,90 @@
+{
+  "title": "Existing-data ML experiment - pre-registered protocol",
+  "version": 1,
+  "written": "2026-10-26, after the Phase A residual analysis of the production specifications and before any candidate was fitted",
+  "data": {
+    "sources": "only the Elexon files already in the project: DATASETS/{Oct25..Feb26}_Actual.json (FUELHH wind) and DATASETS1/{Oct25..Feb26}_Forecast.json (WINDFOR). No downloads, no other providers.",
+    "development": "deliveries 2025-10-02 .. 2025-12-31 (decisions before January); the only data used to fit, tune and choose",
+    "january_2026": "the application period (deliveries 2026-01-02 .. 2026-02-01); previously examined; evaluated once after selection",
+    "february_2026": "previously examined (deliveries 2026-02-02 .. 2026-02-28); evaluated once after selection; not an untouched holdout",
+    "untouched_test": "none exists in the existing data; no result here is a genuinely unseen test"
+  },
+  "decision_rule": "forecast_mw = latest WINDFOR value published at or before 09:50 Europe/London on D-1; every feature uses only rows published by that cutoff",
+  "targets": "regression: error_mw = forecast_mw - actual_mw (corrected forecast = forecast_mw - prediction); classification: shortfall = error_mw >= 1000 MW (fixed)",
+  "features": {
+    "level": ["forecast_mw"],
+    "existing9": "the 9 production features",
+    "curve": "spline(forecast_mw, quantile knots, degree 3, linear extrapolation) + hour_sin + hour_cos",
+    "wind_all": "spline(forecast_mw) + the production features without lead_hours + hour_sin, hour_cos, err_last3h_mw, err_prev_day_mw, err_7d_mw, err_band_14d_mw, forecast_revision_24h_mw, forecast_day_max_mw, forecast_day_min_mw, forecast_day_std_mw, day_of_week, bank_holiday (median-imputed with missing indicators, scaled)",
+    "interactions": "pairwise products of the scaled forecast_mw, hour_sin, hour_cos, err_last3h_mw, err_7d_mw, forecast_spread_mw, forecast_revision_mw"
+  },
+  "validation": {
+    "folds": "8 weekly blocks of deliveries: 2025-11-06..11-12, 11-13..19, 11-20..26, 11-27..12-03, 12-04..10, 12-11..17, 12-18..24, 12-25..31",
+    "static_training": "every delivery up to 2 days before the block's first day",
+    "rolling_training": "for each validation day d: deliveries in [d-1-W, d-2] (all labels published before d's cutoff)",
+    "preprocessing": "imputation, scaling and spline knots fitted on training rows only"
+  },
+  "candidates": {
+    "regression": {
+      "R00_official": "no correction (baseline)",
+      "R01_linear_level": "LinearRegression on forecast_mw (production specification)",
+      "R02_random_forest": "RandomForestRegressor(300 trees, seed 42) on existing9; min_samples_leaf {20, 50, 100} x max_features {0.3, 0.5, 1.0} (production: 20, 0.5)",
+      "R10_spline_level": "LinearRegression on spline(forecast_mw); n_knots {3, 5, 7}",
+      "R11_isotonic_level": "IsotonicRegression(increasing) on forecast_mw",
+      "R12_spline_level_hour": "LinearRegression on the curve set; n_knots {3, 5, 7}",
+      "R13_ridge_wind_all": "Ridge on wind_all; alpha {1, 10, 100, 1000}",
+      "R14_huber_level": "HuberRegressor on forecast_mw; epsilon {1.35, 2.0}",
+      "R20_median_level": "QuantileRegressor(q=0.5, alpha=0) on forecast_mw",
+      "R21_median_curve": "QuantileRegressor(q=0.5, alpha=0) on the curve set; n_knots {3, 5, 7}",
+      "R22_median_wind_all": "QuantileRegressor(q=0.5) on wind_all; alpha {0, 1, 10}",
+      "R23_gbm_absolute": "HistGradientBoostingRegressor(loss=absolute_error, 300 iterations, l2 1.0, increasing in forecast_mw, seed 42) on wind_all features (native missing values); learning_rate {0.03, 0.1} x max_leaf_nodes {7, 15} x min_samples_leaf {40, 100}",
+      "R30_rolling_mean_bias": "predicted error = mean error of the last W known days; W {7, 14, 28}",
+      "R31_linear_plus_rolling_offset": "R01 fitted on the training rows + mean R01 residual of the last W known days; W {7, 14, 28}",
+      "R32_linear_rolling_refit": "R01 refitted every day on the last W known days; W {14, 28}",
+      "R33_median_curve_rolling_refit": "R21 (5 knots) refitted every day on the last W known days; W {14, 28}"
+    },
+    "classification": {
+      "C00_base_rate": "training shortfall frequency",
+      "C01_logistic_level": "StandardScaler + LogisticRegression on forecast_mw (production specification)",
+      "C02_random_forest": "RandomForestClassifier(300 trees, seed 42) on existing9; min_samples_leaf {20, 50, 100} x max_features {0.3, 0.5, 1.0} (production: 20, 0.5)",
+      "C10_logistic_curve": "LogisticRegression on the curve set; n_knots {3, 5, 7}",
+      "C11_logistic_wind_all": "LogisticRegression on wind_all; C {0.01, 0.1, 1, 10} x class_weight {none, balanced}",
+      "C12_logistic_interactions": "LogisticRegression on spline(forecast_mw) + the interactions set; C {0.1, 1}",
+      "C13_gbm_classifier": "HistGradientBoostingClassifier(300 iterations, l2 1.0, increasing in forecast_mw, seed 42) on wind_all features; learning_rate {0.03, 0.1} x max_leaf_nodes {7, 15} x min_samples_leaf {40, 100}",
+      "C14_logistic_curve_rolling_refit": "C10 (5 knots) refitted every day on the last W known days; W {14, 28}"
+    }
+  },
+  "selection": {
+    "tuning": "within each candidate family, the configuration with the best mean score over the 8 folds",
+    "regression": "the family winner with the lowest mean fold MAE",
+    "classification": "the family winner with the highest mean fold ROC-AUC; among winners within 0.005 of the best, the lowest mean fold Brier score",
+    "nested_check": "repeat tuning and selection on folds 1-4 only, then score the chosen configuration on folds 5-8 against the production specification",
+    "rolling_retention": "a rolling or drift-correcting candidate is reported as an improvement only if it beats its static counterpart on mean fold score and on at least 5 of 8 folds"
+  },
+  "ensembles": {
+    "regression": "members = the top 2 and top 3 family winners ranked on folds 1-4; equal weights or weights proportional to 1/MAE on folds 1-4; scored on folds 5-8",
+    "classification": "members = the top 2 and top 3 family winners ranked on folds 1-4; equal-weight or AUC-weighted average probability; scored on folds 5-8",
+    "acceptance": "accepted only if it beats the best single family (chosen on folds 1-4) on folds 5-8 overall and in at least 3 of the 4 late folds"
+  },
+  "classifier_extras": {
+    "calibration": "none vs Platt vs isotonic, fitted on the selected classifier's out-of-fold predictions from folds 1-4 and compared by Brier score on folds 5-8; the winner is refitted on all out-of-fold predictions",
+    "thresholds": "from development out-of-fold predictions only: (a) the highest threshold with recall >= 0.80; (b) the F1-maximising threshold"
+  },
+  "reporting": {
+    "regression": ["MAE", "RMSE", "bias", "MAE reduction vs official (%)", "error percentiles and share within 0.5 / 1 GW"],
+    "classification": ["ROC-AUC", "PR-AUC", "Brier", "ECE (5 bands)", "precision / recall / F1 at 0.5 and both thresholds"],
+    "segments": ["forecast-size band", "UK hour group", "forecast revision", "month"],
+    "every_candidate": "all family winners and all configurations are reported, including unsuccessful ones"
+  },
+  "evaluation_after_selection": {
+    "periods": "January 2026 and February 2026, each scored ONCE with the frozen selected models (trained on development data; rolling candidates refit only on data known at each cutoff)",
+    "compared_with": "the official forecast and the production models' saved predictions (linear_by_level, logistic_by_level, random forests) on the same hours",
+    "uncertainty": "95% circular block bootstrap over whole days (3-day blocks, 5000 resamples) for the MAE and ROC-AUC differences vs the production defaults"
+  },
+  "recommendation_rule": {
+    "strong": "CV criteria met (selected; beats the production specification on mean and >= 5 of 8 folds; holds in the nested check) AND better than the production default in January and February with both 95% intervals excluding zero",
+    "suggestive": "CV criteria met AND better than the production default in both January and February by point estimate",
+    "not_supported": "anything else",
+    "adoption": "none automatic; any production change needs the owner's explicit approval"
+  }
+}

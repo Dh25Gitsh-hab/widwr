@@ -1,0 +1,36 @@
+{
+  "name": "wind-forecast-intelligence-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "React dashboard for the UK day-ahead wind purchasing desk (January 2026 decisions)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:live": "vitest run live"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "recharts": "2.15.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.25.1",
+    "@testing-library/dom": "10.4.0",
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react": "16.3.0",
+    "@testing-library/user-event": "14.6.1",
+    "@vitejs/plugin-react": "4.4.1",
+    "eslint": "9.25.1",
+    "eslint-plugin-react-hooks": "5.2.0",
+    "eslint-plugin-react-refresh": "0.4.20",
+    "globals": "16.0.0",
+    "jsdom": "26.1.0",
+    "vite": "6.3.5",
+    "vitest": "3.1.4"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-10-26T15:33:53+00:00",
+  "protocol_sha256": "4d659e0e160293374d5616721716be01e3664e941e50e2f1e4bcf44041f71c22",
+  "inputs": {
+    "windfor_published_2024-09-24_2025-09-30.csv": "b43fb12e1f86f6690a2b60c92ed17e6ca1c198b9b7dd40fdffdea9443b2eb388",
+    "fuelhh_wind_settlement_2024-09-24_2025-09-30.csv": "dbedb527e6a407eb0e99cc6527f2a40c5a25bd1edc633746122027f10822df75",
+    "ndfd_published_2024-09-24_2026-01-30.csv": "a88e60681aa4048c1f6d532797bc9417ef4dc52fec3e0419ddc527e718b51cc3",
+    "Oct25_Forecast.json": "64e01573ea74134c8fdabfc3831c9d22664296cbac6b482b8b3f45ead384a686",
+    "Nov25_Forecast.json": "abb55619291851c42d3fc14d7817b47d3ecc7e041efe31355c3b793fc0312c6e",
+    "Dec25_Forecast.json": "efe8eb0bf649e4406daff7ab73383a1f745976ab5fe6318eb22cae859bfb5183",
+    "Jan26_Forecast.json": "b37e1ebe593223b893c7cb65b1497b855226c451cb87583ed9a6b0f7be5c44a8",
+    "Oct25_Actual.json": "b9ddb773bfa2dddf7f3635efea13dff1fa957c1994aff72d0f4bf954a130d8a6",
+    "Nov25_Actual.json": "566e3aecf1d72f04bad9f73688ae84b83a3840bc9ad2a8eaee4bfd7ba8d31eef",
+    "Dec25_Actual.json": "b05d15c731b64a4b9debab6bb6f4526e62c933481cecbab46a69a796de8ed790",
+    "Jan26_Actual.json": "58d01b8187e93cf0557f28759945e53be1766c2fea018f14e89da6e5870d4a8c"
+  },
+  "validation": {
+    "cleaning": {
+      "forecasts": {
+        "dataset": "WINDFOR (wind generation forecast)",
+        "raw_rows": 284854,
+        "invalid_rows": 0,
+        "other_fuel_rows": 0,
+        "duplicate_rows": 0,
+        "past_target_rows": 60469,
+        "clean_rows": 224385
+      },
+      "actuals": {
+        "dataset": "FUELHH (actual wind generation)",
+        "raw_rows": 23762,
+        "invalid_rows": 0,
+        "other_fuel_rows": 0,
+        "duplicate_rows": 0,
+        "past_target_rows": 0,
+        "clean_rows": 23762
+      }
+    },
+    "actuals": {
+      "first_half_hour": "2024-09-23 23:00:00+00:00",
+      "last_half_hour": "2026-02-01 23:30:00+00:00",
+      "missing_half_hours": 48,
+      "missing_days": [
+        "2026-01-01"
+      ],
+      "publish_lag_minutes": {
+        "min": 30.0,
+        "median": 30.0,
+        "max": 234.0
+      }
+    },
+    "forecasts": {
+      "first_run": "2024-09-24 03:30:00+00:00",
+      "last_run": "2026-01-31 22:30:00+00:00",
+      "runs": 3958,
+      "runs_per_day": {
+        "min": 7,
+        "median": 8.0,
+        "max": 8
+      },
+      "days_with_fewer_than_6_runs": []
+    },
+    "ndfd": {
+      "runs": 494,
+      "first_run": "2024-09-24 13:45:00+00:00",
+      "last_run": "2026-01-30 14:45:00+00:00",
+      "demand_mw": {
+        "min": 21360.0,
+        "max": 46640.0
+      }
+    }
+  },
+  "datasets": {
+    "dev_dataset.csv": {
+      "period": "development: decisions 2024-10-01 .. 2025-12-31",
+      "delivery_dates": [
+        "2024-10-02",
+        "2025-12-31"
+      ],
+      "rows": 10945,
+      "days": 456,
+      "excluded_no_forecast": 0,
+      "excluded_no_actual": 24,
+      "excluded_days_without_actual": [
+        "2026-01-01"
+      ],
+      "missing_feature_values": {
+        "err_band_14d_mw": 166,
+        "forecast_revision_24h_mw": 912
+      },
+      "shortfall_rate": 0.513,
+      "sha256": "35c4d16da618fe968d960d74e0aeb322731cb331f600e2cbbc02c33b496d438e"
+    },
+    "january_dataset.csv": {
+      "period": "January 2026 application period: context only",
+      "delivery_dates": [
+        "2026-01-02",
+        "2026-02-01"
+      ],
+      "rows": 744,
+      "days": 31,
+      "excluded_no_forecast": 0,
+      "excluded_no_actual": 0,
+      "excluded_days_without_actual": [],
+      "missing_feature_values": {
+        "err_prev_day_mw": 24,
+        "err_band_14d_mw": 21,
+        "forecast_revision_24h_mw": 62
+      },
+      "shortfall_rate": 0.6599,
+      "sha256": "028c04d2a359146aef4fdf33c6861f542c88a8c4e7e44487bac9536e296b8cb6"
+    }
+  }
+}

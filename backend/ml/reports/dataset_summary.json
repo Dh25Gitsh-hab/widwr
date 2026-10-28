@@ -1,0 +1,100 @@
+{
+  "generated_at": "2026-10-25T23:02:25+00:00",
+  "decision_rule": "Latest forecast published by 09:50 UK local time on D-1 (DST-aware)",
+  "cleaning": [
+    {
+      "dataset": "FUELHH (actual wind generation)",
+      "raw_rows": 5906,
+      "invalid_rows": 0,
+      "other_fuel_rows": 0,
+      "duplicate_rows": 0,
+      "past_target_rows": 0,
+      "clean_rows": 5906
+    },
+    {
+      "dataset": "WINDFOR (wind generation forecast)",
+      "raw_rows": 71856,
+      "invalid_rows": 0,
+      "other_fuel_rows": 0,
+      "duplicate_rows": 0,
+      "past_target_rows": 15170,
+      "clean_rows": 56686
+    }
+  ],
+  "delivery_hours_built": 2977,
+  "excluded": {
+    "hours_without_decision_time_forecast": 24,
+    "hours_without_actual": 24,
+    "hours_outside_split_months": 0,
+    "days": {
+      "no_decision_time_forecast": [
+        "2025-10-01"
+      ],
+      "no_actual_generation": [
+        "2026-01-01"
+      ]
+    }
+  },
+  "rows_in_dataset": 2929,
+  "splits": [
+    {
+      "name": "train",
+      "decision_dates": [
+        "2025-10-01",
+        "2025-11-30"
+      ],
+      "delivery_dates": [
+        "2025-10-02",
+        "2025-12-01"
+      ],
+      "days": 61,
+      "hours": 1465,
+      "shortfall_rate": 0.519,
+      "mean_error_mw": 1426.1
+    },
+    {
+      "name": "validation",
+      "decision_dates": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "delivery_dates": [
+        "2025-12-02",
+        "2025-12-31"
+      ],
+      "days": 30,
+      "hours": 720,
+      "shortfall_rate": 0.528,
+      "mean_error_mw": 1355.7
+    },
+    {
+      "name": "test",
+      "decision_dates": [
+        "2026-01-01",
+        "2026-01-31"
+      ],
+      "delivery_dates": [
+        "2026-01-02",
+        "2026-02-01"
+      ],
+      "days": 31,
+      "hours": 744,
+      "shortfall_rate": 0.66,
+      "mean_error_mw": 1728.0
+    }
+  ],
+  "features": {
+    "forecast_mw": "Official forecast for the hour, latest published by the cutoff (MW)",
+    "lead_hours": "Hours between that forecast's publication and the target hour",
+    "hour_uk": "UK clock hour of the target hour (0-23)",
+    "forecast_revision_mw": "Change versus the previous forecast run for the same hour (MW)",
+    "forecast_spread_mw": "Std-dev of all forecasts for the hour published in the 24 h before the cutoff (MW)",
+    "forecast_ramp_mw": "Forecast change from the previous hour in the same run (MW)",
+    "forecast_day_mean_mw": "Mean forecast over the delivery day (MW)",
+    "latest_actual_mw": "Most recent actual generation already published at the cutoff (MW)",
+    "recent_error_mw": "Mean day-ahead forecast error over the last 24 h known at the cutoff (MW)"
+  },
+  "missing_feature_values": {
+    "recent_error_mw": 24
+  }
+}

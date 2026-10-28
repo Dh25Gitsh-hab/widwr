@@ -1,0 +1,6 @@
+segment,hours,official_forecast_mae,official_forecast_rmse,official_forecast_bias,official_forecast_over_corrected_pct,linear_by_level_mae,linear_by_level_rmse,linear_by_level_bias,linear_by_level_over_corrected_pct,ridge_level_mae,ridge_level_rmse,ridge_level_bias,ridge_level_over_corrected_pct,ridge_all_mae,ridge_all_rmse,ridge_all_bias,ridge_all_over_corrected_pct,gbm_all_mae,gbm_all_rmse,gbm_all_bias,gbm_all_over_corrected_pct,random_forest_mae,random_forest_rmse,random_forest_bias,random_forest_over_corrected_pct
+0-5,31,1257.3,1413.3,200.9,45.2,1351.9,1560.4,605.8,45.2,1351.8,1560.0,605.0,45.2,1509.1,1695.4,668.0,38.7,1335.0,1671.6,-931.1,61.3,1280.4,1577.9,-736.4,64.5
+10-15,206,1572.5,2124.7,1438.9,14.6,1231.2,1651.8,-75.7,57.3,1231.1,1651.7,-75.6,57.3,1578.5,1944.5,-222.6,61.2,1782.8,2155.5,212.3,51.9,1518.9,1925.9,279.7,50.0
+15-20,253,2442.7,2769.4,2422.2,2.0,1031.9,1301.2,-391.8,66.8,1031.7,1301.1,-391.1,66.8,1267.2,1518.6,-568.6,71.9,1439.3,1709.4,-829.9,75.1,1296.6,1544.9,-700.1,73.9
+20+,44,4640.9,4797.7,4640.9,0.0,1238.0,1680.1,1148.3,27.3,1238.4,1680.8,1149.3,27.3,1325.9,1548.4,977.7,29.5,878.6,1105.7,304.7,54.5,967.8,1232.0,525.9,40.9
+5-10,210,1426.6,1826.5,790.3,32.4,1265.8,1637.5,326.6,40.5,1265.7,1637.4,326.2,40.5,1314.6,1686.9,475.2,39.0,1586.1,1997.3,584.2,42.4,1450.0,1876.6,489.3,43.8

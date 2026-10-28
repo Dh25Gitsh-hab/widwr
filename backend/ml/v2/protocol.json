@@ -1,0 +1,98 @@
+{
+  "title": "v2 offline ML experiments - pre-registered protocol",
+  "version": 1,
+  "written": "2026-10-26, before any v2 data was downloaded or any v2 model was fitted",
+  "scope": {
+    "application": "UK wind purchasing decisions made 1-31 January 2026 (delivery 2 Jan - 1 Feb 2026). These experiments do not change it.",
+    "development_data": "decisions 2024-10-01 .. 2025-12-31: all data published before the first January cutoff",
+    "january_2026": "context only - it has been evaluated before and is never used to choose",
+    "february_2026": "not used - it already influenced the current production defaults",
+    "supplementary_evaluation": "decisions 2026-03-01 .. 2026-05-31; its data is downloaded only after this protocol is locked, and it is evaluated once"
+  },
+  "decision_rule": "forecast_mw = latest WINDFOR value published at or before 09:50 Europe/London on D-1; every feature uses only data published by that cutoff",
+  "targets": {
+    "regression": "error_mw = forecast_mw - actual_mw (actual = FUELHH half-hour starting at the forecast hour, as in production); corrected forecast = forecast_mw - predicted error",
+    "classification": "shortfall = error_mw >= 1000 MW (fixed; not tuned)"
+  },
+  "feature_sets": {
+    "level": ["forecast_mw"],
+    "existing9": ["forecast_mw", "lead_hours", "hour_uk", "forecast_revision_mw", "forecast_spread_mw", "forecast_ramp_mw", "forecast_day_mean_mw", "latest_actual_mw", "recent_error_mw"],
+    "curve": "spline(forecast_mw: 5 quantile knots, degree 3, linear extrapolation) + hour_sin + hour_cos",
+    "all": "curve + existing9 without lead_hours (identical to hour_uk because every decision uses the 09:30 run) + err_last3h_mw, err_prev_day_mw, err_7d_mw, err_band_14d_mw, forecast_revision_24h_mw, forecast_day_max_mw, forecast_day_min_mw, forecast_day_std_mw, day_of_week, bank_holiday, ndfd_demand_mw, wind_share_ndfd"
+  },
+  "new_features": {
+    "hour_sin, hour_cos": "UK clock hour on a circle",
+    "err_last3h_mw": "mean day-ahead error of the 3 most recent hours whose actual was published by the cutoff",
+    "err_prev_day_mw": "mean day-ahead error over UK day D-2 (requires >= 20 known hours)",
+    "err_7d_mw": "mean day-ahead error over the hours of the 7 days before the cutoff whose actual was published by then",
+    "err_band_14d_mw": "same, over 14 days, restricted to hours whose forecast was in the same fixed size band (0/5/10/15/20 GW)",
+    "forecast_revision_24h_mw": "forecast_mw minus the forecast for the same hour from the latest run published at least 24 h before the cutoff",
+    "forecast_day_max_mw, forecast_day_min_mw, forecast_day_std_mw": "shape of the decision-time forecast over delivery day D",
+    "day_of_week, bank_holiday": "calendar of D (England & Wales bank holidays, published years ahead)",
+    "ndfd_demand_mw": "Elexon NDFD national demand forecast for day D from the latest run published by the cutoff",
+    "wind_share_ndfd": "forecast_day_mean_mw / ndfd_demand_mw"
+  },
+  "preprocessing": "imputation (median, with missing-value indicators), scaling and spline knots are fitted inside each training set only",
+  "candidates": {
+    "regression": {
+      "R0_official": "no correction",
+      "R1_linear_by_level": "LinearRegression on forecast_mw (production specification)",
+      "R2_random_forest": "RandomForestRegressor(300 trees, min_samples_leaf=20, max_features=0.5, seed 42) on existing9 (production specification)",
+      "R3_median_by_level": "QuantileRegressor(quantile=0.5, alpha=0) on forecast_mw",
+      "R4_median_curve": "QuantileRegressor(quantile=0.5, alpha=0) on the curve set",
+      "R5_median_all": "QuantileRegressor(quantile=0.5, alpha=0) on the all set",
+      "R6_gbm_absolute": "HistGradientBoostingRegressor(loss=absolute_error, learning_rate=0.05, max_iter=300, max_leaf_nodes=15, min_samples_leaf=40, l2_regularization=1.0, increasing in forecast_mw, seed 42) on the all set",
+      "R7_median_curve_rolling_w30 / _w60 / _w90": "R4 refitted for every decision day on the last W days of data known at its cutoff",
+      "R8_ensemble_r5_r6": "mean of the R5 and R6 corrected forecasts"
+    },
+    "classification": {
+      "C0_base_rate": "training shortfall frequency",
+      "C1_logistic_by_level": "StandardScaler + LogisticRegression on forecast_mw (production specification)",
+      "C2_random_forest": "RandomForestClassifier(300 trees, min_samples_leaf=20, max_features=0.5, seed 42) on existing9 (production specification)",
+      "C3_logistic_all": "LogisticRegression(C=1) on the all set (imputed, scaled)",
+      "C4_gbm_classifier": "HistGradientBoostingClassifier(learning_rate=0.05, max_iter=300, max_leaf_nodes=15, min_samples_leaf=40, l2_regularization=1.0, increasing in forecast_mw, seed 42) on the all set",
+      "C5_quantile_distribution": "P(error >= 1000 MW) read from the predicted distribution of 9 HistGradientBoosting quantile models (q = 0.1 .. 0.9, same settings as R6) on the all set",
+      "C6_logistic_curve_rolling_w30 / _w60 / _w90": "LogisticRegression on the curve set refitted for every decision day on the last W days of data known at its cutoff"
+    }
+  },
+  "validation": {
+    "scheme": "rolling origin, one fold per delivery month 2025-04 .. 2025-12 (9 folds)",
+    "static_models": "fitted once per fold on deliveries up to 2 days before the fold's first day (all their labels are published before the fold's first cutoff)",
+    "rolling_models": "refitted for every validation delivery day d on deliveries in [d-1-W, d-2]",
+    "hyper_parameters": "fixed in this file; only W in {30, 60, 90} days varies, as separate candidates"
+  },
+  "selection": {
+    "regression": "lowest mean fold MAE of the corrected forecast",
+    "classification": "highest mean fold ROC-AUC; among candidates within 0.005 of the best, the lowest mean fold Brier score",
+    "final_models": "the selected candidates refitted on all development data (deliveries up to 31 Dec 2025); rolling candidates keep refitting only on data known at each cutoff"
+  },
+  "classifier_extras": {
+    "calibration": "Platt scaling fitted on the selected classifier's out-of-fold predictions; reported separately (it does not change ROC-AUC)",
+    "thresholds": "chosen on out-of-fold predictions only: (a) the highest threshold with recall >= 0.80; (b) the F1-maximising threshold"
+  },
+  "metrics": {
+    "regression": ["MAE (primary)", "RMSE", "bias", "MAE reduction vs the official forecast (%)"],
+    "classification": ["ROC-AUC (primary)", "PR-AUC", "Brier score", "ECE over 5 probability bands", "precision, recall, F1 at 0.5 and at both thresholds"],
+    "segments": ["forecast-size band (0/5/10/15/20 GW)", "UK hour group (00-05, 06-11, 12-17, 18-23)", "month"]
+  },
+  "supplementary_evaluation": {
+    "window": "decisions 2026-03-01 .. 2026-05-31 (includes the 29 March 2026 clock change)",
+    "models": "official forecast; production defaults (linear_by_level, logistic_by_level) and comparison models (random forests) exactly as saved; the v2 selected regressor and classifier as frozen at 31 Dec 2025 (a rolling candidate refits only on data published before each test cutoff)",
+    "sealing": "predictions are written without labels and fingerprinted before any March-May label is scored",
+    "primary_comparisons": [
+      "v2 selected regressor vs production linear_by_level: paired MAE difference",
+      "v2 selected classifier vs production logistic_by_level: ROC-AUC difference"
+    ],
+    "uncertainty": "95% circular block bootstrap over whole days (3-day blocks, 5000 resamples); Diebold-Mariano test (HAC, 48 h) for the MAE difference",
+    "interpretation": "an improvement is claimed only if its 95% interval excludes zero; otherwise the comparison is reported as inconclusive"
+  },
+  "adoption": "No automatic integration. A v2 model may be proposed for the January application only if its supplementary gain is significant under the rule above, and only with the user's explicit approval.",
+  "leakage_controls": [
+    "every feature is computed only from forecast, actual and demand-forecast rows published at or before the cutoff",
+    "perturbation tests: changing any value published after the cutoff leaves every feature unchanged, in GMT and on the BST clock-change day",
+    "preprocessing is fitted inside each training set only",
+    "training data ends at least 2 days before each validation delivery day",
+    "February 2026 is not used; January 2026 is context only; March-May 2026 data is downloaded only after this protocol is locked",
+    "supplementary predictions are sealed before labels are scored"
+  ]
+}

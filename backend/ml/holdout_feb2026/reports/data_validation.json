@@ -1,0 +1,140 @@
+{
+  "files": [
+    {
+      "file": "Jan26_Actual.json",
+      "records": 1488,
+      "start_time_range": [
+        "2026-01-02 00:00:00+00:00",
+        "2026-02-01 23:30:00+00:00"
+      ],
+      "settlement_date_range": [
+        "2026-01-02",
+        "2026-02-01"
+      ],
+      "null_values": 0,
+      "non_numeric_generation": 0,
+      "negative_generation": 0,
+      "duplicate_start_times": 0,
+      "missing_half_hours": [],
+      "settlement_date_matches_uk_date": true,
+      "days_without_48_periods": {},
+      "generation_mw": {
+        "min": 1695.0,
+        "mean": 11283.6,
+        "max": 17805.0
+      }
+    },
+    {
+      "file": "Feb26_Actual.json",
+      "records": 1344,
+      "start_time_range": [
+        "2026-02-01 00:00:00+00:00",
+        "2026-02-28 23:30:00+00:00"
+      ],
+      "settlement_date_range": [
+        "2026-02-01",
+        "2026-02-28"
+      ],
+      "null_values": 0,
+      "non_numeric_generation": 0,
+      "negative_generation": 0,
+      "duplicate_start_times": 0,
+      "missing_half_hours": [],
+      "settlement_date_matches_uk_date": true,
+      "days_without_48_periods": {},
+      "generation_mw": {
+        "min": 0.0,
+        "mean": 11373.4,
+        "max": 18439.0
+      }
+    },
+    {
+      "file": "Jan26_Forecast.json",
+      "records": 18104,
+      "publish_time_range": [
+        "2026-01-01 02:30:00+00:00",
+        "2026-01-31 22:30:00+00:00"
+      ],
+      "start_time_range": [
+        "2025-12-31 21:00:00+00:00",
+        "2026-02-02 21:00:00+00:00"
+      ],
+      "runs": 248,
+      "values_per_run": {
+        "73": 248
+      },
+      "days_with_irregular_run_count": {},
+      "null_values": 0,
+      "non_numeric_generation": 0,
+      "negative_generation": 0,
+      "duplicate_publish_start_pairs": 0,
+      "targets_not_on_the_hour": 0,
+      "targets_before_publish_time": 3721,
+      "generation_mw": {
+        "min": 2250.0,
+        "mean": 13041.9,
+        "max": 21353.0
+      }
+    },
+    {
+      "file": "Feb26_Forecast.json",
+      "records": 16352,
+      "publish_time_range": [
+        "2026-02-01 02:30:00+00:00",
+        "2026-02-28 22:30:00+00:00"
+      ],
+      "start_time_range": [
+        "2026-01-31 21:00:00+00:00",
+        "2026-03-02 21:00:00+00:00"
+      ],
+      "runs": 224,
+      "values_per_run": {
+        "73": 224
+      },
+      "days_with_irregular_run_count": {},
+      "null_values": 0,
+      "non_numeric_generation": 0,
+      "negative_generation": 0,
+      "duplicate_publish_start_pairs": 0,
+      "targets_not_on_the_hour": 0,
+      "targets_before_publish_time": 3362,
+      "generation_mw": {
+        "min": 2284.0,
+        "mean": 12941.0,
+        "max": 20777.0
+      }
+    }
+  ],
+  "input_sha256": {
+    "DATASETS/Jan26_Actual.json": "58d01b8187e93cf0557f28759945e53be1766c2fea018f14e89da6e5870d4a8c",
+    "DATASETS/Feb26_Actual.json": "8fad6f0b037d0e615423d9ec3d8314169f030da6f7430cd5cba7449e814fae15",
+    "DATASETS1/Jan26_Forecast.json": "b37e1ebe593223b893c7cb65b1497b855226c451cb87583ed9a6b0f7be5c44a8",
+    "DATASETS1/Feb26_Forecast.json": "6dbd2aab19921859029770f3011587f6f46fb49273fd7bb7264f0cd73710dd31"
+  },
+  "combined": {
+    "actuals": {
+      "records": 2832,
+      "start_time_range": [
+        "2026-01-02 00:00:00+00:00",
+        "2026-02-28 23:30:00+00:00"
+      ],
+      "duplicates_across_files": 48,
+      "conflicting_duplicates": 0,
+      "missing_half_hours": []
+    },
+    "forecasts": {
+      "records": 34456,
+      "runs": 472,
+      "publish_time_range": [
+        "2026-01-01 02:30:00+00:00",
+        "2026-02-28 22:30:00+00:00"
+      ],
+      "longest_gap_between_runs_hours": 4.466666666666667,
+      "duplicates_across_files": 0
+    },
+    "units": "Both datasets report generation in MW (Elexon schema). Mean actual 11,326 MW vs mean forecast 12,994 MW - same order of magnitude, so no unit conversion is needed."
+  },
+  "errors": [],
+  "warnings": [],
+  "note": "Structural checks only - no forecast error is computed at this stage."
+}

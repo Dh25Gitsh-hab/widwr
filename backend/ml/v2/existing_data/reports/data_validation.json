@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-10-26T15:53:55+00:00",
+  "inputs": {
+    "DATASETS1/Oct25_Forecast.json": "64e01573ea74134c8fdabfc3831c9d22664296cbac6b482b8b3f45ead384a686",
+    "DATASETS1/Nov25_Forecast.json": "abb55619291851c42d3fc14d7817b47d3ecc7e041efe31355c3b793fc0312c6e",
+    "DATASETS1/Dec25_Forecast.json": "efe8eb0bf649e4406daff7ab73383a1f745976ab5fe6318eb22cae859bfb5183",
+    "DATASETS1/Jan26_Forecast.json": "b37e1ebe593223b893c7cb65b1497b855226c451cb87583ed9a6b0f7be5c44a8",
+    "DATASETS1/Feb26_Forecast.json": "6dbd2aab19921859029770f3011587f6f46fb49273fd7bb7264f0cd73710dd31",
+    "DATASETS/Oct25_Actual.json": "b9ddb773bfa2dddf7f3635efea13dff1fa957c1994aff72d0f4bf954a130d8a6",
+    "DATASETS/Nov25_Actual.json": "566e3aecf1d72f04bad9f73688ae84b83a3840bc9ad2a8eaee4bfd7ba8d31eef",
+    "DATASETS/Dec25_Actual.json": "b05d15c731b64a4b9debab6bb6f4526e62c933481cecbab46a69a796de8ed790",
+    "DATASETS/Jan26_Actual.json": "58d01b8187e93cf0557f28759945e53be1766c2fea018f14e89da6e5870d4a8c",
+    "DATASETS/Feb26_Actual.json": "8fad6f0b037d0e615423d9ec3d8314169f030da6f7430cd5cba7449e814fae15"
+  },
+  "cleaning": {
+    "forecasts": {
+      "dataset": "WINDFOR (wind generation forecast)",
+      "raw_rows": 88208,
+      "invalid_rows": 0,
+      "other_fuel_rows": 0,
+      "duplicate_rows": 0,
+      "past_target_rows": 18532,
+      "clean_rows": 69676
+    },
+    "actuals": {
+      "dataset": "FUELHH (actual wind generation)",
+      "raw_rows": 7250,
+      "invalid_rows": 0,
+      "other_fuel_rows": 0,
+      "duplicate_rows": 48,
+      "past_target_rows": 0,
+      "clean_rows": 7202
+    }
+  },
+  "actuals": {
+    "first": "2025-09-30 23:00:00+00:00",
+    "last": "2026-02-28 23:30:00+00:00",
+    "missing_half_hours": 48,
+    "missing_days": [
+      "2026-01-01"
+    ]
+  },
+  "forecasts": {
+    "runs": 1208,
+    "first_run": "2025-10-01 03:30:00+00:00",
+    "last_run": "2026-02-28 22:30:00+00:00",
+    "runs_per_day_min_max": [
+      8,
+      8
+    ]
+  },
+  "datasets": {
+    "dev.csv": {
+      "delivery_dates": [
+        "2025-10-02",
+        "2025-12-31"
+      ],
+      "rows": 2185,
+      "days": 91,
+      "excluded_no_forecast": 0,
+      "excluded_no_actual": 0,
+      "excluded_days_without_actual": [],
+      "missing_feature_values": {
+        "recent_error_mw": 24,
+        "err_last3h_mw": 24,
+        "err_prev_day_mw": 48,
+        "err_7d_mw": 24,
+        "err_band_14d_mw": 119,
+        "forecast_revision_24h_mw": 204
+      },
+      "shortfall_rate": 0.5222,
+      "sha256": "76cbe566138d281ddb76a50d956d00ccde6c6111d968f117d463c7073fda6a3a"
+    },
+    "january.csv": {
+      "delivery_dates": [
+        "2026-01-02",
+        "2026-02-01"
+      ],
+      "rows": 744,
+      "days": 31,
+      "excluded_no_forecast": 0,
+      "excluded_no_actual": 0,
+      "excluded_days_without_actual": [],
+      "missing_feature_values": {
+        "err_prev_day_mw": 24,
+        "err_band_14d_mw": 21,
+        "forecast_revision_24h_mw": 62
+      },
+      "shortfall_rate": 0.6599,
+      "sha256": "ced09175916394b08ad1ee89910785f53643fce11e514b017ce51bef56d2e49f"
+    },
+    "february.csv": {
+      "delivery_dates": [
+        "2026-02-02",
+        "2026-02-28"
+      ],
+      "rows": 648,
+      "days": 27,
+      "excluded_no_forecast": 0,
+      "excluded_no_actual": 24,
+      "excluded_days_without_actual": [
+        "2026-03-01"
+      ],
+      "missing_feature_values": {
+        "err_band_14d_mw": 13,
+        "forecast_revision_24h_mw": 54
+      },
+      "shortfall_rate": 0.6219,
+      "sha256": "c1c0422cf6be968d98f8dcd6f4bca8c50e5fbeb9708fcbecb3e0ad3134a07496"
+    }
+  }
+}

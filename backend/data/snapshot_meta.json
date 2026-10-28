@@ -1,0 +1,16 @@
+{
+  "fetched_at": "2026-10-25T19:31:49+00:00",
+  "source": "https://data.elexon.co.uk/bmrs/api/v1",
+  "actuals_settlement_dates": [
+    "2026-01-01",
+    "2026-02-01"
+  ],
+  "forecasts_published": [
+    "2025-12-30T00:00:00+00:00",
+    "2026-02-02T00:00:00+00:00"
+  ],
+  "rows": {
+    "actuals": 1536,
+    "forecasts": 19856
+  }
+}

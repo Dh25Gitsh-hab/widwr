@@ -1,0 +1,42 @@
+﻿Protocol 97cf15e7e84c verified. Development: 2185 h, 2025-10-02 .. 2025-12-31
+
+[regression] cross-validating 30 configurations on 8 folds ...
+  official_forecast  official_forecast                                                                     CV mae 1817.4970
+  linear_by_level    linear_by_level                                                                       CV mae 1477.7949
+  ridge_level        ridge_level[alpha=1]                                                                  CV mae 1477.7987
+  ridge_all          ridge_all[alpha=10]                                                                   CV mae 1314.4038
+  gbm_all            gbm_all[loss=squared_error, learning_rate=0.03, max_leaf_nodes=15, min_samples_leaf=20] CV mae 1120.3311
+  random_forest      random_forest                                                                         CV mae 1158.4660
+
+[classification] cross-validating 15 configurations on 8 folds ...
+  base_rate          base_rate                                                                             CV brier 0.2617
+  logistic_by_level  logistic_by_level                                                                     CV brier 0.1987
+  logistic_all       logistic_all[C=0.1]                                                                   CV brier 0.1777
+  gbm_all            gbm_all[learning_rate=0.03, max_leaf_nodes=7, min_samples_leaf=50]                    CV brier 0.1683
+  random_forest      random_forest                                                                         CV brier 0.1651
+
+Selection frozen: selection.json (sha256 363b5a1e311c). Reading January now.
+
+[regression] January (744 h), each model scored once
+  official_forecast  MAE  1995.6  RMSE  2498.8  bias +1728.0  over-corrected 15.7%
+  linear_by_level    MAE  1178.6  RMSE  1535.1  bias   +31.2  over-corrected 53.5%
+  ridge_level        MAE  1178.5  RMSE  1535.0  bias   +31.3  over-corrected 53.5%
+  ridge_all          MAE  1380.3  RMSE  1701.8  bias   -35.2  over-corrected 55.8%
+  gbm_all            MAE  1538.3  RMSE  1896.0  bias   -79.3  over-corrected 57.7%
+  random_forest      MAE  1381.3  RMSE  1739.6  bias   -22.1  over-corrected 56.5%
+  decision ridge_level        {'cv_mae': 1477.7986739209655, 'baseline_cv_mae': 1477.79488411778, 'better_in_cv': False, 'january_mae_gain_ci95_low': -0.0588, 'supported': False}
+  decision ridge_all          {'cv_mae': 1314.4037865928988, 'baseline_cv_mae': 1477.79488411778, 'better_in_cv': True, 'january_mae_gain_ci95_low': -327.6637, 'supported': False}
+  decision gbm_all            {'cv_mae': 1120.3311409443731, 'baseline_cv_mae': 1477.79488411778, 'better_in_cv': True, 'january_mae_gain_ci95_low': -528.4229, 'supported': False}
+  decision random_forest      {'cv_mae': 1158.4660115737186, 'baseline_cv_mae': 1477.79488411778, 'better_in_cv': True, 'january_mae_gain_ci95_low': -319.8636, 'supported': False}
+
+[classification] January (744 h), each model scored once
+  base_rate          ROC-AUC 0.5000  PR-AUC 0.6599  Brier 0.2434
+  logistic_by_level  ROC-AUC 0.7550  PR-AUC 0.8743  Brier 0.2015
+  logistic_all       ROC-AUC 0.7523  PR-AUC 0.8633  Brier 0.2101
+  gbm_all            ROC-AUC 0.7416  PR-AUC 0.8729  Brier 0.2162
+  random_forest      ROC-AUC 0.7232  PR-AUC 0.8644  Brier 0.2209
+  decision logistic_all       {'cv_brier': 0.17766256345790743, 'baseline_cv_brier': 0.19873075884408847, 'better_in_cv': True, 'january_brier_gain_ci95_low': -0.0231, 'supported': False}
+  decision gbm_all            {'cv_brier': 0.16834316827174683, 'baseline_cv_brier': 0.19873075884408847, 'better_in_cv': True, 'january_brier_gain_ci95_low': -0.0435, 'supported': False}
+  decision random_forest      {'cv_brier': 0.16514618297364456, 'baseline_cv_brier': 0.19873075884408847, 'better_in_cv': True, 'january_brier_gain_ci95_low': -0.0478, 'supported': False}
+
+Wrote E:\GridBricks Job\backend\ml\v2\ridge_gbm\reports\results.json and CSV tables in E:\GridBricks Job\backend\ml\v2\ridge_gbm\reports

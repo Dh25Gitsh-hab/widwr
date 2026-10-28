@@ -1,0 +1,77 @@
+{
+  "title": "Ridge / gradient-boosting experiment - pre-registered protocol",
+  "version": 1,
+  "written": "2026-10-27, after the Phase 1 audit (development data only, reports/audit.json) and before any candidate was fitted",
+  "disclosure": "January 2026 is not untouched: the production defaults were chosen partly on January evidence, earlier experiments scored their winners on January, and the author has seen January diagnostics (including the 3 Jan 2026 investigation). January is used here as the designated test period: read once, after selection, and never for tuning or choosing.",
+  "data": {
+    "source": "backend/ml/processed/ml_dataset.csv (read only), built from the Elexon files already in the project: DATASETS/*_Actual.json (FUELHH wind) and DATASETS1/*_Forecast.json (WINDFOR). No downloads, no other providers.",
+    "development": "splits 'train' + 'validation': deliveries 2025-10-02 .. 2025-12-31 (decisions before January). The only rows used to fit, tune and choose.",
+    "test": "split 'test': January 2026 decisions, deliveries 2026-01-02 .. 2026-02-01 (744 h). Read once, after reports/selection.json is written.",
+    "february_2026": "not used (it was used to choose the production defaults)"
+  },
+  "decision_rule": "forecast_mw = latest WINDFOR value published at or before 09:50 Europe/London on D-1; every feature uses only data published by that cutoff (production feature_builder)",
+  "targets": {
+    "regression": "error_mw = forecast_mw - actual_mw; corrected forecast = forecast_mw - predicted error",
+    "classification": "shortfall_1gw = error_mw >= 1000 MW"
+  },
+  "features": {
+    "level": ["forecast_mw"],
+    "all": "the 9 production features: forecast_mw, lead_hours, hour_uk, forecast_revision_mw, forecast_spread_mw, forecast_ramp_mw, forecast_day_mean_mw, latest_actual_mw, recent_error_mw",
+    "linear_models": "hour_uk as sin/cos on a 24 h circle; other features: median imputation fitted on the training rows, then standardised",
+    "tree_models": "the 9 features as they are (missing values handled natively)"
+  },
+  "validation": {
+    "folds": "8 weekly chronological blocks, 2025-11-06 .. 2025-12-31 (the existing-data experiment's folds)",
+    "training_window": "expanding: every development delivery up to 2 days before the fold starts (labels of later days are not complete at the first cutoff of the fold)",
+    "pooled_hours": 1344
+  },
+  "candidates": {
+    "regression": {
+      "official_forecast": {"role": "reference (no correction)"},
+      "linear_by_level": {"role": "production baseline (approved default), production specification"},
+      "ridge_level": {"role": "regularised version of the baseline", "alpha": [10000, 1000, 100, 10, 1]},
+      "ridge_all": {"role": "regularised linear model on all 9 features", "alpha": [10000, 1000, 100, 10, 1, 0.1]},
+      "gbm_all": {
+        "role": "HistGradientBoostingRegressor on all 9 features, max_iter 200, l2_regularization 1.0, no early stopping, random_state 42",
+        "loss": ["squared_error", "absolute_error"],
+        "learning_rate": [0.03, 0.1],
+        "max_leaf_nodes": [7, 15],
+        "min_samples_leaf": [50, 20]
+      },
+      "random_forest": {"role": "existing comparison model: production specification and artifact, not tuned"}
+    },
+    "classification": {
+      "base_rate": {"role": "reference (training shortfall frequency)"},
+      "logistic_by_level": {"role": "production baseline (approved default), production specification"},
+      "logistic_all": {"role": "L2-regularised logistic regression (the classification analogue of Ridge) on all 9 features, max_iter 2000", "C": [0.01, 0.1, 1, 10]},
+      "gbm_all": {
+        "role": "HistGradientBoostingClassifier on all 9 features, max_iter 200, l2_regularization 1.0, no early stopping, random_state 42",
+        "learning_rate": [0.03, 0.1],
+        "max_leaf_nodes": [7, 15],
+        "min_samples_leaf": [50, 20]
+      },
+      "random_forest": {"role": "existing comparison model: production specification and artifact, not tuned"}
+    },
+    "grid_order": "each grid is listed simplest / most regularised first; ties go to the earlier configuration"
+  },
+  "selection": {
+    "regression": "within each family: lowest pooled out-of-fold MAE",
+    "classification": "within each family: lowest pooled out-of-fold Brier score",
+    "january": "never used for selection or tuning"
+  },
+  "final_models": "each selected configuration refitted once on all development deliveries; linear_by_level, logistic_by_level and both random forests are the production artifacts (unchanged), checked against a refit where the specification is deterministic",
+  "january_evaluation": {
+    "regression_metrics": ["MAE", "RMSE", "mean bias (corrected - actual)"],
+    "classification_metrics": ["ROC-AUC", "PR-AUC", "Brier score"],
+    "segments": ["UK hour 00-23", "forecast band 0-5 / 5-10 / 10-15 / 15-20 / 20+ GW", "high-forecast hours (forecast >= 16 GW)", "high-forecast days (daily mean forecast >= 16 GW)"],
+    "over_correction": "mean corrected error (corrected - actual) in a segment; negative = over-corrected; plus the share of hours with corrected below actual",
+    "residuals": ["mean corrected error by forecast band", "slope of corrected error on forecast_mw", "share of corrected-error variance that is a whole-day offset"]
+  },
+  "statistics": "3-day circular block bootstrap over delivery days, seed 42: 5000 resamples (2000 for ROC-AUC); 95% percentile intervals of baseline minus candidate",
+  "decision_rule_for_production": {
+    "regression": "a candidate is 'supported' only if (a) its pooled CV MAE is below the production baseline's and (b) the 95% interval of January MAE(baseline) - MAE(candidate) lies entirely above 0",
+    "classification": "a candidate is 'supported' only if (a) its pooled CV Brier is below the production logistic model's and (b) the 95% interval of January Brier(baseline) - Brier(candidate) lies entirely above 0",
+    "otherwise": "keep the approved defaults",
+    "even_if_supported": "report for approval only; no production change without the user's decision. Three regression and three classification candidates are compared without a multiplicity correction, so borderline results are not treated as evidence."
+  }
+}

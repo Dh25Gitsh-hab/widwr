@@ -1,0 +1,382 @@
+{
+  "evaluated_at": "2026-10-25T23:33:41+00:00",
+  "sealed_at": "2026-10-25T23:32:19+00:00",
+  "predictions_sha256": "61d902053ea3b8f8a861d4e670426d2d1b5ce1913b720d4856131e94bc21f759",
+  "analysis_plan": {
+    "eligible_observations": "delivery hours with a sealed prediction from every model AND an actual value - the identical set for every model",
+    "regression": "MAE, RMSE, bias and sample count per model; daily MAE per model",
+    "primary_comparison": "random_forest vs linear_by_level: paired difference in MAE",
+    "secondary_comparisons": [
+      "official_forecast vs random_forest (MAE, RMSE)",
+      "official_forecast vs linear_by_level (MAE, RMSE)",
+      "random_forest vs linear_by_level (RMSE)"
+    ],
+    "uncertainty": "95% circular moving-block bootstrap over whole days (3-day blocks primary, 1-day blocks as sensitivity), 5,000 resamples; Diebold-Mariano test with Newey-West variance, max lag 48 h",
+    "interpretation_rule": "a difference is called significant only if the primary 95% interval excludes zero; otherwise the comparison is reported as inconclusive",
+    "classification": "evaluated separately from MAE: ROC-AUC, PR-AUC (average precision), Brier score with 3-day-block intervals; precision / recall / F1 at probability 0.5; calibration in five probability bands",
+    "shortfall_label": "official forecast - actual >= 1,000 MW"
+  },
+  "sample": {
+    "sealed_predictions": 672,
+    "eligible_hours": 648,
+    "eligible_days": 27,
+    "delivery_dates": [
+      "2026-02-02",
+      "2026-02-28"
+    ],
+    "excluded_hours": 24,
+    "excluded_reasons": {
+      "no_actual_generation": [
+        "2026-03-01"
+      ],
+      "missing_a_model_prediction": 0
+    },
+    "label_cleaning": {
+      "dataset": "FUELHH (actual wind generation)",
+      "raw_rows": 1344,
+      "invalid_rows": 0,
+      "other_fuel_rows": 0,
+      "duplicate_rows": 0,
+      "past_target_rows": 0,
+      "clean_rows": 1344
+    },
+    "shortfall_rate": 0.6219,
+    "note": "Accuracy is scored per hour: WINDFOR forecasts are hourly and are compared with the actual for the same startTime (as in the January evaluation)."
+  },
+  "corrected_forecast": {
+    "models": {
+      "official_forecast": {
+        "n": 648,
+        "mae": 1692.7,
+        "rmse": 2014.7,
+        "bias": 1325.5,
+        "mae_change_vs_official_pct": 0.0
+      },
+      "random_forest": {
+        "n": 648,
+        "mae": 1297.9,
+        "rmse": 1630.2,
+        "bias": -78.4,
+        "mae_change_vs_official_pct": -23.3
+      },
+      "linear_by_level": {
+        "n": 648,
+        "mae": 1082.1,
+        "rmse": 1442.4,
+        "bias": -342.8,
+        "mae_change_vs_official_pct": -36.1
+      }
+    },
+    "paired_comparisons": [
+      {
+        "a": "random_forest",
+        "b": "linear_by_level",
+        "reading": "positive difference = linear_by_level more accurate than random_forest",
+        "mae_difference_a_minus_b": 215.8,
+        "rmse_difference_a_minus_b": 187.8,
+        "hours_b_better": 390,
+        "days_b_better": 16,
+        "intervals_95": {
+          "primary_3_day_blocks": {
+            "mae_difference": [
+              -63.8454,
+              490.8561
+            ],
+            "rmse_difference": [
+              -157.4873,
+              497.2837
+            ]
+          },
+          "sensitivity_1_day_blocks": {
+            "mae_difference": [
+              -45.8839,
+              465.7249
+            ],
+            "rmse_difference": [
+              -111.3487,
+              481.3057
+            ]
+          }
+        },
+        "diebold_mariano": {
+          "absolute_error": {
+            "mean_loss_difference": 215.8042,
+            "dm_statistic": 1.73,
+            "p_value": 0.0836,
+            "hac_max_lag_hours": 48
+          },
+          "squared_error": {
+            "mean_loss_difference": 577027.7805,
+            "dm_statistic": 1.277,
+            "p_value": 0.2015,
+            "hac_max_lag_hours": 48
+          }
+        },
+        "mae_verdict": "inconclusive - interval includes zero"
+      },
+      {
+        "a": "official_forecast",
+        "b": "random_forest",
+        "reading": "positive difference = random_forest more accurate than official_forecast",
+        "mae_difference_a_minus_b": 394.7,
+        "rmse_difference_a_minus_b": 384.5,
+        "hours_b_better": 379,
+        "days_b_better": 17,
+        "intervals_95": {
+          "primary_3_day_blocks": {
+            "mae_difference": [
+              -8.6459,
+              771.1226
+            ],
+            "rmse_difference": [
+              -7.2991,
+              750.3942
+            ]
+          },
+          "sensitivity_1_day_blocks": {
+            "mae_difference": [
+              43.0867,
+              741.431
+            ],
+            "rmse_difference": [
+              26.8128,
+              734.6494
+            ]
+          }
+        },
+        "diebold_mariano": {
+          "absolute_error": {
+            "mean_loss_difference": 394.7161,
+            "dm_statistic": 2.235,
+            "p_value": 0.0254,
+            "hac_max_lag_hours": 48
+          },
+          "squared_error": {
+            "mean_loss_difference": 1401320.5543,
+            "dm_statistic": 2.131,
+            "p_value": 0.033,
+            "hac_max_lag_hours": 48
+          }
+        },
+        "mae_verdict": "inconclusive - interval includes zero"
+      },
+      {
+        "a": "official_forecast",
+        "b": "linear_by_level",
+        "reading": "positive difference = linear_by_level more accurate than official_forecast",
+        "mae_difference_a_minus_b": 610.5,
+        "rmse_difference_a_minus_b": 572.3,
+        "hours_b_better": 446,
+        "days_b_better": 21,
+        "intervals_95": {
+          "primary_3_day_blocks": {
+            "mae_difference": [
+              289.803,
+              954.9805
+            ],
+            "rmse_difference": [
+              190.7995,
+              947.6677
+            ]
+          },
+          "sensitivity_1_day_blocks": {
+            "mae_difference": [
+              262.9284,
+              937.8829
+            ],
+            "rmse_difference": [
+              188.7377,
+              926.2578
+            ]
+          }
+        },
+        "diebold_mariano": {
+          "absolute_error": {
+            "mean_loss_difference": 610.5202,
+            "dm_statistic": 4.073,
+            "p_value": 0.0,
+            "hac_max_lag_hours": 48
+          },
+          "squared_error": {
+            "mean_loss_difference": 1978348.3348,
+            "dm_statistic": 3.079,
+            "p_value": 0.0021,
+            "hac_max_lag_hours": 48
+          }
+        },
+        "mae_verdict": "linear_by_level significantly more accurate"
+      }
+    ],
+    "days_best": {
+      "linear_by_level": 13,
+      "random_forest": 10,
+      "official_forecast": 4
+    }
+  },
+  "shortfall_risk": {
+    "label": "official forecast - actual >= 1,000 MW",
+    "observed_shortfall_rate": 0.6219,
+    "models": {
+      "random_forest": {
+        "roc_auc": 0.6904,
+        "roc_auc_95": [
+          0.515,
+          0.807
+        ],
+        "pr_auc": 0.8077,
+        "pr_auc_no_skill_baseline": 0.6219,
+        "brier": 0.2437,
+        "brier_95": [
+          0.1754,
+          0.3318
+        ],
+        "brier_skill_vs_base_rate": 0.0057,
+        "at_threshold_0_5": {
+          "accuracy": 0.6188,
+          "precision": 0.6931,
+          "recall": 0.6948,
+          "f1": 0.6939,
+          "predicted_rate": 0.6235
+        },
+        "calibration": [
+          {
+            "band": "0.0-0.2",
+            "n": 150,
+            "mean_predicted": 0.108,
+            "observed_rate": 0.407
+          },
+          {
+            "band": "0.2-0.4",
+            "n": 61,
+            "mean_predicted": 0.318,
+            "observed_rate": 0.656
+          },
+          {
+            "band": "0.4-0.6",
+            "n": 94,
+            "mean_predicted": 0.519,
+            "observed_rate": 0.553
+          },
+          {
+            "band": "0.6-0.8",
+            "n": 166,
+            "mean_predicted": 0.7,
+            "observed_rate": 0.578
+          },
+          {
+            "band": "0.8-1.0",
+            "n": 177,
+            "mean_predicted": 0.922,
+            "observed_rate": 0.87
+          }
+        ],
+        "expected_calibration_error": 0.1514
+      },
+      "logistic_by_level": {
+        "roc_auc": 0.6932,
+        "roc_auc_95": [
+          0.5981,
+          0.77
+        ],
+        "pr_auc": 0.8078,
+        "pr_auc_no_skill_baseline": 0.6219,
+        "brier": 0.2151,
+        "brier_95": [
+          0.1834,
+          0.2465
+        ],
+        "brier_skill_vs_base_rate": 0.1224,
+        "at_threshold_0_5": {
+          "accuracy": 0.6173,
+          "precision": 0.6933,
+          "recall": 0.6898,
+          "f1": 0.6915,
+          "predicted_rate": 0.6188
+        },
+        "calibration": [
+          {
+            "band": "0.0-0.2",
+            "n": 32,
+            "mean_predicted": 0.141,
+            "observed_rate": 0.281
+          },
+          {
+            "band": "0.2-0.4",
+            "n": 128,
+            "mean_predicted": 0.323,
+            "observed_rate": 0.562
+          },
+          {
+            "band": "0.4-0.6",
+            "n": 193,
+            "mean_predicted": 0.502,
+            "observed_rate": 0.461
+          },
+          {
+            "band": "0.6-0.8",
+            "n": 126,
+            "mean_predicted": 0.7,
+            "observed_rate": 0.675
+          },
+          {
+            "band": "0.8-1.0",
+            "n": 169,
+            "mean_predicted": 0.87,
+            "observed_rate": 0.876
+          }
+        ],
+        "expected_calibration_error": 0.0728
+      },
+      "base_rate": {
+        "roc_auc": 0.5,
+        "roc_auc_95": [
+          0.5,
+          0.5
+        ],
+        "pr_auc": 0.6219,
+        "pr_auc_no_skill_baseline": 0.6219,
+        "brier": 0.2451,
+        "brier_95": [
+          0.2394,
+          0.2512
+        ],
+        "brier_skill_vs_base_rate": 0.0,
+        "at_threshold_0_5": {
+          "accuracy": 0.6219,
+          "precision": 0.6219,
+          "recall": 1.0,
+          "f1": 0.7669,
+          "predicted_rate": 1.0
+        },
+        "calibration": [
+          {
+            "band": "0.4-0.6",
+            "n": 648,
+            "mean_predicted": 0.522,
+            "observed_rate": 0.622
+          }
+        ],
+        "expected_calibration_error": 0.1
+      }
+    },
+    "random_forest_minus_logistic_brier": {
+      "difference": 0.0286,
+      "interval_95_3_day_blocks": [
+        -0.0228,
+        0.0961
+      ],
+      "reading": "negative = random forest has better (lower) Brier score"
+    },
+    "reference_always_predict_shortfall": {
+      "accuracy": 0.6219,
+      "precision": 0.6219,
+      "recall": 1.0,
+      "f1": 0.7669
+    }
+  },
+  "limitations": [
+    "27 days is a short holdout; intervals account for day-to-day dependence but are wide.",
+    "February is a winter month like the training data; it says nothing about spring or summer.",
+    "Forecast accuracy is not trading profit. No market prices, imbalance costs, trading costs or volumes were used, so no profitability claim is made; that requires a separately validated trading backtest."
+  ]
+}

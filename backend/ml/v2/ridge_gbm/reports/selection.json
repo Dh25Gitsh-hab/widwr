@@ -1,0 +1,97 @@
+{
+  "written_at": "2026-10-27T15:15:04+00:00",
+  "protocol_sha256": "97cf15e7e84c58b426fa1b756e7bb61da79f7e6dfe7f700524f329362f336f71",
+  "dataset_file": "ml/processed/ml_dataset.csv",
+  "dataset_sha256": "22cb672485b9b3531f5c97a9e2fe875fdea2eb63c6367750288b966fad5c892e",
+  "development_hours": 2185,
+  "january_rows_read": false,
+  "selected": {
+    "regression": {
+      "official_forecast": "official_forecast",
+      "linear_by_level": "linear_by_level",
+      "ridge_level": "ridge_level[alpha=1]",
+      "ridge_all": "ridge_all[alpha=10]",
+      "gbm_all": "gbm_all[loss=squared_error, learning_rate=0.03, max_leaf_nodes=15, min_samples_leaf=20]",
+      "random_forest": "random_forest"
+    },
+    "classification": {
+      "base_rate": "base_rate",
+      "logistic_by_level": "logistic_by_level",
+      "logistic_all": "logistic_all[C=0.1]",
+      "gbm_all": "gbm_all[learning_rate=0.03, max_leaf_nodes=7, min_samples_leaf=50]",
+      "random_forest": "random_forest"
+    }
+  },
+  "models": {
+    "regression": {
+      "official_forecast": {
+        "config": "official_forecast",
+        "source": "fitted once on all development deliveries"
+      },
+      "linear_by_level": {
+        "config": "linear_by_level",
+        "source": "production artifact (unchanged)",
+        "path": "ml/holdout_feb2026/models/regression_linear_by_level.joblib",
+        "sha256": "e7704b7bfa8df1c18a7bc492ec5babb483af27e92e4f4db61bec97747fd49533",
+        "max_abs_difference_vs_refit_on_development": 0.0
+      },
+      "ridge_level": {
+        "config": "ridge_level[alpha=1]",
+        "source": "fitted once on all development deliveries",
+        "path": "ml/v2/ridge_gbm/models/regression_ridge_level.joblib",
+        "sha256": "44cf048a7261193ff92a349338b605b5587a3a281ed95328dad059aa528c8c73"
+      },
+      "ridge_all": {
+        "config": "ridge_all[alpha=10]",
+        "source": "fitted once on all development deliveries",
+        "path": "ml/v2/ridge_gbm/models/regression_ridge_all.joblib",
+        "sha256": "dc9d0af79746f863144e1c4143322d57a0b2e3a6632fed38dfb3195ff47f320e"
+      },
+      "gbm_all": {
+        "config": "gbm_all[loss=squared_error, learning_rate=0.03, max_leaf_nodes=15, min_samples_leaf=20]",
+        "source": "fitted once on all development deliveries",
+        "path": "ml/v2/ridge_gbm/models/regression_gbm_all.joblib",
+        "sha256": "1e6cbc1909db889c83d964bf57cc6c99958a3e8adc6ad04a91127093263b4706"
+      },
+      "random_forest": {
+        "config": "random_forest",
+        "source": "production artifact (unchanged)",
+        "path": "ml/models/error_regressor.joblib",
+        "sha256": "93a3f240176e801ad56dac820a194bc1a776b5af970a269fa031a92d8743efe0",
+        "max_abs_difference_vs_refit_on_development": 0.0
+      }
+    },
+    "classification": {
+      "base_rate": {
+        "config": "base_rate",
+        "source": "fitted once on all development deliveries"
+      },
+      "logistic_by_level": {
+        "config": "logistic_by_level",
+        "source": "production artifact (unchanged)",
+        "path": "ml/holdout_feb2026/models/classification_logistic_by_level.joblib",
+        "sha256": "04a4978bd83d6e8d497a0387c696f1cadf76da1fceae9653981b79fa3131dfa6",
+        "max_abs_difference_vs_refit_on_development": 0.0
+      },
+      "logistic_all": {
+        "config": "logistic_all[C=0.1]",
+        "source": "fitted once on all development deliveries",
+        "path": "ml/v2/ridge_gbm/models/classification_logistic_all.joblib",
+        "sha256": "8b9a585aa06a6f524283f6833cc1d1bce54560bf47483cfd60ef930d9bbea59f"
+      },
+      "gbm_all": {
+        "config": "gbm_all[learning_rate=0.03, max_leaf_nodes=7, min_samples_leaf=50]",
+        "source": "fitted once on all development deliveries",
+        "path": "ml/v2/ridge_gbm/models/classification_gbm_all.joblib",
+        "sha256": "efea8611775bb04a0b6d9c4d25b8d5d9e337cb96a5f87ab8084ad10be598ec4c"
+      },
+      "random_forest": {
+        "config": "random_forest",
+        "source": "production artifact (unchanged)",
+        "path": "ml/models/shortfall_classifier.joblib",
+        "sha256": "0b083dc172843880da6b1a8eb0c9b2fb4a69189c7c54d9e0527a2d0f9fae4eaf",
+        "max_abs_difference_vs_refit_on_development": 0.0
+      }
+    }
+  }
+}

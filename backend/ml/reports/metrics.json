@@ -1,0 +1,432 @@
+{
+  "generated_at": "2026-10-25T23:07:47+00:00",
+  "sklearn_version": "1.9.1",
+  "decision_rule": "Latest forecast published by 09:50 UK local time on D-1 (DST-aware); every feature uses only data published by that cutoff",
+  "shortfall_threshold_mw": 1000.0,
+  "splits": [
+    {
+      "name": "train",
+      "decision_dates": [
+        "2025-10-01",
+        "2025-11-30"
+      ],
+      "delivery_dates": [
+        "2025-10-02",
+        "2025-12-01"
+      ],
+      "days": 61,
+      "hours": 1465
+    },
+    {
+      "name": "validation",
+      "decision_dates": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "delivery_dates": [
+        "2025-12-02",
+        "2025-12-31"
+      ],
+      "days": 30,
+      "hours": 720
+    },
+    {
+      "name": "test",
+      "decision_dates": [
+        "2026-01-01",
+        "2026-01-31"
+      ],
+      "delivery_dates": [
+        "2026-01-02",
+        "2026-02-01"
+      ],
+      "days": 31,
+      "hours": 744
+    }
+  ],
+  "features": [
+    {
+      "name": "forecast_mw",
+      "description": "Official forecast for the hour, latest published by the cutoff (MW)"
+    },
+    {
+      "name": "lead_hours",
+      "description": "Hours between that forecast's publication and the target hour"
+    },
+    {
+      "name": "hour_uk",
+      "description": "UK clock hour of the target hour (0-23)"
+    },
+    {
+      "name": "forecast_revision_mw",
+      "description": "Change versus the previous forecast run for the same hour (MW)"
+    },
+    {
+      "name": "forecast_spread_mw",
+      "description": "Std-dev of all forecasts for the hour published in the 24 h before the cutoff (MW)"
+    },
+    {
+      "name": "forecast_ramp_mw",
+      "description": "Forecast change from the previous hour in the same run (MW)"
+    },
+    {
+      "name": "forecast_day_mean_mw",
+      "description": "Mean forecast over the delivery day (MW)"
+    },
+    {
+      "name": "latest_actual_mw",
+      "description": "Most recent actual generation already published at the cutoff (MW)"
+    },
+    {
+      "name": "recent_error_mw",
+      "description": "Mean day-ahead forecast error over the last 24 h known at the cutoff (MW)"
+    }
+  ],
+  "regression": {
+    "target": "error_mw = forecast_mw - actual_mw; corrected forecast = forecast_mw - predicted error",
+    "selection_rule": "lowest validation MAE of the corrected forecast",
+    "selected": "random_forest",
+    "candidates": [
+      {
+        "name": "official_forecast",
+        "description": "Published forecast, no correction (baseline)",
+        "validation": {
+          "mae": 1955.0,
+          "rmse": 2511.6,
+          "bias": 1355.7
+        },
+        "test": {
+          "mae": 1995.6,
+          "rmse": 2498.8,
+          "bias": 1728.0
+        },
+        "validation_mae_change_pct": 0.0,
+        "test_mae_change_pct": 0.0
+      },
+      {
+        "name": "mean_bias",
+        "description": "Subtract the average training error",
+        "validation": {
+          "mae": 1758.1,
+          "rmse": 2115.5,
+          "bias": -70.4
+        },
+        "test": {
+          "mae": 1396.5,
+          "rmse": 1834.1,
+          "bias": 325.1
+        },
+        "validation_mae_change_pct": -10.1,
+        "test_mae_change_pct": -30.0
+      },
+      {
+        "name": "linear_by_level",
+        "description": "Linear correction by forecast size",
+        "validation": {
+          "mae": 1327.2,
+          "rmse": 1638.7,
+          "bias": -273.7
+        },
+        "test": {
+          "mae": 1178.6,
+          "rmse": 1535.1,
+          "bias": 31.2
+        },
+        "validation_mae_change_pct": -32.1,
+        "test_mae_change_pct": -40.9
+      },
+      {
+        "name": "random_forest",
+        "description": "Random Forest regressor on all features",
+        "validation": {
+          "mae": 1034.1,
+          "rmse": 1294.4,
+          "bias": -69.9
+        },
+        "test": {
+          "mae": 1381.3,
+          "rmse": 1739.6,
+          "bias": -22.1
+        },
+        "validation_mae_change_pct": -47.1,
+        "test_mae_change_pct": -30.8
+      },
+      {
+        "name": "gradient_boosting",
+        "description": "Histogram gradient boosting on all features",
+        "validation": {
+          "mae": 1111.7,
+          "rmse": 1393.4,
+          "bias": 94.7
+        },
+        "test": {
+          "mae": 1551.2,
+          "rmse": 1912.5,
+          "bias": -88.8
+        },
+        "validation_mae_change_pct": -43.1,
+        "test_mae_change_pct": -22.3
+      }
+    ],
+    "test_improvement_vs_official": {
+      "mae_reduction_mw": 614.3,
+      "ci_low_mw": 200.6,
+      "ci_high_mw": 1054.1,
+      "days": 31,
+      "method": "day-block bootstrap, 2000 resamples"
+    },
+    "feature_importance": [
+      {
+        "feature": "forecast_mw",
+        "importance": 245.0391,
+        "std": 27.0831
+      },
+      {
+        "feature": "forecast_revision_mw",
+        "importance": 10.0919,
+        "std": 4.1022
+      },
+      {
+        "feature": "forecast_spread_mw",
+        "importance": 3.3068,
+        "std": 4.4816
+      },
+      {
+        "feature": "lead_hours",
+        "importance": 0.4143,
+        "std": 1.5746
+      },
+      {
+        "feature": "hour_uk",
+        "importance": -0.6139,
+        "std": 1.1158
+      },
+      {
+        "feature": "forecast_ramp_mw",
+        "importance": -3.9997,
+        "std": 3.5772
+      },
+      {
+        "feature": "latest_actual_mw",
+        "importance": -29.3934,
+        "std": 7.1181
+      },
+      {
+        "feature": "recent_error_mw",
+        "importance": -33.8479,
+        "std": 21.7308
+      },
+      {
+        "feature": "forecast_day_mean_mw",
+        "importance": -60.0987,
+        "std": 9.0551
+      }
+    ]
+  },
+  "classification": {
+    "target": "shortfall_1gw = 1 if forecast_mw - actual_mw >= 1,000 MW",
+    "selection_rule": "lowest validation Brier score",
+    "probability_threshold": 0.5,
+    "selected": "random_forest",
+    "candidates": [
+      {
+        "name": "base_rate",
+        "description": "Always the training shortfall frequency (baseline)",
+        "validation": {
+          "brier": 0.2493,
+          "roc_auc": 0.5,
+          "pr_auc": 0.5278,
+          "accuracy": 0.5278,
+          "precision": 0.5278,
+          "recall": 1.0,
+          "f1": 0.6909,
+          "observed_rate": 0.5278,
+          "predicted_rate": 1.0
+        },
+        "test": {
+          "brier": 0.2434,
+          "roc_auc": 0.5,
+          "pr_auc": 0.6599,
+          "accuracy": 0.6599,
+          "precision": 0.6599,
+          "recall": 1.0,
+          "f1": 0.7951,
+          "observed_rate": 0.6599,
+          "predicted_rate": 1.0
+        }
+      },
+      {
+        "name": "logistic_by_level",
+        "description": "Logistic regression on forecast size",
+        "validation": {
+          "brier": 0.158,
+          "roc_auc": 0.8618,
+          "pr_auc": 0.8926,
+          "accuracy": 0.7708,
+          "precision": 0.7735,
+          "recall": 0.8,
+          "f1": 0.7865,
+          "observed_rate": 0.5278,
+          "predicted_rate": 0.5458
+        },
+        "test": {
+          "brier": 0.2015,
+          "roc_auc": 0.755,
+          "pr_auc": 0.8743,
+          "accuracy": 0.6667,
+          "precision": 0.778,
+          "recall": 0.6925,
+          "f1": 0.7328,
+          "observed_rate": 0.6599,
+          "predicted_rate": 0.5874
+        }
+      },
+      {
+        "name": "random_forest",
+        "description": "Random Forest classifier on all features",
+        "validation": {
+          "brier": 0.1313,
+          "roc_auc": 0.9064,
+          "pr_auc": 0.9155,
+          "accuracy": 0.8236,
+          "precision": 0.8252,
+          "recall": 0.8447,
+          "f1": 0.8349,
+          "observed_rate": 0.5278,
+          "predicted_rate": 0.5403
+        },
+        "test": {
+          "brier": 0.2209,
+          "roc_auc": 0.7232,
+          "pr_auc": 0.8644,
+          "accuracy": 0.6653,
+          "precision": 0.7574,
+          "recall": 0.7251,
+          "f1": 0.7409,
+          "observed_rate": 0.6599,
+          "predicted_rate": 0.6317
+        }
+      },
+      {
+        "name": "gradient_boosting",
+        "description": "Histogram gradient boosting on all features",
+        "validation": {
+          "brier": 0.1509,
+          "roc_auc": 0.8697,
+          "pr_auc": 0.8928,
+          "accuracy": 0.7681,
+          "precision": 0.7752,
+          "recall": 0.7895,
+          "f1": 0.7823,
+          "observed_rate": 0.5278,
+          "predicted_rate": 0.5375
+        },
+        "test": {
+          "brier": 0.2448,
+          "roc_auc": 0.727,
+          "pr_auc": 0.8646,
+          "accuracy": 0.6626,
+          "precision": 0.7479,
+          "recall": 0.7373,
+          "f1": 0.7426,
+          "observed_rate": 0.6599,
+          "predicted_rate": 0.6505
+        }
+      }
+    ],
+    "reference_always_predict_shortfall_test": {
+      "accuracy": 0.6599,
+      "precision": 0.6599,
+      "recall": 1.0,
+      "f1": 0.7951
+    },
+    "test_calibration": [
+      {
+        "band": "0.0-0.2",
+        "n": 112,
+        "mean_predicted": 0.12,
+        "observed_rate": 0.562
+      },
+      {
+        "band": "0.2-0.4",
+        "n": 106,
+        "mean_predicted": 0.309,
+        "observed_rate": 0.396
+      },
+      {
+        "band": "0.4-0.6",
+        "n": 128,
+        "mean_predicted": 0.511,
+        "observed_rate": 0.539
+      },
+      {
+        "band": "0.6-0.8",
+        "n": 131,
+        "mean_predicted": 0.685,
+        "observed_rate": 0.557
+      },
+      {
+        "band": "0.8-1.0",
+        "n": 267,
+        "mean_predicted": 0.965,
+        "observed_rate": 0.914
+      }
+    ],
+    "feature_importance": [
+      {
+        "feature": "forecast_mw",
+        "importance": 0.0324,
+        "std": 0.0058
+      },
+      {
+        "feature": "recent_error_mw",
+        "importance": 0.0073,
+        "std": 0.0049
+      },
+      {
+        "feature": "forecast_revision_mw",
+        "importance": 0.0023,
+        "std": 0.0004
+      },
+      {
+        "feature": "hour_uk",
+        "importance": 0.0003,
+        "std": 0.0004
+      },
+      {
+        "feature": "lead_hours",
+        "importance": 0.0001,
+        "std": 0.0005
+      },
+      {
+        "feature": "forecast_ramp_mw",
+        "importance": -0.0003,
+        "std": 0.001
+      },
+      {
+        "feature": "forecast_spread_mw",
+        "importance": -0.0006,
+        "std": 0.0004
+      },
+      {
+        "feature": "latest_actual_mw",
+        "importance": -0.0072,
+        "std": 0.0013
+      },
+      {
+        "feature": "forecast_day_mean_mw",
+        "importance": -0.0158,
+        "std": 0.0026
+      }
+    ]
+  },
+  "limitations": [
+    "Small sample: 61 training days for model selection, 91 days (Oct-Dec 2025) for the final fit, 31 test days. Hours within a day share weather and forecast run, so the effective sample is closer to the number of days - see the day-block bootstrap interval.",
+    "One season only (autumn/winter). Nothing here supports using the model in spring or summer without retraining on those months.",
+    "Distribution shift: the shortfall rate was 52% in training, 53% in validation and 66% in the January test set.",
+    "1 Jan 2026 actuals are missing from the provided files: that delivery day is excluded, and for the 2 Jan decision the 'latest actual' and 'recent error' features come from 31 Dec (older than usual).",
+    "1 Oct 2025 is excluded: no forecast published before its cutoff (September runs not provided).",
+    "The likely driver of the bias (wind curtailment) is not in the data. If curtailment patterns change, the correction must be retrained.",
+    "Forecast accuracy is not trading profit. No prices, imbalance costs or volumes are in scope, so no claim about trading performance or profitability is made."
+  ]
+}

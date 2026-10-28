@@ -1,0 +1,83 @@
+{
+  "sealed_at": "2026-10-25T23:32:19+00:00",
+  "statement": "Predictions were produced from frozen models and cutoff-audited features. No February label was used to fit, tune or select any model, and no label column is present in the sealed file.",
+  "holdout": {
+    "decision_dates": [
+      "2026-02-01",
+      "2026-02-28"
+    ],
+    "delivery_dates": [
+      "2026-02-02",
+      "2026-03-01"
+    ],
+    "excluded_by_design": "delivery 1 Feb 2026 (decided 31 Jan, part of the January test set)"
+  },
+  "rows": 672,
+  "predictions_file": "backend/ml/holdout_feb2026/predictions_sealed.csv",
+  "predictions_sha256": "61d902053ea3b8f8a861d4e670426d2d1b5ce1913b720d4856131e94bc21f759",
+  "features_sha256": "48bbbef9f7ff46832db8b3b54151df86d105f95513b128edc13bf3b87abb8faa",
+  "models": {
+    "regression/random_forest": {
+      "max_abs_difference_vs_saved_january": 0.0,
+      "reproduces_saved_january_predictions": true,
+      "source": "saved artifact, loaded unchanged",
+      "artifact": "backend/ml/models/error_regressor.joblib",
+      "sha256": "93a3f240176e801ad56dac820a194bc1a776b5af970a269fa031a92d8743efe0"
+    },
+    "regression/linear_by_level": {
+      "max_abs_difference_vs_saved_january": 0.0,
+      "reproduces_saved_january_predictions": true,
+      "source": "rebuilt from the unchanged Oct-Dec training rows of ml_dataset.csv (never saved originally)",
+      "artifact": "backend/ml/holdout_feb2026/models/regression_linear_by_level.joblib",
+      "sha256": "e7704b7bfa8df1c18a7bc492ec5babb483af27e92e4f4db61bec97747fd49533"
+    },
+    "classification/random_forest": {
+      "max_abs_difference_vs_saved_january": 0.0,
+      "reproduces_saved_january_predictions": true,
+      "source": "saved artifact, loaded unchanged",
+      "artifact": "backend/ml/models/shortfall_classifier.joblib",
+      "sha256": "0b083dc172843880da6b1a8eb0c9b2fb4a69189c7c54d9e0527a2d0f9fae4eaf"
+    },
+    "classification/logistic_by_level": {
+      "max_abs_difference_vs_saved_january": 0.0,
+      "reproduces_saved_january_predictions": true,
+      "source": "rebuilt from the unchanged Oct-Dec training rows of ml_dataset.csv (never saved originally)",
+      "artifact": "backend/ml/holdout_feb2026/models/classification_logistic_by_level.joblib",
+      "sha256": "04a4978bd83d6e8d497a0387c696f1cadf76da1fceae9653981b79fa3131dfa6"
+    },
+    "classification/base_rate": {
+      "max_abs_difference_vs_saved_january": 0.0,
+      "reproduces_saved_january_predictions": true,
+      "source": "rebuilt from the unchanged Oct-Dec training rows of ml_dataset.csv (never saved originally)",
+      "artifact": "backend/ml/holdout_feb2026/models/classification_base_rate.joblib",
+      "sha256": "5f0fd1db0a71a9e84fc2af78a8e0ce2a60bc4a25cb5cb00edfd4e32758d4c627"
+    }
+  },
+  "frozen_existing_results_sha256": {
+    "backend/ml/models/error_regressor.joblib": "93a3f240176e801ad56dac820a194bc1a776b5af970a269fa031a92d8743efe0",
+    "backend/ml/models/shortfall_classifier.joblib": "0b083dc172843880da6b1a8eb0c9b2fb4a69189c7c54d9e0527a2d0f9fae4eaf",
+    "backend/ml/processed/ml_dataset.csv": "22cb672485b9b3531f5c97a9e2fe875fdea2eb63c6367750288b966fad5c892e",
+    "backend/ml/reports/metrics.json": "399e8f8c4f6a392dcdfa6a75d01bffee2031802c48c217913598b67d4d639e90",
+    "backend/ml/predictions/test_predictions.csv": "c7fa6f2f4d9eaf44b22df79b193cdc39a143899e3c509daf6b19dc2c5190285e"
+  },
+  "input_files_sha256": {
+    "DATASETS/Jan26_Actual.json": "58d01b8187e93cf0557f28759945e53be1766c2fea018f14e89da6e5870d4a8c",
+    "DATASETS/Feb26_Actual.json": "8fad6f0b037d0e615423d9ec3d8314169f030da6f7430cd5cba7449e814fae15",
+    "DATASETS1/Jan26_Forecast.json": "b37e1ebe593223b893c7cb65b1497b855226c451cb87583ed9a6b0f7be5c44a8",
+    "DATASETS1/Feb26_Forecast.json": "6dbd2aab19921859029770f3011587f6f46fb49273fd7bb7264f0cd73710dd31"
+  },
+  "analysis_plan": {
+    "eligible_observations": "delivery hours with a sealed prediction from every model AND an actual value - the identical set for every model",
+    "regression": "MAE, RMSE, bias and sample count per model; daily MAE per model",
+    "primary_comparison": "random_forest vs linear_by_level: paired difference in MAE",
+    "secondary_comparisons": [
+      "official_forecast vs random_forest (MAE, RMSE)",
+      "official_forecast vs linear_by_level (MAE, RMSE)",
+      "random_forest vs linear_by_level (RMSE)"
+    ],
+    "uncertainty": "95% circular moving-block bootstrap over whole days (3-day blocks primary, 1-day blocks as sensitivity), 5,000 resamples; Diebold-Mariano test with Newey-West variance, max lag 48 h",
+    "interpretation_rule": "a difference is called significant only if the primary 95% interval excludes zero; otherwise the comparison is reported as inconclusive",
+    "classification": "evaluated separately from MAE: ROC-AUC, PR-AUC (average precision), Brier score with 3-day-block intervals; precision / recall / F1 at probability 0.5; calibration in five probability bands",
+    "shortfall_label": "official forecast - actual >= 1,000 MW"
+  }
+}

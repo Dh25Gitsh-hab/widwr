@@ -1,0 +1,254 @@
+{
+  "generated_at": "2026-10-25T23:02:25+00:00",
+  "inputs": {
+    "actuals_dir": "E:\\GridBricks Job\\DATASETS",
+    "forecasts_dir": "E:\\GridBricks Job\\DATASETS1"
+  },
+  "files": [
+    {
+      "file": "Dec25_Actual.json",
+      "records": 1488,
+      "start_time_range": [
+        "2025-12-01 00:00:00+00:00",
+        "2025-12-31 23:30:00+00:00"
+      ],
+      "settlement_date_range": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "null_values": 0,
+      "non_numeric_generation": 0,
+      "negative_generation": 0,
+      "duplicate_start_times": 0,
+      "missing_half_hours": [],
+      "settlement_date_matches_uk_date": true,
+      "days_without_48_periods": {},
+      "generation_mw": {
+        "min": 2431.0,
+        "mean": 11103.4,
+        "max": 18382.0
+      }
+    },
+    {
+      "file": "Jan26_Actual.json",
+      "records": 1488,
+      "start_time_range": [
+        "2026-01-02 00:00:00+00:00",
+        "2026-02-01 23:30:00+00:00"
+      ],
+      "settlement_date_range": [
+        "2026-01-02",
+        "2026-02-01"
+      ],
+      "null_values": 0,
+      "non_numeric_generation": 0,
+      "negative_generation": 0,
+      "duplicate_start_times": 0,
+      "missing_half_hours": [],
+      "settlement_date_matches_uk_date": true,
+      "days_without_48_periods": {},
+      "generation_mw": {
+        "min": 1695.0,
+        "mean": 11283.6,
+        "max": 17805.0
+      }
+    },
+    {
+      "file": "Nov25_Actual.json",
+      "records": 1440,
+      "start_time_range": [
+        "2025-11-01 00:00:00+00:00",
+        "2025-11-30 23:30:00+00:00"
+      ],
+      "settlement_date_range": [
+        "2025-11-01",
+        "2025-11-30"
+      ],
+      "null_values": 0,
+      "non_numeric_generation": 0,
+      "negative_generation": 0,
+      "duplicate_start_times": 0,
+      "missing_half_hours": [],
+      "settlement_date_matches_uk_date": true,
+      "days_without_48_periods": {},
+      "generation_mw": {
+        "min": 1909.0,
+        "mean": 11004.3,
+        "max": 17768.0
+      }
+    },
+    {
+      "file": "Oct25_Actual.json",
+      "records": 1490,
+      "start_time_range": [
+        "2025-09-30 23:00:00+00:00",
+        "2025-10-31 23:30:00+00:00"
+      ],
+      "settlement_date_range": [
+        "2025-10-01",
+        "2025-10-31"
+      ],
+      "null_values": 0,
+      "non_numeric_generation": 0,
+      "negative_generation": 0,
+      "duplicate_start_times": 0,
+      "missing_half_hours": [],
+      "settlement_date_matches_uk_date": true,
+      "days_without_48_periods": {
+        "2025-10-26": 50
+      },
+      "generation_mw": {
+        "min": 391.0,
+        "mean": 8921.9,
+        "max": 17496.0
+      }
+    },
+    {
+      "file": "Dec25_Forecast.json",
+      "records": 18104,
+      "publish_time_range": [
+        "2025-12-01 02:30:00+00:00",
+        "2025-12-31 22:30:00+00:00"
+      ],
+      "start_time_range": [
+        "2025-11-30 21:00:00+00:00",
+        "2026-01-02 21:00:00+00:00"
+      ],
+      "runs": 248,
+      "values_per_run": {
+        "73": 248
+      },
+      "days_with_irregular_run_count": {},
+      "null_values": 0,
+      "non_numeric_generation": 0,
+      "negative_generation": 0,
+      "duplicate_publish_start_pairs": 0,
+      "targets_not_on_the_hour": 0,
+      "targets_before_publish_time": 3720,
+      "generation_mw": {
+        "min": 1981.0,
+        "mean": 12640.7,
+        "max": 21709.0
+      }
+    },
+    {
+      "file": "Jan26_Forecast.json",
+      "records": 18104,
+      "publish_time_range": [
+        "2026-01-01 02:30:00+00:00",
+        "2026-01-31 22:30:00+00:00"
+      ],
+      "start_time_range": [
+        "2025-12-31 21:00:00+00:00",
+        "2026-02-02 21:00:00+00:00"
+      ],
+      "runs": 248,
+      "values_per_run": {
+        "73": 248
+      },
+      "days_with_irregular_run_count": {},
+      "null_values": 0,
+      "non_numeric_generation": 0,
+      "negative_generation": 0,
+      "duplicate_publish_start_pairs": 0,
+      "targets_not_on_the_hour": 0,
+      "targets_before_publish_time": 3721,
+      "generation_mw": {
+        "min": 2250.0,
+        "mean": 13041.9,
+        "max": 21353.0
+      }
+    },
+    {
+      "file": "Nov25_Forecast.json",
+      "records": 17520,
+      "publish_time_range": [
+        "2025-11-01 02:30:00+00:00",
+        "2025-11-30 22:30:00+00:00"
+      ],
+      "start_time_range": [
+        "2025-10-31 21:00:00+00:00",
+        "2025-12-02 21:00:00+00:00"
+      ],
+      "runs": 240,
+      "values_per_run": {
+        "73": 240
+      },
+      "days_with_irregular_run_count": {},
+      "null_values": 0,
+      "non_numeric_generation": 0,
+      "negative_generation": 0,
+      "duplicate_publish_start_pairs": 0,
+      "targets_not_on_the_hour": 0,
+      "targets_before_publish_time": 3601,
+      "generation_mw": {
+        "min": 2396.0,
+        "mean": 12125.1,
+        "max": 21691.0
+      }
+    },
+    {
+      "file": "Oct25_Forecast.json",
+      "records": 18128,
+      "publish_time_range": [
+        "2025-10-01 03:30:00+00:00",
+        "2025-10-31 22:30:00+00:00"
+      ],
+      "start_time_range": [
+        "2025-09-30 20:00:00+00:00",
+        "2025-11-02 21:00:00+00:00"
+      ],
+      "runs": 248,
+      "values_per_run": {
+        "73": 224,
+        "74": 24
+      },
+      "days_with_irregular_run_count": {
+        "2025-10-26": 9,
+        "2025-10-01": 7
+      },
+      "null_values": 0,
+      "non_numeric_generation": 0,
+      "negative_generation": 0,
+      "duplicate_publish_start_pairs": 0,
+      "targets_not_on_the_hour": 0,
+      "targets_before_publish_time": 4128,
+      "generation_mw": {
+        "min": 597.0,
+        "mean": 10916.7,
+        "max": 21445.0
+      }
+    }
+  ],
+  "combined": {
+    "actuals": {
+      "records": 5906,
+      "start_time_range": [
+        "2025-09-30 23:00:00+00:00",
+        "2026-02-01 23:30:00+00:00"
+      ],
+      "duplicates_across_files": 0,
+      "conflicting_duplicates": 0,
+      "missing_half_hours": [
+        "2026-01-01 00:00 -> 2026-01-01 23:30 UTC (48)"
+      ]
+    },
+    "forecasts": {
+      "records": 71856,
+      "runs": 984,
+      "publish_time_range": [
+        "2025-10-01 03:30:00+00:00",
+        "2026-01-31 22:30:00+00:00"
+      ],
+      "longest_gap_between_runs_hours": 4.0,
+      "duplicates_across_files": 0
+    },
+    "units": "Both datasets report generation in MW (Elexon schema). Mean actual 10,574 MW vs mean forecast 12,181 MW - same order of magnitude, so no unit conversion is needed."
+  },
+  "errors": [],
+  "warnings": [
+    "Oct25_Forecast.json: days with a run count other than 8: {'2025-10-26': 9, '2025-10-01': 7}",
+    "combined actuals are missing ['2026-01-01 00:00 -> 2026-01-01 23:30 UTC (48)'] - affected hours are excluded, not filled"
+  ],
+  "passed": true
+}
