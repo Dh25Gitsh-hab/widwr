@@ -2,6 +2,33 @@
 
 **Decision support for a UK utility's day-ahead power-buying desk: what the official wind forecast said when power had to be bought, how far it could be trusted, and two machine-learning extensions (a corrected forecast and a shortfall-risk estimate).**
 
+## Live demo and deployment links
+
+**Open the live dashboard → [gridbricks-wind-front.vercel.app](https://gridbricks-wind-front.vercel.app/)**
+
+| What | Link | Notes |
+| --- | --- | --- |
+| **Live dashboard** (frontend website, React + Vite) | [gridbricks-wind-front.vercel.app](https://gridbricks-wind-front.vercel.app/) | The main demo. Open it in a browser |
+| **Backend API service** (FastAPI) | [gridbricks-wind-api.vercel.app](https://gridbricks-wind-api.vercel.app/) | The REST API that the dashboard calls. It returns JSON; its root address redirects to the API documentation |
+| **Backend health check** | [gridbricks-wind-api.vercel.app/api/health](https://gridbricks-wind-api.vercel.app/api/health) | Service status as JSON: data source, record counts and loaded models |
+| **Interactive API documentation** (Swagger UI) | [gridbricks-wind-api.vercel.app/docs](https://gridbricks-wind-api.vercel.app/docs) | Try every endpoint from the browser |
+| **Source code** (GitHub) | [github.com/Dh25Gitsh-hab/widwr](https://github.com/Dh25Gitsh-hab/widwr) | This repository |
+
+The frontend and the backend are **two separate Vercel projects** built from this repository. The API serves a fixed snapshot of Elexon data stored in the repository (downloaded on 25 Oct 2026). It does not fetch data from Elexon on each request.
+
+**Checked on 29 Oct 2026 from the command line:**
+- **API:** all 12 `/api/*` endpoints returned HTTP 200, and out-of-scope dates returned 422.
+- **CORS:** the API sent `Access-Control-Allow-Origin` for the dashboard's origin.
+- **Dashboard:** the page and its JavaScript were served (HTTP 200), and the bundle points to the production API.
+- **Live tests:** the 6 frontend live tests passed against the production API (see [Testing](#testing-and-quality-assurance)).
+- **Dashboard rendering:** one of those tests renders the dashboard against the production API in a simulated browser (jsdom). It checks that the dashboard connects, shows the decision window, the decision overview and both default models, and shows no error state. The dashboard was not checked in a real browser.
+
+The first request after a period of inactivity can take several seconds while Vercel starts a new backend instance.
+
+---
+
+## Overview
+
 A buying desk purchases power on day D-1 for delivery on day D. How much it needs depends on how much wind the grid will produce, and that is uncertain. This project answers two questions for purchase decisions made in **January 2026**:
 
 1. **What wind forecast did we actually have when we had to buy?** For every delivery hour it rebuilds the latest official forecast published before the day-ahead gate closure (09:50 UK time on D-1). No later information is used.
@@ -15,29 +42,7 @@ On top of this, an ML extension serves a **corrected forecast** (the official fo
 > The predictions are model estimates evaluated on historical data. They are not guaranteed outcomes, operational instructions or trading advice, and no trading-profit claim is made.
 
 **Contents:**
-[Live demo](#live-demo) · [Scope](#scope) · [Features](#features) · [Screenshots](#screenshots) · [Technology stack](#technology-stack) · [Architecture](#system-architecture) · [Repository structure](#repository-structure) · [Data and provenance](#data-sources-and-provenance) · [Methodology](#forecasting-and-machine-learning-methodology) · [API reference](#api-reference) · [Local setup](#local-setup) · [Environment variables and CORS](#environment-variables-and-cors) · [Docker](#docker-and-docker-compose) · [Testing](#testing-and-quality-assurance) · [Deployment](#deployment-guide) · [Limitations](#limitations) · [AI tools](#use-of-ai-tools)
-
----
-
-## Live demo
-
-These are the current production deployment URLs. The frontend and the backend are **two separate Vercel projects** built from this repository.
-
-| What | URL |
-| --- | --- |
-| Dashboard (frontend) | <https://gridbricks-wind-front.vercel.app/> |
-| REST API (backend) | <https://gridbricks-wind-api.vercel.app/> (redirects to `/docs`) |
-| Health check | <https://gridbricks-wind-api.vercel.app/api/health> |
-| Interactive API documentation | <https://gridbricks-wind-api.vercel.app/docs> |
-
-**Checked on 29 Oct 2026 from the command line:**
-- **API:** all 12 `/api/*` endpoints returned HTTP 200, and out-of-scope dates returned 422.
-- **CORS:** the API sent `Access-Control-Allow-Origin` for the dashboard's origin.
-- **Dashboard:** the page and its JavaScript were served (HTTP 200), and the bundle points to the production API.
-- **Live tests:** the 6 frontend live tests passed against the production API (see [Testing](#testing-and-quality-assurance)).
-- **Dashboard rendering:** one of those tests renders the dashboard against the production API in a simulated browser (jsdom). It checks that the dashboard connects, shows the decision window, the decision overview and both default models, and shows no error state. The dashboard was not checked in a real browser.
-
-The first request after a period of inactivity can take several seconds while Vercel starts a new backend instance.
+[Live demo](#live-demo-and-deployment-links) · [Scope](#scope) · [Features](#features) · [Screenshots](#screenshots) · [Technology stack](#technology-stack) · [Architecture](#system-architecture) · [Repository structure](#repository-structure) · [Data and provenance](#data-sources-and-provenance) · [Methodology](#forecasting-and-machine-learning-methodology) · [API reference](#api-reference) · [Local setup](#local-setup) · [Environment variables and CORS](#environment-variables-and-cors) · [Docker](#docker-and-docker-compose) · [Testing](#testing-and-quality-assurance) · [Deployment](#deployment-guide) · [Limitations](#limitations) · [AI tools](#use-of-ai-tools)
 
 ---
 
