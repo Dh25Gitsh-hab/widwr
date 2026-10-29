@@ -39,7 +39,7 @@ On top of this, an ML extension serves a **corrected forecast** (the official fo
 - **Intended users:** analysts and traders on a day-ahead desk, and reviewers evaluating the method.
 - **Practical value:** shows how the official forecast and its errors behaved at decision time, without hindsight.
 
-> The predictions are model estimates evaluated on historical data. They are not guaranteed outcomes, operational instructions or trading advice, and no trading-profit claim is made.
+> The app gives the desk information for its buying decisions; it does not make them. The predictions are model estimates evaluated on historical data. They are not guaranteed outcomes, operational instructions or trading advice, and no trading-profit claim is made.
 
 **Contents:**
 [Live demo](#live-demo-and-deployment-links) · [Scope](#scope) · [Features](#features) · [Screenshots](#screenshots) · [Technology stack](#technology-stack) · [Architecture](#system-architecture) · [Repository structure](#repository-structure) · [Data and provenance](#data-sources-and-provenance) · [Methodology](#forecasting-and-machine-learning-methodology) · [API reference](#api-reference) · [Local setup](#local-setup) · [Environment variables and CORS](#environment-variables-and-cors) · [Docker](#docker-and-docker-compose) · [Testing](#testing-and-quality-assurance) · [Deployment](#deployment-guide) · [Limitations](#limitations) · [AI tools](#use-of-ai-tools)
@@ -444,7 +444,7 @@ For the Random Forest, the January MAE reduction vs official is 614.3 MW (95% in
 
 ## API reference
 
-The base URL is `https://gridbricks-wind-api.vercel.app` in production, or `http://127.0.0.1:8000` locally.
+The base URL is `https://gridbricks-wind-api.vercel.app` in production, or `<LOCAL_BACKEND_URL>` when you run the backend yourself (see [Local setup](#local-setup)).
 
 - **Interactive docs:** **`/docs`** (Swagger UI), with the schema at `/openapi.json`; `/` redirects to `/docs`.
 - **Method:** all endpoints are `GET` and return JSON.
@@ -674,6 +674,11 @@ The full reference, with all fields, is in [backend/README.md](backend/README.md
 
 No database, API key or internet access is needed at runtime: the data snapshot and trained models are in the repository.
 
+**Local addresses.** This README does not hard-code local addresses. It uses two placeholders; replace them with the addresses your servers print:
+- **`<LOCAL_BACKEND_URL>`:** the address in the `Uvicorn running on …` line that the backend prints when it starts. By default the backend listens on port 8000 of your own computer.
+- **`<LOCAL_FRONTEND_URL>`:** the `Local:` address that `npm run dev` prints. The dashboard always uses port 5173 (see *Port* below).
+- **With Docker:** the same placeholders mean ports 8000 (backend) and 5173 (dashboard) on the computer running Docker.
+
 ### 1. Clone
 
 ```powershell
@@ -690,7 +695,7 @@ cd backend
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1          # or call .\.venv\Scripts\python.exe directly
 pip install -r requirements-dev.txt   # runtime packages + pytest
-uvicorn app.main:app --reload         # http://127.0.0.1:8000
+uvicorn app.main:app --reload         # prints "Uvicorn running on <LOCAL_BACKEND_URL>"
 ```
 
 **macOS / Linux:**
@@ -702,18 +707,21 @@ pip install -r requirements-dev.txt
 uvicorn app.main:app --reload
 ```
 
-The API is then at <http://127.0.0.1:8000/docs>, with the health check at <http://127.0.0.1:8000/api/health>.
+Then open `<LOCAL_BACKEND_URL>/docs` for the interactive API documentation, and `<LOCAL_BACKEND_URL>/api/health` for the health check.
 
 ### 3. Frontend (terminal 2)
 
 ```powershell
 cd frontend
 npm install          # or: npm ci (exact versions from package-lock.json)
-npm run dev          # http://localhost:5173
+npm run dev          # prints "Local: <LOCAL_FRONTEND_URL>" (port 5173)
 ```
 
-Open <http://localhost:5173>.
-- **Defaults:** the dashboard calls `http://127.0.0.1:8000` by default, and the backend's default CORS list allows `http://localhost:5173` and `http://127.0.0.1:5173`.
+Open `<LOCAL_FRONTEND_URL>` in a browser.
+- **Defaults:** with both defaults, the local dashboard and backend work together with no configuration.
+  - Without `VITE_API_BASE_URL`, the dashboard calls the backend at Uvicorn's default local address on port 8000 (set in `frontend/src/api/client.js`).
+  - The backend's default CORS list allows the dashboard's two local addresses on port 5173 (set in `backend/app/config.py`).
+- **Backend elsewhere:** if your backend uses a different address, copy `frontend/.env.example` to `frontend/.env.local` and set `VITE_API_BASE_URL` to that address.
 - **Port:** Vite is configured with `strictPort`, so it fails instead of silently moving to another port, because the backend would reject that port.
 
 More detail: [backend/README.md](backend/README.md) and [frontend/README.md](frontend/README.md).
@@ -728,7 +736,7 @@ No secrets are needed. **Never commit `.env` files.** `.gitignore` and `.dockeri
 
 | Variable | Used | Default | Production value |
 | --- | --- | --- | --- |
-| `VITE_API_BASE_URL` | **At build time** (compiled into the public JavaScript bundle) | `http://127.0.0.1:8000` | `https://gridbricks-wind-api.vercel.app` |
+| `VITE_API_BASE_URL` | **At build time** (compiled into the public JavaScript bundle) | The local backend on port 8000 (exact value in `frontend/.env.example` and `frontend/src/api/client.js`) | `https://gridbricks-wind-api.vercel.app` |
 
 Because it is compiled in, changing it requires a **new build or deployment**. Every `VITE_` variable is public, so never put secrets in one.
 
@@ -736,7 +744,7 @@ Because it is compiled in, changing it requires a **new build or deployment**. E
 
 | Variable | Default | Notes |
 | --- | --- | --- |
-| `WFM_CORS_ORIGINS` | `["http://localhost:5173","http://127.0.0.1:5173"]` | **JSON array** of browser origins allowed to call the API |
+| `WFM_CORS_ORIGINS` | The local dashboard's two addresses on port 5173 (exact list in `backend/.env.example` and `backend/app/config.py`) | **JSON array** of browser origins allowed to call the API |
 | `WFM_DATA_SOURCE` | `snapshot` | `snapshot` = serve `backend/data/*.csv`; `live` = download from Elexon at start-up (not used in production) |
 | `WFM_ML_DEFAULT_REGRESSOR` / `WFM_ML_DEFAULT_CLASSIFIER` | `linear_by_level` / `logistic_by_level` | Approved defaults; change only through a new model-selection decision |
 | `WFM_FIRST_DECISION_DATE`, `WFM_LAST_DECISION_DATE`, `WFM_DEFAULT_GATE_CLOSURE` | 2026-01-01, 2026-01-31, 09:50 | The application scope; keep the defaults |
@@ -751,7 +759,7 @@ Locally, `backend/.env` (copied from `backend/.env.example`) is read if present.
   - In the Vercel dashboard, enter it exactly like that, **without** surrounding quotes.
   - A bare URL or a comma-separated list cannot be parsed, and the backend then fails to start.
 - **Exact match:** the browser's `Origin` header is compared exactly, so the scheme and host must match. Write origins **without a trailing slash and without a path**. Browsers never send a trailing slash in `Origin`.
-- **Replaces the defaults:** setting the variable replaces the localhost defaults. Add the local origins too if a deployed backend should also serve a local dashboard.
+- **Replaces the defaults:** setting the variable replaces the local-development defaults. If a deployed backend should also serve a local dashboard, add the local origins too (copy them from `backend/.env.example`).
 - **Redeploy needed:** on Vercel, environment-variable changes take effect only after a **new deployment**.
 - **Methods:** only `GET` is allowed. Preflight requests from origins not in the list get HTTP 400.
 
@@ -778,8 +786,8 @@ Docker runs the complete app locally in two containers.
 
 **What goes into the images:**
 - The root `.dockerignore` excludes `.git`, virtual environments, `node_modules`, `dist`, `.env` files, and `DATASETS/` and `DATASETS1/`, which the running app does not need.
-- **Build-time API address:** Compose builds the frontend with `VITE_API_BASE_URL=http://127.0.0.1:8000`.
-- **Backend CORS:** set to `["http://localhost:5173","http://127.0.0.1:5173"]`.
+- **Build-time API address:** Compose builds the frontend with `VITE_API_BASE_URL` pointing at the backend's published port 8000 on the same computer (the value is in `docker-compose.yml`).
+- **Backend CORS:** Compose sets `WFM_CORS_ORIGINS` to the dashboard's two local addresses on port 5173 (also in `docker-compose.yml`).
 - **Result:** the containerised dashboard works in a browser on the same machine.
 
 ```powershell
@@ -787,8 +795,8 @@ Docker runs the complete app locally in two containers.
 docker compose up --build -d       # build both images and start them in the background
 docker compose ps                  # list the running containers
 docker compose logs -f backend     # follow the backend logs (start-up shows "ML models loaded")
-curl.exe http://127.0.0.1:8000/api/health    # health check (PowerShell: curl.exe, not the curl alias)
-# dashboard: http://localhost:5173 · API docs: http://127.0.0.1:8000/docs
+curl.exe <LOCAL_BACKEND_URL>/api/health    # health check; replace the placeholder first (PowerShell: curl.exe, not the curl alias)
+# dashboard: <LOCAL_FRONTEND_URL> (port 5173) · API docs: <LOCAL_BACKEND_URL>/docs (port 8000)
 docker compose down                # stop and remove the containers
 ```
 
@@ -817,8 +825,8 @@ All runs were on Windows 11 with Python 3.12.6 and Node.js 20.19.0.
 
 **Live tests need both variables for production:**
 - Five tests call `LIVE_API_URL` directly.
-- The sixth renders the dashboard, which calls `VITE_API_BASE_URL` (default `http://127.0.0.1:8000`).
-- Against a local backend on port 8000, `$env:LIVE_API_URL="http://127.0.0.1:8000"` is enough.
+- The sixth renders the dashboard, which calls `VITE_API_BASE_URL` (default: the local backend on port 8000).
+- Against a local backend on its default port 8000, `$env:LIVE_API_URL="<LOCAL_BACKEND_URL>"` is enough, because the dashboard's default already points there.
 
 **Run the backend tests on Windows:**
 
@@ -882,7 +890,7 @@ The root-directory and preset settings live in the Vercel dashboard and are list
 | Symptom | Likely cause and fix |
 | --- | --- |
 | Dashboard says it cannot reach the backend; the browser console shows a CORS error | `WFM_CORS_ORIGINS` does not contain the exact frontend origin (check for a trailing slash, `http` vs `https`, or a preview URL), or the backend was not redeployed after the change |
-| Dashboard calls `http://127.0.0.1:8000` in production | `VITE_API_BASE_URL` was not set when the frontend was built. Set it and redeploy the frontend |
+| Dashboard calls a local address (port 8000) instead of the production API | `VITE_API_BASE_URL` was not set when the frontend was built. Set it and redeploy the frontend |
 | Backend fails to start after changing `WFM_CORS_ORIGINS` | The value is not a JSON array (for example, it has surrounding quotes or is a bare URL) |
 | `/api/health` returns 503 | The data snapshot could not be loaded. Check that `backend/data/*.csv` is deployed |
 | `/api/health` is 200 but the ML endpoints return 503 | Model files or the feature table are missing or invalid. The reason is in `ml_models` |
@@ -907,27 +915,8 @@ More limitations, and what more data would help with, are in [backend/ml/README.
 
 ## Use of AI tools
 
-As the brief allows, AI tools were used to build this project.
+As the brief allows, AI tools were used during development:
+- **Claude (Anthropic), through Claude Code:** under my direction and review, for data exploration, the backend, the ML pipeline, the dashboard, tests and documentation.
+- **ChatGPT (OpenAI):** early domain research and drafting the project blueprint.
 
-- **Claude (Anthropic), used through Claude Code**, under my direction and review:
-  - exploring and validating the Elexon data files;
-  - the FastAPI backend: data pipeline, forecast evaluation and REST API;
-  - the ML pipeline, the February 2026 check and the offline experiments in `backend/ml/v2/`;
-  - the React dashboard;
-  - the backend and frontend tests, the integration and pre-deployment audits;
-  - diagnosing a production CORS configuration issue;
-  - the documentation, including this README.
-- **ChatGPT (OpenAI):** early domain research, and drafting the project blueprint and structure.
-
-AI tools assisted; they did not independently validate the results. Every number in this documentation was produced by the code and data in this repository or by the deployed API. I reviewed, ran and checked the design decisions, data findings and code.
-
----
-
-### Further documentation
-
-- [backend/README.md](backend/README.md): backend set-up, configuration, the full API reference and troubleshooting.
-- [backend/ml/README.md](backend/ml/README.md): the ML workflow, results and limitations.
-- [backend/ml/holdout_feb2026/README.md](backend/ml/holdout_feb2026/README.md): the sealed February 2026 check.
-- [docs/BACKEND_DESIGN.md](docs/BACKEND_DESIGN.md): architecture, decisions and trade-offs.
-- [docs/DATA_FINDINGS.md](docs/DATA_FINDINGS.md): data dictionary, profiling and processing rules.
-- [frontend/README.md](frontend/README.md): dashboard set-up and tests.
+I reviewed and ran the code. Every number in this README comes from the code and data in this repository or from the deployed API.
