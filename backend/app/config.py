@@ -19,6 +19,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
@@ -74,6 +75,14 @@ class Settings(BaseSettings):
         "http://localhost:5173",
         "http://127.0.0.1:5173",
     ]
+
+    @field_validator("cors_origins")
+    @classmethod
+    def _normalise_origins(cls, origins: list[str]) -> list[str]:
+        # A browser's Origin header is scheme://host[:port] - never a trailing "/" - and CORS
+        # compares it exactly, so "https://my-app.vercel.app/" copied from the address bar would
+        # silently match nothing. Only the formatting is tidied; the list stays exactly as configured.
+        return [origin.strip().rstrip("/") for origin in origins]
 
     @property
     def first_delivery_date(self) -> date:

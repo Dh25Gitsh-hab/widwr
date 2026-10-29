@@ -4,6 +4,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 import app.main as main_module
+from app.config import Settings
 from app.main import create_app
 
 
@@ -98,6 +99,38 @@ def test_openapi_schema_documents_every_endpoint(client):
         "/api/analytics/summary", "/api/analytics/timeseries", "/api/analytics/breakdown", "/api/analytics/horizon",
         "/api/ml/evaluate", "/api/ml/models", "/api/ml/predictions", "/api/ml/corrected-forecast", "/api/ml/shortfall-risk",
     }  # fmt: skip
+
+
+FRONTEND_ORIGIN = "https://gridbricks-wind-front.vercel.app"
+
+
+def settings_from_env(settings, monkeypatch, cors_origins: str) -> Settings:
+    """The test settings, but with WFM_CORS_ORIGINS read from the environment - as on the host (Vercel)."""
+    monkeypatch.setenv("WFM_CORS_ORIGINS", cors_origins)
+    return Settings(**settings.model_dump(exclude={"cors_origins"}))
+
+
+# An address copied from the browser bar often ends in "/", but a browser's Origin header never does.
+@pytest.mark.parametrize("configured", [f'["{FRONTEND_ORIGIN}"]', f'["{FRONTEND_ORIGIN}/"]', f'[" {FRONTEND_ORIGIN}/ "]'])
+def test_cors_allows_the_configured_frontend_origin(settings, store, monkeypatch, configured):
+    with TestClient(create_app(settings=settings_from_env(settings, monkeypatch, configured), store=store)) as client:
+        simple = client.get("/api/health", headers={"Origin": FRONTEND_ORIGIN})
+        preflight = client.options(
+            "/api/health", headers={"Origin": FRONTEND_ORIGIN, "Access-Control-Request-Method": "GET"}
+        )
+    assert simple.status_code == 200
+    assert simple.headers.get("access-control-allow-origin") == FRONTEND_ORIGIN
+    assert preflight.status_code == 200
+    assert preflight.headers.get("access-control-allow-origin") == FRONTEND_ORIGIN
+
+
+@pytest.mark.parametrize("origin", ["https://evil.example", "http://gridbricks-wind-front.vercel.app", "http://localhost:5173"])
+def test_cors_refuses_origins_that_are_not_configured(settings, store, monkeypatch, origin):
+    with TestClient(create_app(settings=settings_from_env(settings, monkeypatch, f'["{FRONTEND_ORIGIN}/"]'), store=store)) as client:
+        simple = client.get("/api/health", headers={"Origin": origin})
+        preflight = client.options("/api/health", headers={"Origin": origin, "Access-Control-Request-Method": "GET"})
+    assert "access-control-allow-origin" not in simple.headers
+    assert preflight.status_code == 400
 
 
 def test_service_starts_and_reports_when_data_cannot_load(settings, monkeypatch):
